@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>RN-类的使用 - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"React Native 状态管理：函数组件 vs 类组件在React Native中，状态（state）的管理可以通过函数组件使用useState和useEffect钩子来实现，也可以通过类组件的传统方式来处理。以下分别展示了这两种方式的具体实现。\n使用函数组件与Hooks1234567891011121314151617181920212223const Index = () =&gt; &#123;    const [statusBarColor, setStatusBarColor] = useState(&#x27;green&#x27;);  //react中常用的响应式方法    useEffect(() =&gt; &#123;  // 使用useEffect Hook监听statusBarColor的变化，当其变化时执行回调函数    StatusBar.setBackgroundColor(statusBarColor);    &#125;, [statusBarColor]);// 只有当statusBarColor改变时才会触发此effect    const toggleStatusBarColor = () =&gt; &#123;      const newColor = statusBarColor === &#x27;green&#x27; ? &#x27;red&#x27; : &#x27;green&#x27;;      setStatusBarColor(newColor);    &#125;;      return (      &lt;View style=&#123;styles.container&#125;&gt;        &lt;Switch          trackColor=&#123;&#123; false: &#x27;gray&#x27;, true: &#x27;green&#x27; &#125;&#125;          thumbColor=&quot;blue&quot;          onValueChange=&#123;toggleStatusBarColor&#125;          value=&#123;statusBarColor===&#x27;green&#x27;&#125;        /&gt;      &lt;/View&gt;    );  &#125;\n\n使用类组件12345678910111213141516171819202122232425262728293031323334353637383940export default class Index extends Component &#123;    constructor(props) &#123;      super(props);  // 调用父类构造器    this.state = &#123;  // 初始化state对b      statusBarColor: &#x27;green&#x27;,  // 状态栏颜色初始为绿色      switchValue: true  // 开关初始值为true（开）    &#125;;    &#125;      // 组件更新后自动调用，检查状态变化并作出相应操作  componentDidUpdate(prevProps, prevState) &#123;      if (prevState.statusBarColor !== this.state.statusBarColor) &#123;  // 如果状态栏颜色发生了变化      StatusBar.setBackgroundColor(this.state.statusBarColor);  // 设置状态栏背景颜色    &#125;    &#125;      // 切换状态栏颜色的方法  toggleStatusBarColor = () =&gt; &#123;      const newColor = this.state.statusBarColor === &#x27;green&#x27; ? &#x27;red&#x27; : &#x27;green&#x27;;  // 切换颜色    this.setState(&#123;  // 更新状态      statusBarColor: newColor,        switchValue: !this.state.switchValue  // 同步更新switch的状态    &#125;);    &#125;;      render() &#123;  //react的render在每次组件的state和props改变的时候，调用该函数    return (        &lt;View style=&#123;styles.container&#125;&gt;          &lt;Switch            trackColor=&#123;&#123; false: &#x27;gray&#x27;, true: &#x27;green&#x27; &#125;&#125;            thumbColor=&quot;blue&quot;            onValueChange=&#123;this.toggleStatusBarColor&#125;            value=&#123;this.state.switchValue&#125;          /&gt;        &lt;/View&gt;      );    &#125;  &#125;\n","dateCreated":"2025-02-19T16:47:29+08:00","dateModified":"2025-02-19T17:24:10+08:00","datePublished":"2025-02-19T16:47:29+08:00","description":"React Native 状态管理：函数组件 vs 类组件","headline":"RN-类的使用","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/","keywords":"RN"}</script>
+    <meta name="description" content="React Native 状态管理：函数组件 vs 类组件">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="RN-类的使用">
+<meta property="og:url" content="http://example.com/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="React Native 状态管理：函数组件 vs 类组件">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-19T08:47:29.000Z">
+<meta property="article:modified_time" content="2025-02-19T09:24:10.099Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="RN">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            RN-类的使用
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2025-02-19T16:47:29+08:00">
+	
+		    2025 年 2 月 19 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/RN/">RN</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="React-Native-状态管理：函数组件-vs-类组件"><a href="#React-Native-状态管理：函数组件-vs-类组件" class="headerlink" title="React Native 状态管理：函数组件 vs 类组件"></a>React Native 状态管理：函数组件 vs 类组件</h1><p>在React Native中，状态（<code>state</code>）的管理可以通过函数组件使用<code>useState</code>和<code>useEffect</code>钩子来实现，也可以通过类组件的传统方式来处理。以下分别展示了这两种方式的具体实现。</p>
+<h2 id="使用函数组件与Hooks"><a href="#使用函数组件与Hooks" class="headerlink" title="使用函数组件与Hooks"></a>使用函数组件与Hooks</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Index</span> = (<span class="params"></span>) =&gt; &#123;  </span><br><span class="line">  <span class="keyword">const</span> [statusBarColor, setStatusBarColor] = <span class="title function_">useState</span>(<span class="string">&#x27;green&#x27;</span>);  <span class="comment">//react中常用的响应式方法</span></span><br><span class="line">  </span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;  <span class="comment">// 使用useEffect Hook监听statusBarColor的变化，当其变化时执行回调函数</span></span><br><span class="line">    <span class="title class_">StatusBar</span>.<span class="title function_">setBackgroundColor</span>(statusBarColor);  </span><br><span class="line">  &#125;, [statusBarColor]);<span class="comment">// 只有当statusBarColor改变时才会触发此effect</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">toggleStatusBarColor</span> = (<span class="params"></span>) =&gt; &#123;  </span><br><span class="line">    <span class="keyword">const</span> newColor = statusBarColor === <span class="string">&#x27;green&#x27;</span> ? <span class="string">&#x27;red&#x27;</span> : <span class="string">&#x27;green&#x27;</span>;  </span><br><span class="line">    <span class="title function_">setStatusBarColor</span>(newColor);  </span><br><span class="line">  &#125;;  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> (  </span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span>  </span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Switch</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">trackColor</span>=<span class="string">&#123;&#123;</span> <span class="attr">false:</span> &#x27;<span class="attr">gray</span>&#x27;, <span class="attr">true:</span> &#x27;<span class="attr">green</span>&#x27; &#125;&#125;  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">thumbColor</span>=<span class="string">&quot;blue&quot;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onValueChange</span>=<span class="string">&#123;toggleStatusBarColor&#125;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">value</span>=<span class="string">&#123;statusBarColor</span>===<span class="string">&#x27;green&#x27;</span>&#125;  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span>  </span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span>  </span><br><span class="line">  );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用类组件"><a href="#使用类组件" class="headerlink" title="使用类组件"></a>使用类组件</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Index</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;  </span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;  </span><br><span class="line">    <span class="variable language_">super</span>(props);  <span class="comment">// 调用父类构造器</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;  <span class="comment">// 初始化state对b</span></span><br><span class="line">      <span class="attr">statusBarColor</span>: <span class="string">&#x27;green&#x27;</span>,  <span class="comment">// 状态栏颜色初始为绿色</span></span><br><span class="line">      <span class="attr">switchValue</span>: <span class="literal">true</span>  <span class="comment">// 开关初始值为true（开）</span></span><br><span class="line">    &#125;;  </span><br><span class="line">  &#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 组件更新后自动调用，检查状态变化并作出相应操作</span></span><br><span class="line">  <span class="title function_">componentDidUpdate</span>(<span class="params">prevProps, prevState</span>) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (prevState.<span class="property">statusBarColor</span> !== <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">statusBarColor</span>) &#123;  <span class="comment">// 如果状态栏颜色发生了变化</span></span><br><span class="line">      <span class="title class_">StatusBar</span>.<span class="title function_">setBackgroundColor</span>(<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">statusBarColor</span>);  <span class="comment">// 设置状态栏背景颜色</span></span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 切换状态栏颜色的方法</span></span><br><span class="line">  toggleStatusBarColor = <span class="function">() =&gt;</span> &#123;  </span><br><span class="line">    <span class="keyword">const</span> newColor = <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">statusBarColor</span> === <span class="string">&#x27;green&#x27;</span> ? <span class="string">&#x27;red&#x27;</span> : <span class="string">&#x27;green&#x27;</span>;  <span class="comment">// 切换颜色</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;  <span class="comment">// 更新状态</span></span><br><span class="line">      <span class="attr">statusBarColor</span>: newColor,  </span><br><span class="line">      <span class="attr">switchValue</span>: !<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">switchValue</span>  <span class="comment">// 同步更新switch的状态</span></span><br><span class="line">    &#125;);  </span><br><span class="line">  &#125;;  </span><br><span class="line">  </span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;  <span class="comment">//react的render在每次组件的state和props改变的时候，调用该函数</span></span><br><span class="line">    <span class="keyword">return</span> (  </span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span>  </span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Switch</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">trackColor</span>=<span class="string">&#123;&#123;</span> <span class="attr">false:</span> &#x27;<span class="attr">gray</span>&#x27;, <span class="attr">true:</span> &#x27;<span class="attr">green</span>&#x27; &#125;&#125;  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">thumbColor</span>=<span class="string">&quot;blue&quot;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">onValueChange</span>=<span class="string">&#123;this.toggleStatusBarColor&#125;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">value</span>=<span class="string">&#123;this.state.switchValue&#125;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        /&gt;</span>  </span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span>  </span><br><span class="line">    );  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/RN/" rel="tag">RN</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/07/12/React-render/"
+                    data-tooltip="React-render"
+                    aria-label="下一篇: React-render"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/&amp;title=RN-类的使用"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/07/12/React-render/"
+                    data-tooltip="React-render"
+                    aria-label="下一篇: React-render"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/&amp;title=RN-类的使用"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/&amp;title=RN-类的使用"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

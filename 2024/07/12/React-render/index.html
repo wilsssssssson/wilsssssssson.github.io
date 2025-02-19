@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>React-render - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"render() 方法在 React 组件中扮演着核心角色，它定义了组件的 UI 结构，并且决定了组件最终渲染到页面上的样子。以下是 render() 方法的具体作用和一些关键点：\n核心作用\n描述 UI：render() 方法返回一个 React 元素（可以是一个简单的 DOM 标签、复杂的自定义组件或者它们的组合），这些元素描述了组件的 UI 层次结构。\n\n生成虚拟 DOM：React 使用 JSX 语法（JavaScript 的一种语法扩展）来编写 UI 代码。当组件被渲染时，render() 方法会生成一个虚拟 DOM（Virtual DOM），这是一个轻量级的内存中的 DOM 表示形式。\n\n比较与更新：React 通过对比新旧虚拟 DOM 的差异（这一过程称为“diffing”），然后仅对实际变化的部分进行必要的最小化更新，从而高效地更新真实的 DOM，以保持用户界面的最新状态。\n\n\n关键特性\n纯函数性：理论上，render() 应该是无副作用的，意味着它不应该修改组件的状态或执行其他有副作用的操作。它的唯一目的是基于当前的 props 和 state 返回 UI 描述。\n\n响应式更新：每当组件的 props 或 state 发生变化时，React 会自动调用 render() 方法来重新生成 UI，确保显示的内容始终反映最新的数据状态。\n\n生命周期的一部分：对于类组件来说，render() 是生命周期方法之一。它会在组件实例化后首次加载到页面时以及每次组件更新时被调用。而在函数组件中，这个逻辑隐含在函数体内部，因为整个函数本身就是用来定义渲染输出的。\n\n\n示例说明在你提供的例子中，无论是函数组件还是类组件，render() 都负责定义如何将数据（props 和 state）转化为可视化的 UI 元素。例如，在类组件中，render() 方法返回了一个包含 Switch 组件的 View 组件，根据当前的状态（如 statusBarColor 和 switchValue）决定开关的位置和颜色等属性。\n123456789101112render() &#123;    return (      &lt;View style=&#123;styles.container&#125;&gt;        &lt;Switch          trackColor=&#123;&#123; false: &#x27;gray&#x27;, true: &#x27;green&#x27; &#125;&#125;          thumbColor=&quot;blue&quot;          onValueChange=&#123;this.toggleStatusBarColor&#125;          value=&#123;this.state.switchValue&#125;        /&gt;      &lt;/View&gt;    );  &#125;\n","dateCreated":"2024-07-12T09:12:36+08:00","dateModified":"2025-02-19T20:52:19+08:00","datePublished":"2024-07-12T09:12:36+08:00","description":"render函数的使用及特性","headline":"React-render","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/07/12/React-render/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/07/12/React-render/","keywords":"react"}</script>
+    <meta name="description" content="render函数的使用及特性">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="React-render">
+<meta property="og:url" content="http://example.com/2024/07/12/React-render/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="render函数的使用及特性">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-12T01:12:36.000Z">
+<meta property="article:modified_time" content="2025-02-19T12:52:19.843Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            React-render
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-07-12T09:12:36+08:00">
+	
+		    2024 年 7 月 12 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/react/">react</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p><code>render()</code> 方法在 React 组件中扮演着核心角色，它定义了组件的 UI 结构，并且决定了组件最终渲染到页面上的样子。以下是 <code>render()</code> 方法的具体作用和一些关键点：</p>
+<h3 id="核心作用"><a href="#核心作用" class="headerlink" title="核心作用"></a>核心作用</h3><ol>
+<li><p><strong>描述 UI</strong>：<code>render()</code> 方法返回一个 React 元素（可以是一个简单的 DOM 标签、复杂的自定义组件或者它们的组合），这些元素描述了组件的 UI 层次结构。</p>
+</li>
+<li><p><strong>生成虚拟 DOM</strong>：React 使用 JSX 语法（JavaScript 的一种语法扩展）来编写 UI 代码。当组件被渲染时，<code>render()</code> 方法会生成一个虚拟 DOM（Virtual DOM），这是一个轻量级的内存中的 DOM 表示形式。</p>
+</li>
+<li><p><strong>比较与更新</strong>：React 通过对比新旧虚拟 DOM 的差异（这一过程称为“diffing”），然后仅对实际变化的部分进行必要的最小化更新，从而高效地更新真实的 DOM，以保持用户界面的最新状态。</p>
+</li>
+</ol>
+<h3 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h3><ul>
+<li><p><strong>纯函数性</strong>：理论上，<code>render()</code> 应该是无副作用的，意味着它不应该修改组件的状态或执行其他有副作用的操作。它的唯一目的是基于当前的 props 和 state 返回 UI 描述。</p>
+</li>
+<li><p><strong>响应式更新</strong>：每当组件的 props 或 state 发生变化时，React 会自动调用 <code>render()</code> 方法来重新生成 UI，确保显示的内容始终反映最新的数据状态。</p>
+</li>
+<li><p><strong>生命周期的一部分</strong>：对于类组件来说，<code>render()</code> 是生命周期方法之一。它会在组件实例化后首次加载到页面时以及每次组件更新时被调用。而在函数组件中，这个逻辑隐含在函数体内部，因为整个函数本身就是用来定义渲染输出的。</p>
+</li>
+</ul>
+<h3 id="示例说明"><a href="#示例说明" class="headerlink" title="示例说明"></a>示例说明</h3><p>在你提供的例子中，无论是函数组件还是类组件，<code>render()</code> 都负责定义如何将数据（props 和 state）转化为可视化的 UI 元素。例如，在类组件中，<code>render()</code> 方法返回了一个包含 <code>Switch</code> 组件的 <code>View</code> 组件，根据当前的状态（如 <code>statusBarColor</code> 和 <code>switchValue</code>）决定开关的位置和颜色等属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">render</span>(<span class="params"></span>) &#123;  </span><br><span class="line">  <span class="keyword">return</span> (  </span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span>  </span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Switch</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">trackColor</span>=<span class="string">&#123;&#123;</span> <span class="attr">false:</span> &#x27;<span class="attr">gray</span>&#x27;, <span class="attr">true:</span> &#x27;<span class="attr">green</span>&#x27; &#125;&#125;  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">thumbColor</span>=<span class="string">&quot;blue&quot;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onValueChange</span>=<span class="string">&#123;this.toggleStatusBarColor&#125;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">value</span>=<span class="string">&#123;this.state.switchValue&#125;</span>  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span>  </span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span>  </span><br><span class="line">  );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/react/" rel="tag">react</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"
+                    data-tooltip="RN-类的使用"
+                    aria-label="上一篇: RN-类的使用"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
+                    data-tooltip="RN-连接初始化"
+                    aria-label="下一篇: RN-连接初始化"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/07/12/React-render/&amp;title=React-render"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"
+                    data-tooltip="RN-类的使用"
+                    aria-label="上一篇: RN-类的使用"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
+                    data-tooltip="RN-连接初始化"
+                    aria-label="下一篇: RN-连接初始化"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/07/12/React-render/&amp;title=React-render"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/07/12/React-render/&amp;title=React-render"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>watch监视 - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue.js Watch 监视器使用详解监视对象类型\n函数：返回一个值。\nRef：监视由 ref 定义的对象类型数据时，实际上是在监视对象的地址值。若要监视对象内部属性的变化，需手动开启深度监视。\n响应式对象：当监视响应式对象中的某个基本类型的属性时，需要以函数的形式来定义。\n\n此外，还可以监视由上述类型组成的数组。\nVue.js官方文档\n参数说明\nimmediate: 在侦听器创建时立即触发回调。第一次调用时旧值是 undefined。\ndeep: 如果源是对象，强制深度遍历以便在深层级变更时触发回调。\nflush: 调整回调函数的刷新时机，可参考回调的刷新时机及 watchEffect()。\nonTrack / onTrigger: 用于调试侦听器的依赖关系。\nonce: 回调函数只会运行一次，侦听器将在回调函数首次运行后自动停止。\n\n\n注意：watchEffect 可实现监视页面的所有属性，并且可以实现页面懒加载。\n\n订阅 (subscribe) 实例talkStore.$subscribe((mutation, state) =&gt; &#123;\n    console.log(&#39;talkStore里面保存的数据发生了变化&#39;, mutation, state);\n    localStorage.setItem(&#39;talkList&#39;, JSON.stringify(state.talkList));\n&#125;);\n\n","dateCreated":"2024-05-22T19:30:39+08:00","dateModified":"2025-02-19T20:54:22+08:00","datePublished":"2024-05-22T19:30:39+08:00","description":"watch，watchweffect,subscribe的使用方法","headline":"watch监视","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/","keywords":"vue3, watch"}</script>
+    <meta name="description" content="watch，watchweffect,subscribe的使用方法">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="watch监视">
+<meta property="og:url" content="http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="watch，watchweffect,subscribe的使用方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-22T11:30:39.000Z">
+<meta property="article:modified_time" content="2025-02-19T12:54:22.214Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="vue3">
+<meta property="article:tag" content="watch">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            watch监视
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-05-22T19:30:39+08:00">
+	
+		    2024 年 5 月 22 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/vue3/">vue3</a>, <a class="category-link" href="/categories/vue3/watch/">watch</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h2 id="Vue-js-Watch-监视器使用详解"><a href="#Vue-js-Watch-监视器使用详解" class="headerlink" title="Vue.js Watch 监视器使用详解"></a>Vue.js Watch 监视器使用详解</h2><h3 id="监视对象类型"><a href="#监视对象类型" class="headerlink" title="监视对象类型"></a>监视对象类型</h3><ul>
+<li><strong>函数</strong>：返回一个值。</li>
+<li><strong>Ref</strong>：监视由 <code>ref</code> 定义的对象类型数据时，实际上是在监视对象的地址值。若要监视对象内部属性的变化，需手动开启深度监视。</li>
+<li><strong>响应式对象</strong>：当监视响应式对象中的某个基本类型的属性时，需要以函数的形式来定义。</li>
+</ul>
+<p>此外，还可以监视由上述类型组成的数组。</p>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/api/reactivity-core.html#watch">Vue.js官方文档</a></p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<li><code>immediate</code>: 在侦听器创建时立即触发回调。第一次调用时旧值是 <code>undefined</code>。</li>
+<li><code>deep</code>: 如果源是对象，强制深度遍历以便在深层级变更时触发回调。</li>
+<li><code>flush</code>: 调整回调函数的刷新时机，可参考回调的刷新时机及 <code>watchEffect()</code>。</li>
+<li><code>onTrack / onTrigger</code>: 用于调试侦听器的依赖关系。</li>
+<li><code>once</code>: 回调函数只会运行一次，侦听器将在回调函数首次运行后自动停止。</li>
+</ul>
+<blockquote>
+<p>注意：<code>watchEffect</code> 可实现监视页面的所有属性，并且可以实现页面懒加载。</p>
+</blockquote>
+<h3 id="订阅-subscribe-实例"><a href="#订阅-subscribe-实例" class="headerlink" title="订阅 (subscribe) 实例"></a>订阅 (<code>subscribe</code>) 实例</h3><pre><code class="language-javascript">talkStore.$subscribe((mutation, state) =&gt; &#123;
+    console.log(&#39;talkStore里面保存的数据发生了变化&#39;, mutation, state);
+    localStorage.setItem(&#39;talkList&#39;, JSON.stringify(state.talkList));
+&#125;);
+</code></pre>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/watch/" rel="tag">watch</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/06/13/lazyLoading/"
+                    data-tooltip="lazyLoading"
+                    aria-label="上一篇: lazyLoading"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/05/17/asynchronous/"
+                    data-tooltip="asynchronous"
+                    aria-label="下一篇: asynchronous"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/06/13/lazyLoading/"
+                    data-tooltip="lazyLoading"
+                    aria-label="上一篇: lazyLoading"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/05/17/asynchronous/"
+                    data-tooltip="asynchronous"
+                    aria-label="下一篇: asynchronous"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

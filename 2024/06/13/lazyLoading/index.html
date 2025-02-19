@@ -1,0 +1,569 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>lazyLoading - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"使用Vue生命周期钩子实现懒加载在Vue应用中，可以通过监听scroll事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能。\n代码示例完整代码export default &#123;\n  data() &#123;\n    return &#123;\n      dataList: [], // 初始数据列表\n      isLoading: false, // 加载状态\n      page: 1, // 当前页码\n    &#125;;\n  &#125;,\n  mounted() &#123;\n    this.loadMoreData();\n    window.addEventListener(&#39;scroll&#39;, this.handleScroll);\n  &#125;,\n  methods: &#123;\n    loadMoreData() &#123;\n      this.isLoading = true;\n      // 模拟数据加载\n      setTimeout(() =&gt; &#123;\n        // 假设每次加载5条数据\n        const newData = Array.from(&#123; length: 5 &#125;, (_, index) =&gt; (&#123;\n          id: this.dataList.length + index + 1,\n          content: `数据 $&#123;this.page + index&#125;`,\n        &#125;));\n        this.dataList.push(...newData);\n        this.isLoading = false;\n        this.page++;\n      &#125;, 1000); // 利用setTimeout模拟加载数据，实际应替换为HTTP请求\n    &#125;,\n    handleScroll() &#123;\n      // 判断是否滚动到底部\n      const scrollElement = this.$refs.scrollContainer;\n      if (\n        scrollElement.scrollHeight - scrollElement.scrollTop ===\n        scrollElement.clientHeight\n      ) &#123;\n        if (!this.isLoading) &#123;\n          this.loadMoreData();\n        &#125;\n      &#125;\n    &#125;,\n  &#125;,\n  beforeDestroy() &#123;\n    window.removeEventListener(&#39;scroll&#39;, this.handleScroll);\n  &#125;,\n&#125;;\n\n","dateCreated":"2024-06-13T13:30:51+08:00","dateModified":"2025-02-19T20:52:45+08:00","datePublished":"2024-06-13T13:30:51+08:00","description":"在Vue应用中，可以通过监听`scroll`事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能","headline":"lazyLoading","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/06/13/lazyLoading/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/06/13/lazyLoading/","keywords":"vue3, Hook"}</script>
+    <meta name="description" content="在Vue应用中，可以通过监听&#96;scroll&#96;事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="lazyLoading">
+<meta property="og:url" content="http://example.com/2024/06/13/lazyLoading/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="在Vue应用中，可以通过监听&#96;scroll&#96;事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-13T05:30:51.000Z">
+<meta property="article:modified_time" content="2025-02-19T12:52:45.505Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="vue3">
+<meta property="article:tag" content="Hook">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            lazyLoading
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-06-13T13:30:51+08:00">
+	
+		    2024 年 6 月 13 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/vue3/">vue3</a>, <a class="category-link" href="/categories/vue3/Hook/">Hook</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="使用Vue生命周期钩子实现懒加载"><a href="#使用Vue生命周期钩子实现懒加载" class="headerlink" title="使用Vue生命周期钩子实现懒加载"></a>使用Vue生命周期钩子实现懒加载</h1><p>在Vue应用中，可以通过监听<code>scroll</code>事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能。</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><pre><code class="language-javascript">export default &#123;
+  data() &#123;
+    return &#123;
+      dataList: [], // 初始数据列表
+      isLoading: false, // 加载状态
+      page: 1, // 当前页码
+    &#125;;
+  &#125;,
+  mounted() &#123;
+    this.loadMoreData();
+    window.addEventListener(&#39;scroll&#39;, this.handleScroll);
+  &#125;,
+  methods: &#123;
+    loadMoreData() &#123;
+      this.isLoading = true;
+      // 模拟数据加载
+      setTimeout(() =&gt; &#123;
+        // 假设每次加载5条数据
+        const newData = Array.from(&#123; length: 5 &#125;, (_, index) =&gt; (&#123;
+          id: this.dataList.length + index + 1,
+          content: `数据 $&#123;this.page + index&#125;`,
+        &#125;));
+        this.dataList.push(...newData);
+        this.isLoading = false;
+        this.page++;
+      &#125;, 1000); // 利用setTimeout模拟加载数据，实际应替换为HTTP请求
+    &#125;,
+    handleScroll() &#123;
+      // 判断是否滚动到底部
+      const scrollElement = this.$refs.scrollContainer;
+      if (
+        scrollElement.scrollHeight - scrollElement.scrollTop ===
+        scrollElement.clientHeight
+      ) &#123;
+        if (!this.isLoading) &#123;
+          this.loadMoreData();
+        &#125;
+      &#125;
+    &#125;,
+  &#125;,
+  beforeDestroy() &#123;
+    window.removeEventListener(&#39;scroll&#39;, this.handleScroll);
+  &#125;,
+&#125;;
+</code></pre>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Hook/" rel="tag">Hook</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/06/13/slot/"
+                    data-tooltip="slot"
+                    aria-label="上一篇: slot"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/05/22/watch%E7%9B%91%E8%A7%86/"
+                    data-tooltip="watch监视"
+                    aria-label="下一篇: watch监视"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/06/13/lazyLoading/&amp;title=lazyLoading"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/06/13/slot/"
+                    data-tooltip="slot"
+                    aria-label="上一篇: slot"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/05/22/watch%E7%9B%91%E8%A7%86/"
+                    data-tooltip="watch监视"
+                    aria-label="下一篇: watch监视"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/06/13/lazyLoading/&amp;title=lazyLoading"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/06/13/lazyLoading/&amp;title=lazyLoading"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

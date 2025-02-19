@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>Router - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue Router基本用法路由链接和视图显示路由链接 &lt;RouterLink&gt;&lt;RouterLink&gt; 用于导航到不同的路由。以下是几种常见的使用方式：\n12345678&lt;!-- 直接指定路径 --&gt;&lt;RouterLink to=&quot;/home&quot; active-class=&quot;active&quot;&gt;首页&lt;/RouterLink&gt;&lt;!-- 使用名称导航 --&gt;&lt;RouterLink :to=&quot;&#123;name: &#x27;xinwen&#x27;&#125;&quot; active-class=&quot;active&quot;&gt;新闻&lt;/RouterLink&gt;&lt;!-- 使用路径对象 --&gt;&lt;RouterLink :to=&quot;&#123;path: &#x27;/about&#x27;&#125;&quot; active-class=&quot;active&quot;&gt;关于&lt;/RouterLink&gt;\n\n显示路由加载区域 &lt;RouterView&gt;&lt;RouterView&gt; 是路由匹配到的组件将要渲染的地方。\n1&lt;RouterView&gt;&lt;/RouterView&gt;\n\n路由配置文件 index.ts在 index.ts 文件中配置路由规则：\n12345678910111213141516171819202122232425262728import &#123; createRouter, createWebHistory &#125; from &#x27;vue-router&#x27;;import Home from &#x27;./views/Home.vue&#x27;;import News from &#x27;./views/News.vue&#x27;;import Detail from &#x27;./views/Detail.vue&#x27;;const router = createRouter(&#123;  history: createWebHistory(), // 路由器的工作模式  routes: [ // 路由规则    &#123;      name: &#x27;zhuye&#x27;,      path: &#x27;/home&#x27;,      component: Home    &#125;,    &#123;      name: &#x27;xinwen&#x27;,      path: &#x27;/news&#x27;,      component: News,      children: [        &#123;          path: &#x27;detail&#x27;,          component: Detail        &#125;      ]    &#125;  ]&#125;);export default router;\n\n路由传参Query 参数传递通过 query 参数进行传参：\n123456789101112&lt;RouterLink   :to=&quot;&#123;    name: &#x27;xiang&#x27;,    query: &#123;      id: news.id,      title: news.title,      content: news.content    &#125;  &#125;&quot;&gt;  新闻详情&lt;/RouterLink&gt;\n\n接收参数方法1：使用 props\n在路由配置中设置 props 函数来接收参数：\n1234567&#123;  path: &#x27;/xiang&#x27;,  component: Xiang,  props(route) &#123;    return route.query;  &#125;&#125;\n\n在组件内使用 defineProps：\n1defineProps([&#x27;id&#x27;, &#x27;title&#x27;, &#x27;content&#x27;]);\n\n方法2：直接使用 $route\n123&lt;li&gt;编号：&#123;&#123; $route.query.id &#125;&#125;&lt;/li&gt;&lt;li&gt;标题：&#123;&#123; $route.query.title &#125;&#125;&lt;/li&gt;&lt;li&gt;内容：&#123;&#123; $route.query.content &#125;&#125;&lt;/li&gt;\n\n或者使用组合式API：\n12345678910import &#123; useRoute &#125; from &#x27;vue-router&#x27;;import &#123; toRefs &#125; from &#x27;@vueuse/core&#x27;;export default &#123;  setup() &#123;    const route = useRoute();    const &#123; query &#125; = toRefs(route);    return &#123; query &#125;;  &#125;&#125;;\n\n编程式路由导航可以使用 router.push()、router.replace() 等方法进行编程式导航：\n12345678router.replace(&#123;  name: &#x27;xiang&#x27;,  query: &#123;    id: news.id,    title: news.title,    content: news.content  &#125;&#125;);\n\n路由重定向在路由配置中添加重定向规则：\n1234&#123;  path: &#x27;/&#x27;,  redirect: &#x27;/home&#x27;&#125;","dateCreated":"2024-06-23T14:30:13+08:00","dateModified":"2025-02-19T20:53:42+08:00","datePublished":"2024-06-23T14:30:13+08:00","description":"vue3中路由的概念以及一些使用方法","headline":"Router","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/06/23/Router/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/06/23/Router/","keywords":"vue3, Router"}</script>
+    <meta name="description" content="vue3中路由的概念以及一些使用方法">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Router">
+<meta property="og:url" content="http://example.com/2024/06/23/Router/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="vue3中路由的概念以及一些使用方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-23T06:30:13.000Z">
+<meta property="article:modified_time" content="2025-02-19T12:53:42.009Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="vue3">
+<meta property="article:tag" content="Router">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Router
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-06-23T14:30:13+08:00">
+	
+		    2024 年 6 月 23 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/vue3/">vue3</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue Router"></a>Vue Router</h1><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="路由链接和视图显示"><a href="#路由链接和视图显示" class="headerlink" title="路由链接和视图显示"></a>路由链接和视图显示</h3><h4 id="路由链接"><a href="#路由链接" class="headerlink" title="路由链接 &lt;RouterLink&gt;"></a>路由链接 <code>&lt;RouterLink&gt;</code></h4><p><code>&lt;RouterLink&gt;</code> 用于导航到不同的路由。以下是几种常见的使用方式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 直接指定路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">RouterLink</span> <span class="attr">to</span>=<span class="string">&quot;/home&quot;</span> <span class="attr">active-class</span>=<span class="string">&quot;active&quot;</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">RouterLink</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 使用名称导航 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">RouterLink</span> <span class="attr">:to</span>=<span class="string">&quot;&#123;name: &#x27;xinwen&#x27;&#125;&quot;</span> <span class="attr">active-class</span>=<span class="string">&quot;active&quot;</span>&gt;</span>新闻<span class="tag">&lt;/<span class="name">RouterLink</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 使用路径对象 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">RouterLink</span> <span class="attr">:to</span>=<span class="string">&quot;&#123;path: &#x27;/about&#x27;&#125;&quot;</span> <span class="attr">active-class</span>=<span class="string">&quot;active&quot;</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">RouterLink</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="显示路由加载区域"><a href="#显示路由加载区域" class="headerlink" title="显示路由加载区域 &lt;RouterView&gt;"></a>显示路由加载区域 <code>&lt;RouterView&gt;</code></h4><p><code>&lt;RouterView&gt;</code> 是路由匹配到的组件将要渲染的地方。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RouterView</span>&gt;</span><span class="tag">&lt;/<span class="name">RouterView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="路由配置文件-index-ts"><a href="#路由配置文件-index-ts" class="headerlink" title="路由配置文件 index.ts"></a>路由配置文件 <code>index.ts</code></h3><p>在 <code>index.ts</code> 文件中配置路由规则：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRouter, createWebHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./views/Home.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">News</span> <span class="keyword">from</span> <span class="string">&#x27;./views/News.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Detail</span> <span class="keyword">from</span> <span class="string">&#x27;./views/Detail.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">  <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(), <span class="comment">// 路由器的工作模式</span></span><br><span class="line">  <span class="attr">routes</span>: [ <span class="comment">// 路由规则</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;zhuye&#x27;</span>,</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="title class_">Home</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;xinwen&#x27;</span>,</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/news&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="title class_">News</span>,</span><br><span class="line">      <span class="attr">children</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">path</span>: <span class="string">&#x27;detail&#x27;</span>,</span><br><span class="line">          <span class="attr">component</span>: <span class="title class_">Detail</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h2><h3 id="Query-参数传递"><a href="#Query-参数传递" class="headerlink" title="Query 参数传递"></a>Query 参数传递</h3><p>通过 <code>query</code> 参数进行传参：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RouterLink</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">:to</span>=<span class="string">&quot;&#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">    name: &#x27;xiang&#x27;,</span></span></span><br><span class="line"><span class="string"><span class="tag">    query: &#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">      id: news.id,</span></span></span><br><span class="line"><span class="string"><span class="tag">      title: news.title,</span></span></span><br><span class="line"><span class="string"><span class="tag">      content: news.content</span></span></span><br><span class="line"><span class="string"><span class="tag">    &#125;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &#125;&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  新闻详情</span><br><span class="line"><span class="tag">&lt;/<span class="name">RouterLink</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="接收参数"><a href="#接收参数" class="headerlink" title="接收参数"></a>接收参数</h4><p><strong>方法1：使用 <code>props</code></strong></p>
+<p>在路由配置中设置 <code>props</code> 函数来接收参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/xiang&#x27;</span>,</span><br><span class="line">  <span class="attr">component</span>: <span class="title class_">Xiang</span>,</span><br><span class="line">  <span class="title function_">props</span>(<span class="params">route</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> route.<span class="property">query</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在组件内使用 <code>defineProps</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">defineProps</span>([<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;content&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法2：直接使用 <code>$route</code></strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>编号：&#123;&#123; $route.query.id &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>标题：&#123;&#123; $route.query.title &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>内容：&#123;&#123; $route.query.content &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者使用组合式API：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useRoute &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; toRefs &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> route = <span class="title function_">useRoute</span>();</span><br><span class="line">    <span class="keyword">const</span> &#123; query &#125; = <span class="title function_">toRefs</span>(route);</span><br><span class="line">    <span class="keyword">return</span> &#123; query &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="编程式路由导航"><a href="#编程式路由导航" class="headerlink" title="编程式路由导航"></a>编程式路由导航</h2><p>可以使用 <code>router.push()</code>、<code>router.replace()</code> 等方法进行编程式导航：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">replace</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;xiang&#x27;</span>,</span><br><span class="line">  <span class="attr">query</span>: &#123;</span><br><span class="line">    <span class="attr">id</span>: news.<span class="property">id</span>,</span><br><span class="line">    <span class="attr">title</span>: news.<span class="property">title</span>,</span><br><span class="line">    <span class="attr">content</span>: news.<span class="property">content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由重定向"><a href="#路由重定向" class="headerlink" title="路由重定向"></a>路由重定向</h2><p>在路由配置中添加重定向规则：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="string">&#x27;/home&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Router/" rel="tag">Router</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
+                    data-tooltip="RN-连接初始化"
+                    aria-label="上一篇: RN-连接初始化"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/06/13/slot/"
+                    data-tooltip="slot"
+                    aria-label="下一篇: slot"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/06/23/Router/&amp;title=Router"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
+                    data-tooltip="RN-连接初始化"
+                    aria-label="上一篇: RN-连接初始化"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/06/13/slot/"
+                    data-tooltip="slot"
+                    aria-label="下一篇: slot"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/06/23/Router/&amp;title=Router"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/06/23/Router/&amp;title=Router"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

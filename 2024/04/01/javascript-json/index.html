@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>javascript-json - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"JavaScript 中的 JSON 处理JavaScript 内置了对 JSON 的解析支持，允许轻松地在 JSON 和 JavaScript 对象之间进行转换。\nJSON 数据类型JSON 支持的数据类型包括：\n\nnumber：与 JavaScript 的 number 完全一致。\nboolean：即 JavaScript 的 true 或 false。\nstring：即 JavaScript 的 string。\nnull：即 JavaScript 的 null。\narray：使用 JavaScript 的数组表示法 []。\nobject：使用 JavaScript 的对象表示法 &#123; ... &#125;。\n\nJSON 转换方法JSON.stringifyJSON.stringify 方法用于将 JavaScript 对象转换为 JSON 字符串。\n语法1JSON.stringify(value[, replacer [, space]])\n\n参数说明\nvalue：要序列化成 JSON 字符串的值。\nreplacer（可选）：\n如果是函数，则每个属性都会经过该函数的转换和处理。\n如果是数组，则只有包含在这个数组中的属性名才会被序列化。\n如果为 null 或未提供，则对象的所有属性都会被序列化。\n\n\nspace（可选）：\n指定缩进用的空白字符串，用于美化输出（pretty-print）。\n如果参数是个数字，它代表有多少的空格；上限为 10。\n如果参数为字符串（当字符串长度超过 10 个字母，取其前 10 个字母），该字符串将被作为空格。\n如果该参数没有提供（或者为 null），将没有空格。\n\n\n\n示例123456789101112let xiaoming = &#123;    name: &#x27;小明&#x27;,    age: 14,    gender: true,    height: 1.65,    grade: null,    &#x27;middle-school&#x27;: &#x27;&quot;W3C&quot; Middle School&#x27;,    skills: [&#x27;JavaScript&#x27;, &#x27;Java&#x27;, &#x27;Python&#x27;, &#x27;Lisp&#x27;]&#125;;let s = JSON.stringify(xiaoming, null, &#x27;  &#x27;);console.log(s);\n\nJSON.parseJSON.parse 方法用于将 JSON 字符串转换为 JavaScript 对象。\n语法1JSON.parse(text[, reviver])\n\n\ntext：要解析的 JSON 字符串。\nreviver（可选）：一个函数，用来转换解析出的键值对。\n\n实际应用示例下面是一个从 API 获取天气信息并将其转换为 JSON 格式的示例：\n123456789101112let url = &#x27;https://api.openweathermap.org/data/2.5/forecast?q=Xian,cn&amp;appid=800f49846586c3ba6e7052cfc89af16c&#x27;;fetch(url)    .then(resp =&gt; resp.json())    .then(data =&gt; &#123;        let info = &#123;            city: data.city.name,            weather: data.list[0].weather[0].main,            time: data.list[0].dt_txt        &#125;;        alert(JSON.stringify(info, null, &#x27;  &#x27;));    &#125;);\n\n这段代码通过调用 OpenWeatherMap API 获取西安的天气预报数据，并提取城市名称、当前天气状况和时间信息\n","dateCreated":"2024-04-01T22:52:19+08:00","dateModified":"2025-02-19T20:49:32+08:00","datePublished":"2024-04-01T22:52:19+08:00","description":"javascript中的json处理一些方法","headline":"javascript-json","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/04/01/javascript-json/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/04/01/javascript-json/","keywords":"js, JSON"}</script>
+    <meta name="description" content="javascript中的json处理一些方法">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="javascript-json">
+<meta property="og:url" content="http://example.com/2024/04/01/javascript-json/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="javascript中的json处理一些方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-01T14:52:19.000Z">
+<meta property="article:modified_time" content="2025-02-19T12:49:32.007Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="JSON">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            javascript-json
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-04-01T22:52:19+08:00">
+	
+		    2024 年 4 月 1 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/js/">js</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="JavaScript-中的-JSON-处理"><a href="#JavaScript-中的-JSON-处理" class="headerlink" title="JavaScript 中的 JSON 处理"></a>JavaScript 中的 JSON 处理</h1><p>JavaScript 内置了对 JSON 的解析支持，允许轻松地在 JSON 和 JavaScript 对象之间进行转换。</p>
+<h2 id="JSON-数据类型"><a href="#JSON-数据类型" class="headerlink" title="JSON 数据类型"></a>JSON 数据类型</h2><p>JSON 支持的数据类型包括：</p>
+<ul>
+<li><strong>number</strong>：与 JavaScript 的 <code>number</code> 完全一致。</li>
+<li><strong>boolean</strong>：即 JavaScript 的 <code>true</code> 或 <code>false</code>。</li>
+<li><strong>string</strong>：即 JavaScript 的 <code>string</code>。</li>
+<li><strong>null</strong>：即 JavaScript 的 <code>null</code>。</li>
+<li><strong>array</strong>：使用 JavaScript 的数组表示法 <code>[]</code>。</li>
+<li><strong>object</strong>：使用 JavaScript 的对象表示法 <code>&#123; ... &#125;</code>。</li>
+</ul>
+<h2 id="JSON-转换方法"><a href="#JSON-转换方法" class="headerlink" title="JSON 转换方法"></a>JSON 转换方法</h2><h3 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify"></a><code>JSON.stringify</code></h3><p><code>JSON.stringify</code> 方法用于将 JavaScript 对象转换为 JSON 字符串。</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">stringify</span>(value[, replacer [, space]])</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><ul>
+<li><strong>value</strong>：要序列化成 JSON 字符串的值。</li>
+<li><strong>replacer</strong>（可选）：<ul>
+<li>如果是函数，则每个属性都会经过该函数的转换和处理。</li>
+<li>如果是数组，则只有包含在这个数组中的属性名才会被序列化。</li>
+<li>如果为 <code>null</code> 或未提供，则对象的所有属性都会被序列化。</li>
+</ul>
+</li>
+<li><strong>space</strong>（可选）：<ul>
+<li>指定缩进用的空白字符串，用于美化输出（pretty-print）。</li>
+<li>如果参数是个数字，它代表有多少的空格；上限为 10。</li>
+<li>如果参数为字符串（当字符串长度超过 10 个字母，取其前 10 个字母），该字符串将被作为空格。</li>
+<li>如果该参数没有提供（或者为 <code>null</code>），将没有空格。</li>
+</ul>
+</li>
+</ul>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xiaoming = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;小明&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">14</span>,</span><br><span class="line">    <span class="attr">gender</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">1.65</span>,</span><br><span class="line">    <span class="attr">grade</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="string">&#x27;middle-school&#x27;</span>: <span class="string">&#x27;&quot;W3C&quot; Middle School&#x27;</span>,</span><br><span class="line">    <span class="attr">skills</span>: [<span class="string">&#x27;JavaScript&#x27;</span>, <span class="string">&#x27;Java&#x27;</span>, <span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;Lisp&#x27;</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> s = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(xiaoming, <span class="literal">null</span>, <span class="string">&#x27;  &#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(s);</span><br></pre></td></tr></table></figure>
+
+<h3 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse"></a><code>JSON.parse</code></h3><p><code>JSON.parse</code> 方法用于将 JSON 字符串转换为 JavaScript 对象。</p>
+<h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">parse</span>(text[, reviver])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>text</strong>：要解析的 JSON 字符串。</li>
+<li><strong>reviver</strong>（可选）：一个函数，用来转换解析出的键值对。</li>
+</ul>
+<h2 id="实际应用示例"><a href="#实际应用示例" class="headerlink" title="实际应用示例"></a>实际应用示例</h2><p>下面是一个从 API 获取天气信息并将其转换为 JSON 格式的示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> url = <span class="string">&#x27;https://api.openweathermap.org/data/2.5/forecast?q=Xian,cn&amp;appid=800f49846586c3ba6e7052cfc89af16c&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fetch</span>(url)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">resp</span> =&gt;</span> resp.<span class="title function_">json</span>())</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> info = &#123;</span><br><span class="line">            <span class="attr">city</span>: data.<span class="property">city</span>.<span class="property">name</span>,</span><br><span class="line">            <span class="attr">weather</span>: data.<span class="property">list</span>[<span class="number">0</span>].<span class="property">weather</span>[<span class="number">0</span>].<span class="property">main</span>,</span><br><span class="line">            <span class="attr">time</span>: data.<span class="property">list</span>[<span class="number">0</span>].<span class="property">dt_txt</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(info, <span class="literal">null</span>, <span class="string">&#x27;  &#x27;</span>));</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这段代码通过调用 OpenWeatherMap API 获取西安的天气预报数据，并提取城市名称、当前天气状况和时间信息</p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/JSON/" rel="tag">JSON</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/js/" rel="tag">js</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/05/05/javascript-promise/"
+                    data-tooltip="javascript-promise"
+                    aria-label="上一篇: javascript-promise"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"
+                    data-tooltip="javascript-函数剩余与展开运算符"
+                    aria-label="下一篇: javascript-函数剩余与展开运算符"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/04/01/javascript-json/&amp;title=javascript-json"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/05/05/javascript-promise/"
+                    data-tooltip="javascript-promise"
+                    aria-label="上一篇: javascript-promise"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"
+                    data-tooltip="javascript-函数剩余与展开运算符"
+                    aria-label="下一篇: javascript-函数剩余与展开运算符"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/04/01/javascript-json/&amp;title=javascript-json"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/04/01/javascript-json/&amp;title=javascript-json"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
