@@ -12,14 +12,14 @@
     
     
         
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"JavaScript 中的变量提升与函数声明提升变量提升（Hoisting）在 JavaScript 中，使用 var 声明的变量会被提升到其所在作用域的最前面，但赋值操作不会被提升。这意味着可以在声明之前访问这些变量，但它们的值会是 undefined。\n示例1234567console.log(num);  // 输出: undefinedvar num = 10;// 实际上相当于：var num;console.log(num);  // 输出: undefinednum = 10;\n\n关键点\n变量声明：var 声明的变量会被提升到当前作用域的顶部。\n变量赋值：赋值操作不会被提升，因此在声明之前访问变量时，其值为 undefined。\n\n函数声明提升函数声明也会被提升到其所在作用域的最前面，这意味着你可以在函数声明之前调用该函数。\n示例1234567891011console.log(a(2, 3));  // 输出: 5function a(x, y) &#123;    return x + y;&#125;// 实际上相当于：function a(x, y) &#123;    return x + y;&#125;console.log(a(2, 3));  // 输出: 5\n\n函数表达式与函数声明的区别函数表达式不会像函数声明那样被提升。如果你使用 var 来声明一个函数表达式，并在声明之前调用它，会导致错误或输出 undefined。\n错误示例123456789101112console.log(a(2, 3));  // 输出: Uncaught TypeError: a is not a functionvar a = function add(x, y) &#123;    return x + y;&#125;;// 实际上相当于：var a;console.log(a(2, 3));  // 输出: Uncaught TypeError: a is not a functiona = function add(x, y) &#123;    return x + y;&#125;;\n\n结论为了避免由于变量提升带来的潜在问题，建议不要使用 var，而是使用更现代的 let 和 const 关键字来声明变量。它们具有块级作用域，且不会导致类似的问题。\n使用 let 和 const\nlet：用于声明可以重新赋值的变量，具有块级作用域。\nconst：用于声明不可重新赋值的常量，也具有块级作用域。\n\n示例12345678910console.log(num);  // 输出: ReferenceError: Cannot access &#x27;num&#x27; before initializationlet num = 10;// 函数表达式同样适用console.log(add(2, 3));  // 输出: ReferenceError: Cannot access &#x27;add&#x27; before initializationconst add = function (x, y) &#123;    return x + y;&#125;;通过使用 `let` 和 `const`，可以避免许多由于变量提升引起的问题，并编写更清晰、更安全的代码。\n","dateCreated":"2024-03-16T17:13:23+08:00","dateModified":"2025-02-19T20:48:22+08:00","datePublished":"2024-03-16T17:13:23+08:00","description":"var的变量函数提升机制","headline":"javascript-变量提升","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/","keywords":"js, javascript-变量提升"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"JavaScript 中的变量提升与函数声明提升变量提升（Hoisting）在 JavaScript 中，使用 var 声明的变量会被提升到其所在作用域的最前面，但赋值操作不会被提升。这意味着可以在声明之前访问这些变量，但它们的值会是 undefined。\n示例1234567console.log(num);  // 输出: undefinedvar num = 10;// 实际上相当于：var num;console.log(num);  // 输出: undefinednum = 10;\n\n关键点\n变量声明：var 声明的变量会被提升到当前作用域的顶部。\n变量赋值：赋值操作不会被提升，因此在声明之前访问变量时，其值为 undefined。\n\n函数声明提升函数声明也会被提升到其所在作用域的最前面，这意味着你可以在函数声明之前调用该函数。\n示例1234567891011console.log(a(2, 3));  // 输出: 5function a(x, y) &#123;    return x + y;&#125;// 实际上相当于：function a(x, y) &#123;    return x + y;&#125;console.log(a(2, 3));  // 输出: 5\n\n函数表达式与函数声明的区别函数表达式不会像函数声明那样被提升。如果你使用 var 来声明一个函数表达式，并在声明之前调用它，会导致错误或输出 undefined。\n错误示例123456789101112console.log(a(2, 3));  // 输出: Uncaught TypeError: a is not a functionvar a = function add(x, y) &#123;    return x + y;&#125;;// 实际上相当于：var a;console.log(a(2, 3));  // 输出: Uncaught TypeError: a is not a functiona = function add(x, y) &#123;    return x + y;&#125;;\n\n结论为了避免由于变量提升带来的潜在问题，建议不要使用 var，而是使用更现代的 let 和 const 关键字来声明变量。它们具有块级作用域，且不会导致类似的问题。\n使用 let 和 const\nlet：用于声明可以重新赋值的变量，具有块级作用域。\nconst：用于声明不可重新赋值的常量，也具有块级作用域。\n\n示例12345678910console.log(num);  // 输出: ReferenceError: Cannot access &#x27;num&#x27; before initializationlet num = 10;// 函数表达式同样适用console.log(add(2, 3));  // 输出: ReferenceError: Cannot access &#x27;add&#x27; before initializationconst add = function (x, y) &#123;    return x + y;&#125;;通过使用 `let` 和 `const`，可以避免许多由于变量提升引起的问题，并编写更清晰、更安全的代码。\n","dateCreated":"2024-03-16T17:13:23+08:00","dateModified":"2025-02-19T20:48:22+08:00","datePublished":"2024-03-16T17:13:23+08:00","description":"var的变量函数提升机制","headline":"javascript-变量提升","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/","keywords":"js, javascript-变量提升"}</script>
     <meta name="description" content="var的变量函数提升机制">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="javascript-变量提升">
-<meta property="og:url" content="http://example.com/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/index.html">
+<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/index.html">
 <meta property="og:site_name" content="Jiaxing的个人主页">
 <meta property="og:description" content="var的变量函数提升机制">
 <meta property="og:locale" content="zh_CN">
@@ -34,14 +34,14 @@
         
     
     
-        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
     
     
     
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
 
     <!--STYLES END-->
     
@@ -69,7 +69,7 @@
     <div class="header-title">
         <a
             class="header-title-link"
-            href="/"
+            href="/PersonalPage/"
             aria-label=""
         >
             Jiaxing的个人主页
@@ -80,11 +80,11 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="打开链接: /#about"
+                aria-label="打开链接: /PersonalPage/#about"
             >
         
         
-            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
         </a>
     
@@ -102,10 +102,10 @@
         
             <div class="sidebar-profile">
                 <a
-                    href="/#about"
+                    href="/PersonalPage/#about"
                     aria-label="阅读有关作者的更多信息"
                 >
-                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
                 </a>
                 <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
                 
@@ -120,7 +120,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/"
+                            href="/PersonalPage/"
                             
                             rel="noopener"
                             title="首页"
@@ -134,7 +134,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-categories"
+                            href="/PersonalPage/all-categories"
                             
                             rel="noopener"
                             title="分类"
@@ -148,7 +148,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-tags"
+                            href="/PersonalPage/all-tags"
                             
                             rel="noopener"
                             title="标签"
@@ -162,7 +162,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-archives"
+                            href="/PersonalPage/all-archives"
                             
                             rel="noopener"
                             title="归档"
@@ -214,7 +214,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/atom.xml"
+                            href="/PersonalPage/atom.xml"
                             
                             rel="noopener"
                             title="RSS"
@@ -254,7 +254,7 @@
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/js/">js</a>
+    <a class="category-link" href="/PersonalPage/categories/js/">js</a>
 
 
     
@@ -296,7 +296,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/" rel="tag">javascript-变量提升</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/js/" rel="tag">js</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/" rel="tag">javascript-变量提升</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/js/" rel="tag">js</a>
 
             </div>
         
@@ -309,7 +309,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"
+                    href="/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"
                     data-tooltip="javascript-常用静态方法"
                     aria-label="上一篇: javascript-常用静态方法"
                 >
@@ -323,7 +323,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/12/computed/"
+                    href="/PersonalPage/2024/03/12/computed/"
                     data-tooltip="computed"
                     aria-label="下一篇: computed"
                 >
@@ -339,7 +339,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -350,7 +350,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/&amp;title=javascript-变量提升"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/&amp;title=javascript-变量提升"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -363,7 +363,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -398,7 +398,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"
+                    href="/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"
                     data-tooltip="javascript-常用静态方法"
                     aria-label="上一篇: javascript-常用静态方法"
                 >
@@ -412,7 +412,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/12/computed/"
+                    href="/PersonalPage/2024/03/12/computed/"
                     data-tooltip="computed"
                     aria-label="下一篇: computed"
                 >
@@ -428,7 +428,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -439,7 +439,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/&amp;title=javascript-变量提升"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/&amp;title=javascript-变量提升"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -452,7 +452,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -473,7 +473,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/&amp;title=javascript-变量提升"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/&amp;title=javascript-变量提升"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -499,7 +499,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
             <h4 id="about-card-name">Jiaxing Huang</h4>
         
@@ -525,10 +525,10 @@
 
         
         
-<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
 
 <!--SCRIPTS END-->
 

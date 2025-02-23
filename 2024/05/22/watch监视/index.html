@@ -12,14 +12,14 @@
     
     
         
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue.js Watch 监视器使用详解监视对象类型\n函数：返回一个值。\nRef：监视由 ref 定义的对象类型数据时，实际上是在监视对象的地址值。若要监视对象内部属性的变化，需手动开启深度监视。\n响应式对象：当监视响应式对象中的某个基本类型的属性时，需要以函数的形式来定义。\n\n此外，还可以监视由上述类型组成的数组。\nVue.js官方文档\n参数说明\nimmediate: 在侦听器创建时立即触发回调。第一次调用时旧值是 undefined。\ndeep: 如果源是对象，强制深度遍历以便在深层级变更时触发回调。\nflush: 调整回调函数的刷新时机，可参考回调的刷新时机及 watchEffect()。\nonTrack / onTrigger: 用于调试侦听器的依赖关系。\nonce: 回调函数只会运行一次，侦听器将在回调函数首次运行后自动停止。\n\n\n注意：watchEffect 可实现监视页面的所有属性，并且可以实现页面懒加载。\n\n订阅 (subscribe) 实例talkStore.$subscribe((mutation, state) =&gt; &#123;\n    console.log(&#39;talkStore里面保存的数据发生了变化&#39;, mutation, state);\n    localStorage.setItem(&#39;talkList&#39;, JSON.stringify(state.talkList));\n&#125;);\n\n","dateCreated":"2024-05-22T19:30:39+08:00","dateModified":"2025-02-19T20:54:22+08:00","datePublished":"2024-05-22T19:30:39+08:00","description":"watch，watchweffect,subscribe的使用方法","headline":"watch监视","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/","keywords":"vue3, watch"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue.js Watch 监视器使用详解监视对象类型\n函数：返回一个值。\nRef：监视由 ref 定义的对象类型数据时，实际上是在监视对象的地址值。若要监视对象内部属性的变化，需手动开启深度监视。\n响应式对象：当监视响应式对象中的某个基本类型的属性时，需要以函数的形式来定义。\n\n此外，还可以监视由上述类型组成的数组。\nVue.js官方文档\n参数说明\nimmediate: 在侦听器创建时立即触发回调。第一次调用时旧值是 undefined。\ndeep: 如果源是对象，强制深度遍历以便在深层级变更时触发回调。\nflush: 调整回调函数的刷新时机，可参考回调的刷新时机及 watchEffect()。\nonTrack / onTrigger: 用于调试侦听器的依赖关系。\nonce: 回调函数只会运行一次，侦听器将在回调函数首次运行后自动停止。\n\n\n注意：watchEffect 可实现监视页面的所有属性，并且可以实现页面懒加载。\n\n订阅 (subscribe) 实例talkStore.$subscribe((mutation, state) =&gt; &#123;\n    console.log(&#39;talkStore里面保存的数据发生了变化&#39;, mutation, state);\n    localStorage.setItem(&#39;talkList&#39;, JSON.stringify(state.talkList));\n&#125;);\n\n","dateCreated":"2024-05-22T19:30:39+08:00","dateModified":"2025-02-19T20:54:22+08:00","datePublished":"2024-05-22T19:30:39+08:00","description":"watch，watchweffect,subscribe的使用方法","headline":"watch监视","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/","keywords":"vue3, watch"}</script>
     <meta name="description" content="watch，watchweffect,subscribe的使用方法">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="watch监视">
-<meta property="og:url" content="http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/index.html">
+<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/index.html">
 <meta property="og:site_name" content="Jiaxing的个人主页">
 <meta property="og:description" content="watch，watchweffect,subscribe的使用方法">
 <meta property="og:locale" content="zh_CN">
@@ -34,14 +34,14 @@
         
     
     
-        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
     
     
     
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
 
     <!--STYLES END-->
     
@@ -69,7 +69,7 @@
     <div class="header-title">
         <a
             class="header-title-link"
-            href="/"
+            href="/PersonalPage/"
             aria-label=""
         >
             Jiaxing的个人主页
@@ -80,11 +80,11 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="打开链接: /#about"
+                aria-label="打开链接: /PersonalPage/#about"
             >
         
         
-            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
         </a>
     
@@ -102,10 +102,10 @@
         
             <div class="sidebar-profile">
                 <a
-                    href="/#about"
+                    href="/PersonalPage/#about"
                     aria-label="阅读有关作者的更多信息"
                 >
-                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
                 </a>
                 <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
                 
@@ -120,7 +120,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/"
+                            href="/PersonalPage/"
                             
                             rel="noopener"
                             title="首页"
@@ -134,7 +134,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-categories"
+                            href="/PersonalPage/all-categories"
                             
                             rel="noopener"
                             title="分类"
@@ -148,7 +148,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-tags"
+                            href="/PersonalPage/all-tags"
                             
                             rel="noopener"
                             title="标签"
@@ -162,7 +162,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-archives"
+                            href="/PersonalPage/all-archives"
                             
                             rel="noopener"
                             title="归档"
@@ -214,7 +214,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/atom.xml"
+                            href="/PersonalPage/atom.xml"
                             
                             rel="noopener"
                             title="RSS"
@@ -254,7 +254,7 @@
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/vue3/">vue3</a>, <a class="category-link" href="/categories/vue3/watch/">watch</a>
+    <a class="category-link" href="/PersonalPage/categories/vue3/">vue3</a>, <a class="category-link" href="/PersonalPage/categories/vue3/watch/">watch</a>
 
 
     
@@ -299,7 +299,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/watch/" rel="tag">watch</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/vue3/" rel="tag">vue3</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/watch/" rel="tag">watch</a>
 
             </div>
         
@@ -312,7 +312,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/06/13/lazyLoading/"
+                    href="/PersonalPage/2024/06/13/lazyLoading/"
                     data-tooltip="lazyLoading"
                     aria-label="上一篇: lazyLoading"
                 >
@@ -326,7 +326,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/05/17/asynchronous/"
+                    href="/PersonalPage/2024/05/17/asynchronous/"
                     data-tooltip="asynchronous"
                     aria-label="下一篇: asynchronous"
                 >
@@ -342,7 +342,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -353,7 +353,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -366,7 +366,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -401,7 +401,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/06/13/lazyLoading/"
+                    href="/PersonalPage/2024/06/13/lazyLoading/"
                     data-tooltip="lazyLoading"
                     aria-label="上一篇: lazyLoading"
                 >
@@ -415,7 +415,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/05/17/asynchronous/"
+                    href="/PersonalPage/2024/05/17/asynchronous/"
                     data-tooltip="asynchronous"
                     aria-label="下一篇: asynchronous"
                 >
@@ -431,7 +431,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -442,7 +442,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -455,7 +455,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -476,7 +476,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/&amp;title=watch监视"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -502,7 +502,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
             <h4 id="about-card-name">Jiaxing Huang</h4>
         
@@ -528,10 +528,10 @@
 
         
         
-<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
 
 <!--SCRIPTS END-->
 

@@ -12,39 +12,39 @@
     
     
         
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"JavaScript常用静态方法JavaScript提供了多种方法来操作对象和数组，下面是一些常用的方法及其使用示例。\n对象操作1. Object.keys - 获取所有属性名Object.keys 方法返回一个给定对象自身可枚举属性的数组。\n12const person = &#123;name: &#x27;Alice&#x27;, age: 25&#125;;console.log(Object.keys(person)); // 输出: [&#x27;name&#x27;, &#x27;age&#x27;]\n\n2. Object.values - 获取所有属性值Object.values 方法返回一个给定对象自身可枚举属性值的数组。\n12const person = &#123;name: &#x27;Alice&#x27;, age: 25&#125;;console.log(Object.values(person)); // 输出: [&#x27;Alice&#x27;, 25]\n\n3. 拷贝对象并添加属性Object.assign 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。\n12345const target = &#123;&#125;;const source = &#123;name: &#x27;Alice&#x27;, age: 25&#125;;Object.assign(target, source);target.address = &#x27;Wonderland&#x27;; // 添加新属性console.log(target); // 输出: &#123; name: &#x27;Alice&#x27;, age: 25, address: &#x27;Wonderland&#x27; &#125;\n\n数组操作1. forEach - 遍历数组forEach 方法允许你遍历数组中的每个元素，并对它们执行一个函数。\n1234const numbers = [1, 2, 3, 4, 5];numbers.forEach(number =&gt; &#123;    console.log(number);&#125;);\n偷偷卷！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！此代码会依次输出数组中的每个数字。\n2. filter - 过滤数组filter 方法用于创建一个新数组，包含通过所提供函数实现的测试的所有元素。\n123const numbers = [1, 2, 3, 4, 5];const evenNumbers = numbers.filter(number =&gt; number % 2 === 0);console.log(evenNumbers); // 输出: [2, 4]\n\n这段代码筛选出所有偶数并存储在evenNumbers中。\n3. map - 迭代数组map 方法创建一个新数组，其结果是对调用数组中的每一个元素调用一个提供的函数后的返回值。\n123const numbers = [1, 2, 3, 4, 5];const squaredNumbers = numbers.map(number =&gt; number * number);console.log(squaredNumbers); // 输出: [1, 4, 9, 16, 25]\n\n这会生成一个新的数组，其中每个元素都是原数组对应位置元素的平方。\n4. reduce - 累计器reduce 方法对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。\n123const numbers = [1, 2, 3, 4, 5];const sum = numbers.reduce((accumulator, currentValue) =&gt; accumulator + currentValue, 0);console.log(sum); // 输出: 15\n\n在这个例子中，reduce 将数组中的所有数值相加，从起始值0开始累加。\n\n","dateCreated":"2024-03-24T16:10:35+08:00","dateModified":"2025-02-19T20:48:42+08:00","datePublished":"2024-03-24T16:10:35+08:00","description":"javascript常用的一些静态方法，一般用于来处理数组，迭代遍历等操作","headline":"javascript-常用静态方法","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/","keywords":"js, 静态方法"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"JavaScript常用静态方法JavaScript提供了多种方法来操作对象和数组，下面是一些常用的方法及其使用示例。\n对象操作1. Object.keys - 获取所有属性名Object.keys 方法返回一个给定对象自身可枚举属性的数组。\n12const person = &#123;name: &#x27;Alice&#x27;, age: 25&#125;;console.log(Object.keys(person)); // 输出: [&#x27;name&#x27;, &#x27;age&#x27;]\n\n2. Object.values - 获取所有属性值Object.values 方法返回一个给定对象自身可枚举属性值的数组。\n12const person = &#123;name: &#x27;Alice&#x27;, age: 25&#125;;console.log(Object.values(person)); // 输出: [&#x27;Alice&#x27;, 25]\n\n3. 拷贝对象并添加属性Object.assign 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。\n12345const target = &#123;&#125;;const source = &#123;name: &#x27;Alice&#x27;, age: 25&#125;;Object.assign(target, source);target.address = &#x27;Wonderland&#x27;; // 添加新属性console.log(target); // 输出: &#123; name: &#x27;Alice&#x27;, age: 25, address: &#x27;Wonderland&#x27; &#125;\n\n数组操作1. forEach - 遍历数组forEach 方法允许你遍历数组中的每个元素，并对它们执行一个函数。\n1234const numbers = [1, 2, 3, 4, 5];numbers.forEach(number =&gt; &#123;    console.log(number);&#125;);\n偷偷卷！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！此代码会依次输出数组中的每个数字。\n2. filter - 过滤数组filter 方法用于创建一个新数组，包含通过所提供函数实现的测试的所有元素。\n123const numbers = [1, 2, 3, 4, 5];const evenNumbers = numbers.filter(number =&gt; number % 2 === 0);console.log(evenNumbers); // 输出: [2, 4]\n\n这段代码筛选出所有偶数并存储在evenNumbers中。\n3. map - 迭代数组map 方法创建一个新数组，其结果是对调用数组中的每一个元素调用一个提供的函数后的返回值。\n123const numbers = [1, 2, 3, 4, 5];const squaredNumbers = numbers.map(number =&gt; number * number);console.log(squaredNumbers); // 输出: [1, 4, 9, 16, 25]\n\n这会生成一个新的数组，其中每个元素都是原数组对应位置元素的平方。\n4. reduce - 累计器reduce 方法对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。\n123const numbers = [1, 2, 3, 4, 5];const sum = numbers.reduce((accumulator, currentValue) =&gt; accumulator + currentValue, 0);console.log(sum); // 输出: 15\n\n在这个例子中，reduce 将数组中的所有数值相加，从起始值0开始累加。\n\n","dateCreated":"2024-03-24T16:10:35+08:00","dateModified":"2025-02-19T20:48:42+08:00","datePublished":"2024-03-24T16:10:35+08:00","description":"javascript常用的一些静态方法，一般用于来处理数组，迭代遍历等操作","headline":"javascript-常用静态方法","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/","keywords":"js, 静态方法"}</script>
     <meta name="description" content="javascript常用的一些静态方法，一般用于来处理数组，迭代遍历等操作">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="javascript-常用静态方法">
-<meta property="og:url" content="http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Jiaxing的个人主页">
 <meta property="og:description" content="javascript常用的一些静态方法，一般用于来处理数组，迭代遍历等操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png">
-<meta property="og:image" content="http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image2.png">
+<meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png">
+<meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image2.png">
 <meta property="article:published_time" content="2024-03-24T08:10:35.000Z">
 <meta property="article:modified_time" content="2025-02-19T12:48:42.624Z">
 <meta property="article:author" content="Jiaxing Huang">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="静态方法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png">
+<meta name="twitter:image" content="https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png">
     
     
         
     
     
-        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
     
     
     
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
 
     <!--STYLES END-->
     
@@ -72,7 +72,7 @@
     <div class="header-title">
         <a
             class="header-title-link"
-            href="/"
+            href="/PersonalPage/"
             aria-label=""
         >
             Jiaxing的个人主页
@@ -83,11 +83,11 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="打开链接: /#about"
+                aria-label="打开链接: /PersonalPage/#about"
             >
         
         
-            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
         </a>
     
@@ -105,10 +105,10 @@
         
             <div class="sidebar-profile">
                 <a
-                    href="/#about"
+                    href="/PersonalPage/#about"
                     aria-label="阅读有关作者的更多信息"
                 >
-                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
                 </a>
                 <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
                 
@@ -123,7 +123,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/"
+                            href="/PersonalPage/"
                             
                             rel="noopener"
                             title="首页"
@@ -137,7 +137,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-categories"
+                            href="/PersonalPage/all-categories"
                             
                             rel="noopener"
                             title="分类"
@@ -151,7 +151,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-tags"
+                            href="/PersonalPage/all-tags"
                             
                             rel="noopener"
                             title="标签"
@@ -165,7 +165,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-archives"
+                            href="/PersonalPage/all-archives"
                             
                             rel="noopener"
                             title="归档"
@@ -217,7 +217,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/atom.xml"
+                            href="/PersonalPage/atom.xml"
                             
                             rel="noopener"
                             title="RSS"
@@ -257,7 +257,7 @@
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/js/">js</a>
+    <a class="category-link" href="/PersonalPage/categories/js/">js</a>
 
 
     
@@ -294,8 +294,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> sum = numbers.<span class="title function_">reduce</span>(<span class="function">(<span class="params">accumulator, currentValue</span>) =&gt;</span> accumulator + currentValue, <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sum); <span class="comment">// 输出: 15</span></span><br></pre></td></tr></table></figure>
 
 <p>在这个例子中，<code>reduce</code> 将数组中的所有数值相加，从起始值<code>0</code>开始累加。</p>
-<img src="/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png" class="" title="有趣的例子">
-<img src="/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image2.png" class="" title="有趣的例子">
+<img src="/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png" class="" title="有趣的例子">
+<img src="/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image2.png" class="" title="有趣的例子">
             
 
 
@@ -306,7 +306,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/js/" rel="tag">js</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/" rel="tag">静态方法</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/js/" rel="tag">js</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/" rel="tag">静态方法</a>
 
             </div>
         
@@ -319,7 +319,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"
+                    href="/PersonalPage/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"
                     data-tooltip="javascript-函数剩余与展开运算符"
                     aria-label="上一篇: javascript-函数剩余与展开运算符"
                 >
@@ -333,7 +333,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
+                    href="/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
                     data-tooltip="javascript-变量提升"
                     aria-label="下一篇: javascript-变量提升"
                 >
@@ -349,7 +349,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -360,7 +360,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/&amp;title=javascript-常用静态方法"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/&amp;title=javascript-常用静态方法"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -373,7 +373,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -408,7 +408,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"
+                    href="/PersonalPage/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"
                     data-tooltip="javascript-函数剩余与展开运算符"
                     aria-label="上一篇: javascript-函数剩余与展开运算符"
                 >
@@ -422,7 +422,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
+                    href="/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
                     data-tooltip="javascript-变量提升"
                     aria-label="下一篇: javascript-变量提升"
                 >
@@ -438,7 +438,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -449,7 +449,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/&amp;title=javascript-常用静态方法"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/&amp;title=javascript-常用静态方法"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -462,7 +462,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -483,7 +483,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/&amp;title=javascript-常用静态方法"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/&amp;title=javascript-常用静态方法"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -509,7 +509,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
             <h4 id="about-card-name">Jiaxing Huang</h4>
         
@@ -535,10 +535,10 @@
 
         
         
-<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
 
 <!--SCRIPTS END-->
 

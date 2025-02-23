@@ -12,14 +12,14 @@
     
     
         
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue.js 组件之间通信概念详解目录\nProps\n自定义事件\nmitt（略）\nv-model\n$attrs\n$refs、$parent\nprovide、inject\nPinia\nSlot\n\n1. Props (父传子数据，子传父)Props用于父组件向子组件传递数据。子组件通过父亲的方法实现数据回传。\n\nFather Component  1&lt;Child :car=&quot;car&quot; :sendToy=&quot;getToy&quot;/&gt;\nChildren Component  1defineProps([&#x27;car&#x27;,&#x27;sendToy&#x27;])\n\n2. 自定义事件 (子传父)通过自定义事件可以将方法从父组件传递给子组件以实现子到父的数据传输。\n\nFather Component  1&lt;Child @send-toy=&quot;saveToy&quot;/&gt;\nChildren Component  123const emit = defineEmits([&#x27;send-toy&#x27;]);// 触发事件&lt;button @click=&quot;emit(&#x27;send-toy&#x27;, toy)&quot;&gt;Send Toy&lt;/button&gt;\n\n4. v-modelv-model用于实现双向数据绑定，可以在HTML标签或组件标签上使用。\n\n示例  1&lt;AtguiguInput v-model:ming=&quot;username&quot; v-model:mima=&quot;password&quot;/&gt;\n\n7. Provide &amp; InjectProvide允许祖先组件向其所有后代组件提供数据，而Inject则让后代组件接收这些数据。\n\nAncestor Component  1provide(&#x27;moneyContext&#x27;, &#123;money, updateMoney&#125;)\nDescendant Component  1let &#123;money, updateMoney&#125; = inject(&#x27;moneyContext&#x27;, &#123;money:0, updateMoney:(param:number)=&gt;&#123;&#125;&#125;)\n\n更多关于Pinia和其他Vue.js核心概念的详细解释将在后续部分中介绍。\n","dateCreated":"2024-05-14T11:24:11+08:00","dateModified":"2025-02-19T20:51:17+08:00","datePublished":"2024-05-14T11:24:11+08:00","description":"Vue.js 组件之间通信概念详解","headline":"Component Communication","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/05/14/Component-Communication/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"http://example.com/2024/05/14/Component-Communication/","keywords":"Component Communication, vue3"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue.js 组件之间通信概念详解目录\nProps\n自定义事件\nmitt（略）\nv-model\n$attrs\n$refs、$parent\nprovide、inject\nPinia\nSlot\n\n1. Props (父传子数据，子传父)Props用于父组件向子组件传递数据。子组件通过父亲的方法实现数据回传。\n\nFather Component  1&lt;Child :car=&quot;car&quot; :sendToy=&quot;getToy&quot;/&gt;\nChildren Component  1defineProps([&#x27;car&#x27;,&#x27;sendToy&#x27;])\n\n2. 自定义事件 (子传父)通过自定义事件可以将方法从父组件传递给子组件以实现子到父的数据传输。\n\nFather Component  1&lt;Child @send-toy=&quot;saveToy&quot;/&gt;\nChildren Component  123const emit = defineEmits([&#x27;send-toy&#x27;]);// 触发事件&lt;button @click=&quot;emit(&#x27;send-toy&#x27;, toy)&quot;&gt;Send Toy&lt;/button&gt;\n\n4. v-modelv-model用于实现双向数据绑定，可以在HTML标签或组件标签上使用。\n\n示例  1&lt;AtguiguInput v-model:ming=&quot;username&quot; v-model:mima=&quot;password&quot;/&gt;\n\n7. Provide &amp; InjectProvide允许祖先组件向其所有后代组件提供数据，而Inject则让后代组件接收这些数据。\n\nAncestor Component  1provide(&#x27;moneyContext&#x27;, &#123;money, updateMoney&#125;)\nDescendant Component  1let &#123;money, updateMoney&#125; = inject(&#x27;moneyContext&#x27;, &#123;money:0, updateMoney:(param:number)=&gt;&#123;&#125;&#125;)\n\n更多关于Pinia和其他Vue.js核心概念的详细解释将在后续部分中介绍。\n","dateCreated":"2024-05-14T11:24:11+08:00","dateModified":"2025-02-19T20:51:17+08:00","datePublished":"2024-05-14T11:24:11+08:00","description":"Vue.js 组件之间通信概念详解","headline":"Component Communication","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/","keywords":"Component Communication, vue3"}</script>
     <meta name="description" content="Vue.js 组件之间通信概念详解">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Component Communication">
-<meta property="og:url" content="http://example.com/2024/05/14/Component-Communication/index.html">
+<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/index.html">
 <meta property="og:site_name" content="Jiaxing的个人主页">
 <meta property="og:description" content="Vue.js 组件之间通信概念详解">
 <meta property="og:locale" content="zh_CN">
@@ -34,14 +34,14 @@
         
     
     
-        <meta property="og:image" content="http://example.com/assets/images/qingque.png"/>
+        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
     
     
     
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
 
     <!--STYLES END-->
     
@@ -69,7 +69,7 @@
     <div class="header-title">
         <a
             class="header-title-link"
-            href="/"
+            href="/PersonalPage/"
             aria-label=""
         >
             Jiaxing的个人主页
@@ -80,11 +80,11 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="打开链接: /#about"
+                aria-label="打开链接: /PersonalPage/#about"
             >
         
         
-            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
         </a>
     
@@ -102,10 +102,10 @@
         
             <div class="sidebar-profile">
                 <a
-                    href="/#about"
+                    href="/PersonalPage/#about"
                     aria-label="阅读有关作者的更多信息"
                 >
-                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
                 </a>
                 <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
                 
@@ -120,7 +120,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/"
+                            href="/PersonalPage/"
                             
                             rel="noopener"
                             title="首页"
@@ -134,7 +134,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-categories"
+                            href="/PersonalPage/all-categories"
                             
                             rel="noopener"
                             title="分类"
@@ -148,7 +148,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-tags"
+                            href="/PersonalPage/all-tags"
                             
                             rel="noopener"
                             title="标签"
@@ -162,7 +162,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/all-archives"
+                            href="/PersonalPage/all-archives"
                             
                             rel="noopener"
                             title="归档"
@@ -214,7 +214,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/atom.xml"
+                            href="/PersonalPage/atom.xml"
                             
                             rel="noopener"
                             title="RSS"
@@ -254,7 +254,7 @@
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/vue3/">vue3</a>
+    <a class="category-link" href="/PersonalPage/categories/vue3/">vue3</a>
 
 
     
@@ -308,7 +308,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/Component-Communication/" rel="tag">Component Communication</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/Component-Communication/" rel="tag">Component Communication</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/vue3/" rel="tag">vue3</a>
 
             </div>
         
@@ -321,7 +321,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/05/17/asynchronous/"
+                    href="/PersonalPage/2024/05/17/asynchronous/"
                     data-tooltip="asynchronous"
                     aria-label="上一篇: asynchronous"
                 >
@@ -335,7 +335,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/05/12/lifeCycle/"
+                    href="/PersonalPage/2024/05/12/lifeCycle/"
                     data-tooltip="lifeCycle"
                     aria-label="下一篇: lifeCycle"
                 >
@@ -351,7 +351,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -362,7 +362,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/14/Component-Communication/&amp;title=Component Communication"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/&amp;title=Component Communication"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -375,7 +375,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -410,7 +410,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/05/17/asynchronous/"
+                    href="/PersonalPage/2024/05/17/asynchronous/"
                     data-tooltip="asynchronous"
                     aria-label="上一篇: asynchronous"
                 >
@@ -424,7 +424,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/05/12/lifeCycle/"
+                    href="/PersonalPage/2024/05/12/lifeCycle/"
                     data-tooltip="lifeCycle"
                     aria-label="下一篇: lifeCycle"
                 >
@@ -440,7 +440,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -451,7 +451,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/14/Component-Communication/&amp;title=Component Communication"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/&amp;title=Component Communication"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -464,7 +464,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -485,7 +485,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/05/14/Component-Communication/&amp;title=Component Communication"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/&amp;title=Component Communication"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -511,7 +511,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
         
             <h4 id="about-card-name">Jiaxing Huang</h4>
         
@@ -537,10 +537,10 @@
 
         
         
-<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
 
 <!--SCRIPTS END-->
 

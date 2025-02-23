@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>跨域解决方法 - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"浏览器跨域解决方法目录\n跨域概念解析\nJSONP解决方案\ndocument.domain + iframe方案\nlocation.hash + iframe方案\nwindow.name + iframe方案\npostMessage API方案\nCORS跨域方案\nWebSocket协议方案\n\n一、跨域概念解析\n\n当前浏览器的内容访问要求同源，所谓同源即是url的方案（协议），主机（域名），和端定义，只有当方案，主机和端口都匹配时，两个对象具有相同的起源同源策略是一个重要的安全策略，它用于限制一个origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介\n二、JSONP解决方案\n\n在html标签中很多带src属性的标签都可以跨域请求内容，比如我们熟悉的img图片标签。同理，script标签也可以，通过&lt;script&gt;标签来实现跨域数据请求的方法。其工作原理主要依赖于浏览器对&lt;script&gt;标签的src属性没有同源策略限制这一特性。下面详细解释其实现跨域的步骤：\n\n创建回调函数：在你的网页中定义一个全局函数，这个函数将被用来处理从其他域返回的数据。\n\n构造&lt;script&gt;标签：动态地创建一个&lt;script&gt;元素，并设置它的src属性为目标服务器的URL。在这个URL中，你需要指定一个参数来告诉服务器你的回调函数名称。\n\n服务器响应：当目标服务器收到请求后，它会构建一段JavaScript代码作为响应。这段代码调用你在第一步中定义的回调函数，并将需要的数据作为参数传递给这个函数。\n\n执行脚本：浏览器接收到服务器的响应后，会执行这段JavaScript代码，从而触发你之前定义的回调函数，完成数据的获取和处理。\n\n\n例如，假设你想从example.com获取数据，并且已经定义了一个名为handleResponse的回调函数，那么你可以创建一个&lt;script&gt;标签，其src属性为http://example.com/data?callback=handleResponse。服务器应该返回类似handleResponse(&#123;...&#125;)的JavaScript代码，其中&#123;...&#125;是实际的数据。\n需要注意的是，由于JSONP的实现方式，它只能支持GET请求，而且如果服务器不正确地处理回调参数，可能会引发安全问题，如XSS攻击。因此，在使用JSONP时需要格外小心。随着CORS（跨源资源共享）机制的普及，JSONP逐渐被更为安全的CORS替代。\n三、document.domain + iframe方案\n\n使用 document.domain 和 &lt;iframe&gt; 实现跨域通信是一种传统的方法，主要用于主域名相同但子域名不同的情况下。例如，父页面位于 a.example.com，而子页面位于 b.example.com。通过设置 document.domain，可以让这两个不同子域名的页面认为它们属于同一个源（即相同的主域名），从而允许它们之间进行直接的JavaScript交互。\n实现步骤\n设置 document.domain：\n\n在父页面和子页面中都显式地设置 document.domain 为相同的主域名。比如，如果两个页面分别位于 a.example.com 和 b.example.com，则在每个页面中添加以下代码：1document.domain = &quot;example.com&quot;;\n这样做之后，两个页面就会被视为来自同一源。\n\n\n建立 iframe 嵌套：\n\n在父页面中嵌入一个指向子页面的 &lt;iframe&gt; 标签：1&lt;iframe id=&quot;myIframe&quot; src=&quot;http://b.example.com/page.html&quot;&gt;&lt;/iframe&gt;\n\n\n实现通信：\n\n在父页面中，可以通过获取 iframe 的 contentWindow 对象来访问子页面中的 JavaScript 变量或调用其函数。1234var iframe = document.getElementById(&#x27;myIframe&#x27;);var iframeWindow = iframe.contentWindow;// 调用子页面中的函数iframeWindow.someFunction();\n同样，在子页面中也可以访问父页面的 JavaScript 变量或调用其函数：1window.parent.someParentFunction();\n\n\n\n注意事项\n这种方法仅适用于主域名相同的情况。如果主域名不同，则无法通过此方法解决跨域问题。\n设置 document.domain 可能会影响页面的安全性，因此应谨慎使用，并确保只在受信任的上下文中操作。\n\n四、location.hash + iframe方案\n\n使用 location.hash 和 &lt;iframe&gt; 实现跨域通信是一种巧妙的方法，特别适用于需要在不同源的页面之间传递少量数据的情况。这种方法利用了 iframe 的 src 属性和 location 对象的 hash 属性（即 URL 中 “#” 后面的部分），允许父页面和嵌入的 iframe 页面之间进行单向或双向的数据交换。\n实现原理\n父页面通过修改 iframe 的 src 属性中的 hash 部分来向 iframe 发送消息。\n**子页面（iframe）**可以通过监听自身的 hashchange 事件来接收来自父页面的消息。\n类似地，子页面也可以通过修改父页面的 location.hash 来发送消息给父页面，父页面则监听自身的 hashchange 事件来接收这些消息。\n\n实现步骤父页面向 iframe 发送消息\n在父页面中创建一个指向目标域名的 iframe：\n1&lt;iframe id=&quot;myIframe&quot; src=&quot;http://otherdomain.com/page.html&quot;&gt;&lt;/iframe&gt;\n\n通过 JavaScript 修改 iframe 的 src 属性中的 hash 部分来发送消息：\n12var iframe = document.getElementById(&#x27;myIframe&#x27;);iframe.src = iframe.src.split(&#x27;#&#x27;)[0] + &#x27;#&#x27; + encodeURIComponent(&#x27;Hello from parent!&#x27;);\n\niframe 接收消息并处理\n在 iframe 内部监听 hashchange 事件来捕获来自父页面的消息：1234window.addEventListener(&#x27;hashchange&#x27;, function() &#123;    var message = decodeURIComponent(location.hash.substr(1));    console.log(&#x27;Received message:&#x27;, message);&#125;);\n\niframe 向父页面发送消息\n在 iframe 内部通过修改父页面的 location.hash 来发送消息：\n12345try &#123;    parent.location.hash = &#x27;Message from iframe&#x27;;&#125; catch (e) &#123;    // 跨域时会抛出异常，可以忽略或者做其他处理&#125;\n\n在父页面中监听 hashchange 事件以接收来自 iframe 的消息：\n1234window.addEventListener(&#x27;hashchange&#x27;, function() &#123;    var message = decodeURIComponent(location.hash.substr(1));    console.log(&#x27;Received message from iframe:&#x27;, message);&#125;);\n\n注意事项\n使用 location.hash 进行跨域通信有一定的局限性，比如只能传输简单的字符串信息，并且长度受限于浏览器对 URL 总长度的限制。\n由于涉及到直接操作 URL，频繁的更改可能会导致用户体验问题，如浏览器历史记录条目的增加。\n\n五、window.name + iframe方案\n\n使用 window.name 和 &lt;iframe&gt; 实现跨域通信是一种较为巧妙的方法，利用了浏览器的一个特性：window.name 属性在页面的整个生命周期内保持不变，即使页面的 URL 发生变化，只要没有重新加载或导航到其他页面，window.name 的值就不会改变。这使得它成为一种可行的跨域通信手段。\n工作原理\n初始设置：\n\n在父页面中创建一个指向目标域名的 iframe。\n目标页面（即 iframe 中加载的页面）设置其 window.name 为需要传递的数据。\n\n\n数据传递：\n\n父页面通过将 iframe 的 src 更改为与自身同源的一个空白页（例如，父页面所在域下的一个空 HTML 文件），然后访问 iframe 的 contentWindow.name 来读取之前设置的 window.name 值。\n\n\n清理：\n\n由于 window.name 可能会被后续操作覆盖或污染，通常会在读取完数据后立即将其重置为空字符串或其他默认值。\n\n\n\n实现步骤目标页面（子页面）\n在目标页面（即要从其获取数据的页面）中设置 window.name：1window.name = JSON.stringify(&#123;key: &#x27;value&#x27;&#125;); // 将需要传递的数据序列化为字符串\n\n父页面\n创建 iframe 并设置其 src 属性为目标页面的 URL：\n1&lt;iframe id=&quot;myIframe&quot; src=&quot;http://otherdomain.com/page.html&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;\n\n使用 JavaScript 修改 iframe 的 src 属性为与父页面同源的一个空白页，并读取 window.name：\n12345678910111213141516var iframe = document.getElementById(&#x27;myIframe&#x27;);// 当 iframe 加载完成时iframe.onload = function() &#123;    // 修改 iframe 的 src 到同源的一个空白页    iframe.src = &quot;about:blank&quot;; // 或者是一个同源的空白HTML文件URL    // 访问 iframe 的 window.name 获取数据    var data = iframe.contentWindow.name;        // 处理接收到的数据    console.log(JSON.parse(data)); // 解析返回的数据    // 清理 window.name 防止泄露    iframe.contentWindow.name = &#x27;&#x27;;&#125;;\n\n注意事项\n这种方法适用于一次性的数据传递，因为一旦页面导航或重新加载，window.name 的值可能会被覆盖或丢失。\nwindow.name 的大小有限制（不同浏览器可能有所不同），因此不适合传输大量数据。\n\n六、postMessage API方案\n\npostMessage 是一种用于实现安全的跨文档消息传递的API，允许来自不同源的窗口或iframe之间进行通信。它不仅适用于父页面和子iframe之间的通信，也适用于任何两个窗口（如通过 window.open 打开的新窗口）之间的通信。这种方法比使用 location.hash、document.domain 或 window.name 更加灵活和安全。\n使用 postMessage 实现跨域通信基本语法发送消息的一方使用如下格式调用 postMessage 方法：\n1otherWindow.postMessage(message, targetOrigin, [transfer]);\n\n\nmessage: 需要传递的数据。可以是任意类型的对象，但如果需要支持旧版浏览器，建议使用基本数据类型或JSON可序列化的对象。\ntargetOrigin: 指定目标窗口的源（协议+域名+端口），只有当目标窗口的源与此参数匹配时，才会发送消息。使用 &quot;*&quot; 表示不检查源，但这通常不推荐因为存在安全隐患。\n[transfer] (可选): 一个数组，包含要转移所有权的对象（例如ArrayBuffer对象）。这些对象在发送后将不再属于发送者。\n\n接收消息的一方需要监听 message 事件：\n12345678910window.addEventListener(&#x27;message&#x27;, function(event) &#123;    // 检查消息来源是否可信    if (event.origin !== &#x27;http://expected-origin.com&#x27;) return;    // 处理接收到的消息    console.log(&#x27;Received message:&#x27;, event.data);    // 如果需要回复，可以使用 event.source.postMessage()    event.source.postMessage(&#x27;Response message&#x27;, event.origin);&#125;);\n\n示例父页面向 iframe 发送消息父页面代码：\n123456789&lt;iframe id=&quot;myIframe&quot; src=&quot;http://otherdomain.com/page.html&quot;&gt;&lt;/iframe&gt;&lt;script&gt;    var iframe = document.getElementById(&#x27;myIframe&#x27;);    // 向iframe发送消息    iframe.onload = function() &#123;        iframe.contentWindow.postMessage(&#x27;Hello from parent&#x27;, &#x27;http://otherdomain.com&#x27;);    &#125;;&lt;/script&gt;\n\niframe代码：\n12345678910// 监听来自父页面的消息window.addEventListener(&#x27;message&#x27;, function(event) &#123;    // 确认消息来源    if (event.origin !== &#x27;http://parentdomain.com&#x27;) return;    console.log(&#x27;Message received from parent:&#x27;, event.data);    // 回复消息给父页面    event.source.postMessage(&#x27;Hello back to parent&#x27;, event.origin);&#125;);\n\niframe 向父页面发送消息只需调整上述示例中的角色，即在 iframe 中使用 parent.postMessage() 发送消息，在父页面中监听 message 事件即可。\niframe代码：\n12// 向父页面发送消息parent.postMessage(&#x27;Hello from iframe&#x27;, &#x27;http://parentdomain.com&#x27;);\n\n父页面代码：\n123456// 监听来自iframe的消息window.addEventListener(&#x27;message&#x27;, function(event) &#123;    if (event.origin !== &#x27;http://otherdomain.com&#x27;) return;        console.log(&#x27;Message received from iframe:&#x27;, event.data);&#125;);\n\n注意事项\n安全性: 始终验证 event.origin 来确保消息是从预期的来源接收的。不要信任未经验证的消息内容。\n数据类型: 虽然可以发送复杂对象，但要注意兼容性问题，特别是在处理旧版浏览器时。\n性能: 对于频繁的消息传递，考虑消息的大小和频率以避免影响性能。\n\n七、CORS跨域方案\n\n跨域资源共享（Cross-Origin Resource Sharing，简称 CORS）是一种基于HTTP的协议，它允许服务器声明哪些源可以访问其资源。CORS通过在HTTP响应中添加特定的头部信息来控制跨域请求的行为，从而增强了Web应用的安全性。\nCORS的工作原理CORS机制主要依赖于以下几个HTTP头部：\n\nOrigin: 这个头部由浏览器自动添加到跨域请求中，表明发起请求的来源（协议+域名+端口）。\nAccess-Control-Allow-Origin: 服务器使用这个头部来指定哪些源可以访问资源。它可以设置为具体的源（如http://example.com），也可以设置为通配符*表示允许所有源访问。\nAccess-Control-Allow-Methods: 指定允许的HTTP方法（如GET, POST, PUT等）。\nAccess-Control-Allow-Headers: 指定除了默认的简单请求头外，还允许哪些自定义请求头。\nAccess-Control-Allow-Credentials: 表示是否允许发送凭据（如Cookies、HTTP认证信息）。默认情况下，CORS请求不会发送这些凭据。\n\n请求类型CORS请求分为两种类型：简单请求和预检请求。\n简单请求满足以下条件的请求被认为是简单请求：\n\n使用GET, HEAD, 或 POST 方法。\nHTTP 头部仅包含Accept, Accept-Language, Content-Language, Content-Type（但限制为application/x-www-form-urlencoded, multipart/form-data, 或 text/plain）。\n\n对于简单请求，浏览器直接发送请求，并检查响应中的Access-Control-Allow-Origin头部以确定是否允许该请求。\n预检请求如果请求不符合简单请求的标准，浏览器会首先发送一个OPTIONS请求（称为预检请求）来询问服务器是否允许实际请求。预检请求会携带如下头部：\n\nAccess-Control-Request-Method: 实际请求将使用的HTTP方法。\nAccess-Control-Request-Headers: 实际请求将携带的额外HTTP头部。\n\n服务器需要响应一个200状态码，并且在响应头部中包含必要的CORS头部信息。\n注意事项\n安全性: 不要随意设置Access-Control-Allow-Origin为*，尤其是在需要发送凭据的情况下。应该根据实际情况精确控制允许访问的源。\n\n八、WebSocket协议方案\n\nWebSocket 协议本身并不受限于同源策略（Same-Origin Policy），这意味着 WebSocket 连接可以在不同的源之间建立，而不需要像传统的 HTTP 请求那样处理跨域资源共享（CORS）。然而，在实际应用中，为了确保安全性，服务器通常会验证请求的来源，并决定是否接受连接。\nWebSocket 跨域的基本原理在 WebSocket 连接中，浏览器会在握手阶段发送一个标准的 HTTP 请求，该请求包含以下关键头部：\n\nOrigin: 浏览器自动添加此头部，指示发起 WebSocket 连接的源（协议+域名+端口）。\nSec-WebSocket-Key: 用于握手过程中的安全验证。\nSec-WebSocket-Version: 指示使用的 WebSocket 协议版本。\n\n服务器在收到连接请求后，可以通过检查 Origin 头部来决定是否允许该连接。如果服务器认为该来源是可信的，则可以继续握手并建立连接；否则，服务器可以选择拒绝连接。\n服务器端配置 WebSocket 跨域以下是js服务器环境下的 WebSocket 跨域配置示例。\nNode.js 使用 ws 库在 Node.js 中使用 ws 库时，可以通过中间件或直接在 WebSocket 服务器上设置来处理跨域请求。\n1234567891011121314151617181920212223242526const WebSocket = require(&#x27;ws&#x27;);const http = require(&#x27;http&#x27;);const server = http.createServer();const wss = new WebSocket.Server(&#123; server &#125;);wss.on(&#x27;connection&#x27;, function connection(ws, req) &#123;    const origin = req.headers[&#x27;origin&#x27;];        // 验证 Origin 头部    if (origin === &#x27;http://allowed-origin.com&#x27;) &#123;        console.log(&#x27;Connection accepted from trusted origin&#x27;);        ws.send(&#x27;Welcome!&#x27;);    &#125; else &#123;        console.log(&#x27;Rejected connection from untrusted origin&#x27;);        ws.close();    &#125;    ws.on(&#x27;message&#x27;, function incoming(message) &#123;        console.log(&#x27;received: %s&#x27;, message);    &#125;);&#125;);server.listen(8080, () =&gt; &#123;    console.log(&#x27;WebSocket server is listening on port 8080&#x27;);&#125;);","dateCreated":"2025-02-23T15:27:27+08:00","dateModified":"2025-02-23T16:15:47+08:00","datePublished":"2025-02-23T15:27:27+08:00","description":"在浏览器的同源政策下，浏览器一个域下的 js 脚本在未经允许的情况下，不能够访问另一个域的内容，下面列举一些解决这个的方法","headline":"跨域解决方法","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/","keywords":"js, 跨域"}</script>
+    <meta name="description" content="在浏览器的同源政策下，浏览器一个域下的 js 脚本在未经允许的情况下，不能够访问另一个域的内容，下面列举一些解决这个的方法">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="跨域解决方法">
+<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="在浏览器的同源政策下，浏览器一个域下的 js 脚本在未经允许的情况下，不能够访问另一个域的内容，下面列举一些解决这个的方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-23T07:27:27.000Z">
+<meta property="article:modified_time" content="2025-02-23T08:15:47.917Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="跨域">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/PersonalPage/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /PersonalPage/#about"
+            >
+        
+        
+            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/PersonalPage/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/PersonalPage/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/PersonalPage/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/PersonalPage/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/PersonalPage/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/PersonalPage/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            跨域解决方法
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2025-02-23T15:27:27+08:00">
+	
+		    2025 年 2 月 23 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/PersonalPage/categories/js/">js</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="浏览器跨域解决方法"><a href="#浏览器跨域解决方法" class="headerlink" title="浏览器跨域解决方法"></a>浏览器跨域解决方法</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#1">跨域概念解析</a></li>
+<li><a href="#2">JSONP解决方案</a></li>
+<li><a href="#3">document.domain + iframe方案</a></li>
+<li><a href="#4">location.hash + iframe方案</a></li>
+<li><a href="#5">window.name + iframe方案</a></li>
+<li><a href="#6">postMessage API方案</a></li>
+<li><a href="#7">CORS跨域方案</a></li>
+<li><a href="#8">WebSocket协议方案</a></li>
+</ol>
+<h2 id="1">一、跨域概念解析</h2>
+
+<p>当前浏览器的内容访问要求同源，所谓同源即是<code>url的方案（协议）</code>，<code>主机（域名）</code>，<code>和端定义</code>，<br>只有当方案，主机和端口都匹配时，两个对象具有相同的起源<br>同源策略是一个重要的安全策略，它用于限制一个origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介</p>
+<h2 id="2">二、JSONP解决方案</h2>
+
+<p>在html标签中很多带src属性的标签都可以跨域请求内容，比如我们熟悉的img图片标签。同理，script标签也可以，<br>通过<code>&lt;script&gt;</code>标签来实现跨域数据请求的方法。其工作原理主要依赖于浏览器对<code>&lt;script&gt;</code>标签的src属性没有同源策略限制这一特性。下面详细解释其实现跨域的步骤：</p>
+<ol>
+<li><p><strong>创建回调函数</strong>：在你的网页中定义一个全局函数，这个函数将被用来处理从其他域返回的数据。</p>
+</li>
+<li><p><strong>构造<code>&lt;script&gt;</code>标签</strong>：动态地创建一个<code>&lt;script&gt;</code>元素，并设置它的src属性为目标服务器的URL。在这个URL中，你需要指定一个参数来告诉服务器你的回调函数名称。</p>
+</li>
+<li><p><strong>服务器响应</strong>：当目标服务器收到请求后，它会构建一段JavaScript代码作为响应。这段代码调用你在第一步中定义的回调函数，并将需要的数据作为参数传递给这个函数。</p>
+</li>
+<li><p><strong>执行脚本</strong>：浏览器接收到服务器的响应后，会执行这段JavaScript代码，从而触发你之前定义的回调函数，完成数据的获取和处理。</p>
+</li>
+</ol>
+<p>例如，假设你想从<code>example.com</code>获取数据，并且已经定义了一个名为<code>handleResponse</code>的回调函数，那么你可以创建一个<code>&lt;script&gt;</code>标签，其src属性为<code>http://example.com/data?callback=handleResponse</code>。服务器应该返回类似<code>handleResponse(&#123;...&#125;)</code>的JavaScript代码，其中<code>&#123;...&#125;</code>是实际的数据。</p>
+<p>需要注意的是，由于JSONP的实现方式，它只能支持GET请求，而且如果服务器不正确地处理回调参数，可能会引发安全问题，如XSS攻击。因此，在使用JSONP时需要格外小心。随着CORS（跨源资源共享）机制的普及，JSONP逐渐被更为安全的CORS替代。</p>
+<h2 id="3">三、document.domain + iframe方案</h2>
+
+<p>使用 <code>document.domain</code> 和 <code>&lt;iframe&gt;</code> 实现跨域通信是一种传统的方法，主要用于主域名相同但子域名不同的情况下。例如，父页面位于 <code>a.example.com</code>，而子页面位于 <code>b.example.com</code>。通过设置 <code>document.domain</code>，可以让这两个不同子域名的页面认为它们属于同一个源（即相同的主域名），从而允许它们之间进行直接的JavaScript交互。</p>
+<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ol>
+<li><p><strong>设置 <code>document.domain</code></strong>：</p>
+<ul>
+<li>在父页面和子页面中都显式地设置 <code>document.domain</code> 为相同的主域名。比如，如果两个页面分别位于 <code>a.example.com</code> 和 <code>b.example.com</code>，则在每个页面中添加以下代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">domain</span> = <span class="string">&quot;example.com&quot;</span>;</span><br></pre></td></tr></table></figure>
+这样做之后，两个页面就会被视为来自同一源。</li>
+</ul>
+</li>
+<li><p><strong>建立 iframe 嵌套</strong>：</p>
+<ul>
+<li>在父页面中嵌入一个指向子页面的 <code>&lt;iframe&gt;</code> 标签：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;myIframe&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://b.example.com/page.html&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>实现通信</strong>：</p>
+<ul>
+<li>在父页面中，可以通过获取 iframe 的 contentWindow 对象来访问子页面中的 JavaScript 变量或调用其函数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iframe = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myIframe&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> iframeWindow = iframe.<span class="property">contentWindow</span>;</span><br><span class="line"><span class="comment">// 调用子页面中的函数</span></span><br><span class="line">iframeWindow.<span class="title function_">someFunction</span>();</span><br></pre></td></tr></table></figure></li>
+<li>同样，在子页面中也可以访问父页面的 JavaScript 变量或调用其函数：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="title function_">someParentFunction</span>();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>这种方法仅适用于主域名相同的情况。如果主域名不同，则无法通过此方法解决跨域问题。</li>
+<li>设置 <code>document.domain</code> 可能会影响页面的安全性，因此应谨慎使用，并确保只在受信任的上下文中操作。</li>
+</ul>
+<h2 id="4">四、location.hash + iframe方案</h2>
+
+<p>使用 <code>location.hash</code> 和 <code>&lt;iframe&gt;</code> 实现跨域通信是一种巧妙的方法，特别适用于需要在不同源的页面之间传递少量数据的情况。这种方法利用了 iframe 的 src 属性和 location 对象的 hash 属性（即 URL 中 “#” 后面的部分），允许父页面和嵌入的 iframe 页面之间进行单向或双向的数据交换。</p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><ul>
+<li><strong>父页面</strong>通过修改 iframe 的 src 属性中的 hash 部分来向 iframe 发送消息。</li>
+<li>**子页面（iframe）**可以通过监听自身的 <code>hashchange</code> 事件来接收来自父页面的消息。</li>
+<li>类似地，<strong>子页面</strong>也可以通过修改父页面的 <code>location.hash</code> 来发送消息给父页面，父页面则监听自身的 <code>hashchange</code> 事件来接收这些消息。</li>
+</ul>
+<h3 id="实现步骤-1"><a href="#实现步骤-1" class="headerlink" title="实现步骤"></a>实现步骤</h3><h4 id="父页面向-iframe-发送消息"><a href="#父页面向-iframe-发送消息" class="headerlink" title="父页面向 iframe 发送消息"></a>父页面向 iframe 发送消息</h4><ol>
+<li><p>在父页面中创建一个指向目标域名的 iframe：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;myIframe&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://otherdomain.com/page.html&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过 JavaScript 修改 iframe 的 src 属性中的 hash 部分来发送消息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iframe = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myIframe&#x27;</span>);</span><br><span class="line">iframe.<span class="property">src</span> = iframe.<span class="property">src</span>.<span class="title function_">split</span>(<span class="string">&#x27;#&#x27;</span>)[<span class="number">0</span>] + <span class="string">&#x27;#&#x27;</span> + <span class="built_in">encodeURIComponent</span>(<span class="string">&#x27;Hello from parent!&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="iframe-接收消息并处理"><a href="#iframe-接收消息并处理" class="headerlink" title="iframe 接收消息并处理"></a>iframe 接收消息并处理</h4><ol>
+<li>在 iframe 内部监听 <code>hashchange</code> 事件来捕获来自父页面的消息：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;hashchange&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> message = <span class="built_in">decodeURIComponent</span>(location.<span class="property">hash</span>.<span class="title function_">substr</span>(<span class="number">1</span>));</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Received message:&#x27;</span>, message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="iframe-向父页面发送消息"><a href="#iframe-向父页面发送消息" class="headerlink" title="iframe 向父页面发送消息"></a>iframe 向父页面发送消息</h4><ol>
+<li><p>在 iframe 内部通过修改父页面的 <code>location.hash</code> 来发送消息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    parent.<span class="property">location</span>.<span class="property">hash</span> = <span class="string">&#x27;Message from iframe&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="comment">// 跨域时会抛出异常，可以忽略或者做其他处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在父页面中监听 <code>hashchange</code> 事件以接收来自 iframe 的消息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;hashchange&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> message = <span class="built_in">decodeURIComponent</span>(location.<span class="property">hash</span>.<span class="title function_">substr</span>(<span class="number">1</span>));</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Received message from iframe:&#x27;</span>, message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>使用 <code>location.hash</code> 进行跨域通信有一定的局限性，比如只能传输简单的字符串信息，并且长度受限于浏览器对 URL 总长度的限制。</li>
+<li>由于涉及到直接操作 URL，频繁的更改可能会导致用户体验问题，如浏览器历史记录条目的增加。</li>
+</ul>
+<h2 id="5">五、window.name + iframe方案</h2>
+
+<p>使用 <code>window.name</code> 和 <code>&lt;iframe&gt;</code> 实现跨域通信是一种较为巧妙的方法，利用了浏览器的一个特性：<code>window.name</code> 属性在页面的整个生命周期内保持不变，即使页面的 URL 发生变化，只要没有重新加载或导航到其他页面，<code>window.name</code> 的值就不会改变。这使得它成为一种可行的跨域通信手段。</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ol>
+<li><p><strong>初始设置</strong>：</p>
+<ul>
+<li>在父页面中创建一个指向目标域名的 iframe。</li>
+<li>目标页面（即 iframe 中加载的页面）设置其 <code>window.name</code> 为需要传递的数据。</li>
+</ul>
+</li>
+<li><p><strong>数据传递</strong>：</p>
+<ul>
+<li>父页面通过将 iframe 的 src 更改为与自身同源的一个空白页（例如，父页面所在域下的一个空 HTML 文件），然后访问 iframe 的 <code>contentWindow.name</code> 来读取之前设置的 <code>window.name</code> 值。</li>
+</ul>
+</li>
+<li><p><strong>清理</strong>：</p>
+<ul>
+<li>由于 <code>window.name</code> 可能会被后续操作覆盖或污染，通常会在读取完数据后立即将其重置为空字符串或其他默认值。</li>
+</ul>
+</li>
+</ol>
+<h3 id="实现步骤-2"><a href="#实现步骤-2" class="headerlink" title="实现步骤"></a>实现步骤</h3><h4 id="目标页面（子页面）"><a href="#目标页面（子页面）" class="headerlink" title="目标页面（子页面）"></a>目标页面（子页面）</h4><ol>
+<li>在目标页面（即要从其获取数据的页面）中设置 <code>window.name</code>：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">name</span> = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;<span class="attr">key</span>: <span class="string">&#x27;value&#x27;</span>&#125;); <span class="comment">// 将需要传递的数据序列化为字符串</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="父页面"><a href="#父页面" class="headerlink" title="父页面"></a>父页面</h4><ol>
+<li><p>创建 iframe 并设置其 src 属性为目标页面的 URL：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;myIframe&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://otherdomain.com/page.html&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 JavaScript 修改 iframe 的 src 属性为与父页面同源的一个空白页，并读取 <code>window.name</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iframe = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myIframe&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当 iframe 加载完成时</span></span><br><span class="line">iframe.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 修改 iframe 的 src 到同源的一个空白页</span></span><br><span class="line">    iframe.<span class="property">src</span> = <span class="string">&quot;about:blank&quot;</span>; <span class="comment">// 或者是一个同源的空白HTML文件URL</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 访问 iframe 的 window.name 获取数据</span></span><br><span class="line">    <span class="keyword">var</span> data = iframe.<span class="property">contentWindow</span>.<span class="property">name</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 处理接收到的数据</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(data)); <span class="comment">// 解析返回的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清理 window.name 防止泄露</span></span><br><span class="line">    iframe.<span class="property">contentWindow</span>.<span class="property">name</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>这种方法适用于一次性的数据传递，因为一旦页面导航或重新加载，<code>window.name</code> 的值可能会被覆盖或丢失。</li>
+<li><code>window.name</code> 的大小有限制（不同浏览器可能有所不同），因此不适合传输大量数据。</li>
+</ul>
+<h2 id="6">六、postMessage API方案</h2>
+
+<p><code>postMessage</code> 是一种用于实现安全的跨文档消息传递的API，允许来自不同源的窗口或iframe之间进行通信。它不仅适用于父页面和子iframe之间的通信，也适用于任何两个窗口（如通过 <code>window.open</code> 打开的新窗口）之间的通信。这种方法比使用 <code>location.hash</code>、<code>document.domain</code> 或 <code>window.name</code> 更加灵活和安全。</p>
+<h3 id="使用-postMessage-实现跨域通信"><a href="#使用-postMessage-实现跨域通信" class="headerlink" title="使用 postMessage 实现跨域通信"></a>使用 <code>postMessage</code> 实现跨域通信</h3><h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><p>发送消息的一方使用如下格式调用 <code>postMessage</code> 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">otherWindow.<span class="title function_">postMessage</span>(message, targetOrigin, [transfer]);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>message</code>: 需要传递的数据。可以是任意类型的对象，但如果需要支持旧版浏览器，建议使用基本数据类型或JSON可序列化的对象。</li>
+<li><code>targetOrigin</code>: 指定目标窗口的源（协议+域名+端口），只有当目标窗口的源与此参数匹配时，才会发送消息。使用 <code>&quot;*&quot;</code> 表示不检查源，但这通常不推荐因为存在安全隐患。</li>
+<li><code>[transfer]</code> (可选): 一个数组，包含要转移所有权的对象（例如ArrayBuffer对象）。这些对象在发送后将不再属于发送者。</li>
+</ul>
+<p>接收消息的一方需要监听 <code>message</code> 事件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="comment">// 检查消息来源是否可信</span></span><br><span class="line">    <span class="keyword">if</span> (event.<span class="property">origin</span> !== <span class="string">&#x27;http://expected-origin.com&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理接收到的消息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Received message:&#x27;</span>, event.<span class="property">data</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果需要回复，可以使用 event.source.postMessage()</span></span><br><span class="line">    event.<span class="property">source</span>.<span class="title function_">postMessage</span>(<span class="string">&#x27;Response message&#x27;</span>, event.<span class="property">origin</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="父页面向-iframe-发送消息-1"><a href="#父页面向-iframe-发送消息-1" class="headerlink" title="父页面向 iframe 发送消息"></a>父页面向 iframe 发送消息</h4><p><strong>父页面代码：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;myIframe&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://otherdomain.com/page.html&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> iframe = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myIframe&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 向iframe发送消息</span></span></span><br><span class="line"><span class="language-javascript">    iframe.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        iframe.<span class="property">contentWindow</span>.<span class="title function_">postMessage</span>(<span class="string">&#x27;Hello from parent&#x27;</span>, <span class="string">&#x27;http://otherdomain.com&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>iframe代码：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听来自父页面的消息</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="comment">// 确认消息来源</span></span><br><span class="line">    <span class="keyword">if</span> (event.<span class="property">origin</span> !== <span class="string">&#x27;http://parentdomain.com&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Message received from parent:&#x27;</span>, event.<span class="property">data</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 回复消息给父页面</span></span><br><span class="line">    event.<span class="property">source</span>.<span class="title function_">postMessage</span>(<span class="string">&#x27;Hello back to parent&#x27;</span>, event.<span class="property">origin</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="iframe-向父页面发送消息-1"><a href="#iframe-向父页面发送消息-1" class="headerlink" title="iframe 向父页面发送消息"></a>iframe 向父页面发送消息</h4><p>只需调整上述示例中的角色，即在 iframe 中使用 <code>parent.postMessage()</code> 发送消息，在父页面中监听 <code>message</code> 事件即可。</p>
+<p><strong>iframe代码：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 向父页面发送消息</span></span><br><span class="line">parent.<span class="title function_">postMessage</span>(<span class="string">&#x27;Hello from iframe&#x27;</span>, <span class="string">&#x27;http://parentdomain.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>父页面代码：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听来自iframe的消息</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (event.<span class="property">origin</span> !== <span class="string">&#x27;http://otherdomain.com&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Message received from iframe:&#x27;</span>, event.<span class="property">data</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项-3"><a href="#注意事项-3" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>安全性</strong>: 始终验证 <code>event.origin</code> 来确保消息是从预期的来源接收的。不要信任未经验证的消息内容。</li>
+<li><strong>数据类型</strong>: 虽然可以发送复杂对象，但要注意兼容性问题，特别是在处理旧版浏览器时。</li>
+<li><strong>性能</strong>: 对于频繁的消息传递，考虑消息的大小和频率以避免影响性能。</li>
+</ul>
+<h2 id="7">七、CORS跨域方案</h2>
+
+<p>跨域资源共享（Cross-Origin Resource Sharing，简称 CORS）是一种基于HTTP的协议，它允许服务器声明哪些源可以访问其资源。CORS通过在HTTP响应中添加特定的头部信息来控制跨域请求的行为，从而增强了Web应用的安全性。</p>
+<h3 id="CORS的工作原理"><a href="#CORS的工作原理" class="headerlink" title="CORS的工作原理"></a>CORS的工作原理</h3><p>CORS机制主要依赖于以下几个HTTP头部：</p>
+<ul>
+<li><strong>Origin</strong>: 这个头部由浏览器自动添加到跨域请求中，表明发起请求的来源（协议+域名+端口）。</li>
+<li><strong>Access-Control-Allow-Origin</strong>: 服务器使用这个头部来指定哪些源可以访问资源。它可以设置为具体的源（如<code>http://example.com</code>），也可以设置为通配符<code>*</code>表示允许所有源访问。</li>
+<li><strong>Access-Control-Allow-Methods</strong>: 指定允许的HTTP方法（如GET, POST, PUT等）。</li>
+<li><strong>Access-Control-Allow-Headers</strong>: 指定除了默认的简单请求头外，还允许哪些自定义请求头。</li>
+<li><strong>Access-Control-Allow-Credentials</strong>: 表示是否允许发送凭据（如Cookies、HTTP认证信息）。默认情况下，CORS请求不会发送这些凭据。</li>
+</ul>
+<h3 id="请求类型"><a href="#请求类型" class="headerlink" title="请求类型"></a>请求类型</h3><p>CORS请求分为两种类型：<strong>简单请求</strong>和<strong>预检请求</strong>。</p>
+<h4 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h4><p>满足以下条件的请求被认为是简单请求：</p>
+<ul>
+<li>使用<code>GET</code>, <code>HEAD</code>, 或 <code>POST</code> 方法。</li>
+<li>HTTP 头部仅包含<code>Accept</code>, <code>Accept-Language</code>, <code>Content-Language</code>, <code>Content-Type</code>（但限制为<code>application/x-www-form-urlencoded</code>, <code>multipart/form-data</code>, 或 <code>text/plain</code>）。</li>
+</ul>
+<p>对于简单请求，浏览器直接发送请求，并检查响应中的<code>Access-Control-Allow-Origin</code>头部以确定是否允许该请求。</p>
+<h4 id="预检请求"><a href="#预检请求" class="headerlink" title="预检请求"></a>预检请求</h4><p>如果请求不符合简单请求的标准，浏览器会首先发送一个<code>OPTIONS</code>请求（称为预检请求）来询问服务器是否允许实际请求。预检请求会携带如下头部：</p>
+<ul>
+<li><strong>Access-Control-Request-Method</strong>: 实际请求将使用的HTTP方法。</li>
+<li><strong>Access-Control-Request-Headers</strong>: 实际请求将携带的额外HTTP头部。</li>
+</ul>
+<p>服务器需要响应一个200状态码，并且在响应头部中包含必要的CORS头部信息。</p>
+<h3 id="注意事项-4"><a href="#注意事项-4" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>安全性</strong>: 不要随意设置<code>Access-Control-Allow-Origin</code>为<code>*</code>，尤其是在需要发送凭据的情况下。应该根据实际情况精确控制允许访问的源。</li>
+</ul>
+<h2 id="8">八、WebSocket协议方案</h2>
+
+<p>WebSocket 协议本身并不受限于同源策略（Same-Origin Policy），这意味着 WebSocket 连接可以在不同的源之间建立，而不需要像传统的 HTTP 请求那样处理跨域资源共享（CORS）。然而，在实际应用中，为了确保安全性，服务器通常会验证请求的来源，并决定是否接受连接。</p>
+<h3 id="WebSocket-跨域的基本原理"><a href="#WebSocket-跨域的基本原理" class="headerlink" title="WebSocket 跨域的基本原理"></a>WebSocket 跨域的基本原理</h3><p>在 WebSocket 连接中，浏览器会在握手阶段发送一个标准的 HTTP 请求，该请求包含以下关键头部：</p>
+<ul>
+<li><strong>Origin</strong>: 浏览器自动添加此头部，指示发起 WebSocket 连接的源（协议+域名+端口）。</li>
+<li><strong>Sec-WebSocket-Key</strong>: 用于握手过程中的安全验证。</li>
+<li><strong>Sec-WebSocket-Version</strong>: 指示使用的 WebSocket 协议版本。</li>
+</ul>
+<p>服务器在收到连接请求后，可以通过检查 <code>Origin</code> 头部来决定是否允许该连接。如果服务器认为该来源是可信的，则可以继续握手并建立连接；否则，服务器可以选择拒绝连接。</p>
+<h3 id="服务器端配置-WebSocket-跨域"><a href="#服务器端配置-WebSocket-跨域" class="headerlink" title="服务器端配置 WebSocket 跨域"></a>服务器端配置 WebSocket 跨域</h3><p>以下是js服务器环境下的 WebSocket 跨域配置示例。</p>
+<h4 id="Node-js-使用-ws-库"><a href="#Node-js-使用-ws-库" class="headerlink" title="Node.js 使用 ws 库"></a>Node.js 使用 <code>ws</code> 库</h4><p>在 Node.js 中使用 <code>ws</code> 库时，可以通过中间件或直接在 WebSocket 服务器上设置来处理跨域请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">WebSocket</span> = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>();</span><br><span class="line"><span class="keyword">const</span> wss = <span class="keyword">new</span> <span class="title class_">WebSocket</span>.<span class="title class_">Server</span>(&#123; server &#125;);</span><br><span class="line"></span><br><span class="line">wss.<span class="title function_">on</span>(<span class="string">&#x27;connection&#x27;</span>, <span class="keyword">function</span> <span class="title function_">connection</span>(<span class="params">ws, req</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> origin = req.<span class="property">headers</span>[<span class="string">&#x27;origin&#x27;</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 验证 Origin 头部</span></span><br><span class="line">    <span class="keyword">if</span> (origin === <span class="string">&#x27;http://allowed-origin.com&#x27;</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Connection accepted from trusted origin&#x27;</span>);</span><br><span class="line">        ws.<span class="title function_">send</span>(<span class="string">&#x27;Welcome!&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Rejected connection from untrusted origin&#x27;</span>);</span><br><span class="line">        ws.<span class="title function_">close</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ws.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, <span class="keyword">function</span> <span class="title function_">incoming</span>(<span class="params">message</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;received: %s&#x27;</span>, message);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8080</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;WebSocket server is listening on port 8080&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/js/" rel="tag">js</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/PersonalPage/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"
+                    data-tooltip="RN-类的使用"
+                    aria-label="下一篇: RN-类的使用"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/&amp;title=跨域解决方法"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/PersonalPage/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"
+                    data-tooltip="RN-类的使用"
+                    aria-label="下一篇: RN-类的使用"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/&amp;title=跨域解决方法"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/&amp;title=跨域解决方法"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
