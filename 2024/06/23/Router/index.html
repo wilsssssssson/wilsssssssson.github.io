@@ -12,14 +12,14 @@
     
     
         
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue Router基本用法路由链接和视图显示路由链接 &lt;RouterLink&gt;&lt;RouterLink&gt; 用于导航到不同的路由。以下是几种常见的使用方式：\n12345678&lt;!-- 直接指定路径 --&gt;&lt;RouterLink to=&quot;/home&quot; active-class=&quot;active&quot;&gt;首页&lt;/RouterLink&gt;&lt;!-- 使用名称导航 --&gt;&lt;RouterLink :to=&quot;&#123;name: &#x27;xinwen&#x27;&#125;&quot; active-class=&quot;active&quot;&gt;新闻&lt;/RouterLink&gt;&lt;!-- 使用路径对象 --&gt;&lt;RouterLink :to=&quot;&#123;path: &#x27;/about&#x27;&#125;&quot; active-class=&quot;active&quot;&gt;关于&lt;/RouterLink&gt;\n\n显示路由加载区域 &lt;RouterView&gt;&lt;RouterView&gt; 是路由匹配到的组件将要渲染的地方。\n1&lt;RouterView&gt;&lt;/RouterView&gt;\n\n路由配置文件 index.ts在 index.ts 文件中配置路由规则：\n12345678910111213141516171819202122232425262728import &#123; createRouter, createWebHistory &#125; from &#x27;vue-router&#x27;;import Home from &#x27;./views/Home.vue&#x27;;import News from &#x27;./views/News.vue&#x27;;import Detail from &#x27;./views/Detail.vue&#x27;;const router = createRouter(&#123;  history: createWebHistory(), // 路由器的工作模式  routes: [ // 路由规则    &#123;      name: &#x27;zhuye&#x27;,      path: &#x27;/home&#x27;,      component: Home    &#125;,    &#123;      name: &#x27;xinwen&#x27;,      path: &#x27;/news&#x27;,      component: News,      children: [        &#123;          path: &#x27;detail&#x27;,          component: Detail        &#125;      ]    &#125;  ]&#125;);export default router;\n\n路由传参Query 参数传递通过 query 参数进行传参：\n123456789101112&lt;RouterLink   :to=&quot;&#123;    name: &#x27;xiang&#x27;,    query: &#123;      id: news.id,      title: news.title,      content: news.content    &#125;  &#125;&quot;&gt;  新闻详情&lt;/RouterLink&gt;\n\n接收参数方法1：使用 props\n在路由配置中设置 props 函数来接收参数：\n1234567&#123;  path: &#x27;/xiang&#x27;,  component: Xiang,  props(route) &#123;    return route.query;  &#125;&#125;\n\n在组件内使用 defineProps：\n1defineProps([&#x27;id&#x27;, &#x27;title&#x27;, &#x27;content&#x27;]);\n\n方法2：直接使用 $route\n123&lt;li&gt;编号：&#123;&#123; $route.query.id &#125;&#125;&lt;/li&gt;&lt;li&gt;标题：&#123;&#123; $route.query.title &#125;&#125;&lt;/li&gt;&lt;li&gt;内容：&#123;&#123; $route.query.content &#125;&#125;&lt;/li&gt;\n\n或者使用组合式API：\n12345678910import &#123; useRoute &#125; from &#x27;vue-router&#x27;;import &#123; toRefs &#125; from &#x27;@vueuse/core&#x27;;export default &#123;  setup() &#123;    const route = useRoute();    const &#123; query &#125; = toRefs(route);    return &#123; query &#125;;  &#125;&#125;;\n\n编程式路由导航可以使用 router.push()、router.replace() 等方法进行编程式导航：\n12345678router.replace(&#123;  name: &#x27;xiang&#x27;,  query: &#123;    id: news.id,    title: news.title,    content: news.content  &#125;&#125;);\n\n路由重定向在路由配置中添加重定向规则：\n1234&#123;  path: &#x27;/&#x27;,  redirect: &#x27;/home&#x27;&#125;","dateCreated":"2024-06-23T14:30:13+08:00","dateModified":"2025-02-19T20:53:42+08:00","datePublished":"2024-06-23T14:30:13+08:00","description":"vue3中路由的概念以及一些使用方法","headline":"Router","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/","keywords":"vue3, Router"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue Router基本用法路由链接和视图显示路由链接 &lt;RouterLink&gt;&lt;RouterLink&gt; 用于导航到不同的路由。以下是几种常见的使用方式：\n12345678&lt;!-- 直接指定路径 --&gt;&lt;RouterLink to=&quot;/home&quot; active-class=&quot;active&quot;&gt;首页&lt;/RouterLink&gt;&lt;!-- 使用名称导航 --&gt;&lt;RouterLink :to=&quot;&#123;name: &#x27;xinwen&#x27;&#125;&quot; active-class=&quot;active&quot;&gt;新闻&lt;/RouterLink&gt;&lt;!-- 使用路径对象 --&gt;&lt;RouterLink :to=&quot;&#123;path: &#x27;/about&#x27;&#125;&quot; active-class=&quot;active&quot;&gt;关于&lt;/RouterLink&gt;\n\n显示路由加载区域 &lt;RouterView&gt;&lt;RouterView&gt; 是路由匹配到的组件将要渲染的地方。\n1&lt;RouterView&gt;&lt;/RouterView&gt;\n\n路由配置文件 index.ts在 index.ts 文件中配置路由规则：\n12345678910111213141516171819202122232425262728import &#123; createRouter, createWebHistory &#125; from &#x27;vue-router&#x27;;import Home from &#x27;./views/Home.vue&#x27;;import News from &#x27;./views/News.vue&#x27;;import Detail from &#x27;./views/Detail.vue&#x27;;const router = createRouter(&#123;  history: createWebHistory(), // 路由器的工作模式  routes: [ // 路由规则    &#123;      name: &#x27;zhuye&#x27;,      path: &#x27;/home&#x27;,      component: Home    &#125;,    &#123;      name: &#x27;xinwen&#x27;,      path: &#x27;/news&#x27;,      component: News,      children: [        &#123;          path: &#x27;detail&#x27;,          component: Detail        &#125;      ]    &#125;  ]&#125;);export default router;\n\n路由传参Query 参数传递通过 query 参数进行传参：\n123456789101112&lt;RouterLink   :to=&quot;&#123;    name: &#x27;xiang&#x27;,    query: &#123;      id: news.id,      title: news.title,      content: news.content    &#125;  &#125;&quot;&gt;  新闻详情&lt;/RouterLink&gt;\n\n接收参数方法1：使用 props\n在路由配置中设置 props 函数来接收参数：\n1234567&#123;  path: &#x27;/xiang&#x27;,  component: Xiang,  props(route) &#123;    return route.query;  &#125;&#125;\n\n在组件内使用 defineProps：\n1defineProps([&#x27;id&#x27;, &#x27;title&#x27;, &#x27;content&#x27;]);\n\n方法2：直接使用 $route\n123&lt;li&gt;编号：&#123;&#123; $route.query.id &#125;&#125;&lt;/li&gt;&lt;li&gt;标题：&#123;&#123; $route.query.title &#125;&#125;&lt;/li&gt;&lt;li&gt;内容：&#123;&#123; $route.query.content &#125;&#125;&lt;/li&gt;\n\n或者使用组合式API：\n12345678910import &#123; useRoute &#125; from &#x27;vue-router&#x27;;import &#123; toRefs &#125; from &#x27;@vueuse/core&#x27;;export default &#123;  setup() &#123;    const route = useRoute();    const &#123; query &#125; = toRefs(route);    return &#123; query &#125;;  &#125;&#125;;\n\n编程式路由导航可以使用 router.push()、router.replace() 等方法进行编程式导航：\n12345678router.replace(&#123;  name: &#x27;xiang&#x27;,  query: &#123;    id: news.id,    title: news.title,    content: news.content  &#125;&#125;);\n\n路由重定向在路由配置中添加重定向规则：\n1234&#123;  path: &#x27;/&#x27;,  redirect: &#x27;/home&#x27;&#125;","dateCreated":"2024-06-23T14:30:13+08:00","dateModified":"2025-02-19T20:53:42+08:00","datePublished":"2024-06-23T14:30:13+08:00","description":"vue3中路由的概念以及一些使用方法","headline":"Router","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/2024/06/23/Router/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/2024/06/23/Router/","keywords":"vue3, Router"}</script>
     <meta name="description" content="vue3中路由的概念以及一些使用方法">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Router">
-<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/index.html">
+<meta property="og:url" content="https://wilsssssssson.github.io/2024/06/23/Router/index.html">
 <meta property="og:site_name" content="Jiaxing的个人主页">
 <meta property="og:description" content="vue3中路由的概念以及一些使用方法">
 <meta property="og:locale" content="zh_CN">
@@ -34,14 +34,14 @@
         
     
     
-        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
+        <meta property="og:image" content="https://wilsssssssson.github.io/assets/images/qingque.png"/>
     
     
     
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
 
     <!--STYLES END-->
     
@@ -69,7 +69,7 @@
     <div class="header-title">
         <a
             class="header-title-link"
-            href="/PersonalPage/"
+            href="/"
             aria-label=""
         >
             Jiaxing的个人主页
@@ -80,11 +80,11 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="打开链接: /PersonalPage/#about"
+                aria-label="打开链接: /#about"
             >
         
         
-            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
         
         </a>
     
@@ -102,10 +102,10 @@
         
             <div class="sidebar-profile">
                 <a
-                    href="/PersonalPage/#about"
+                    href="/#about"
                     aria-label="阅读有关作者的更多信息"
                 >
-                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
                 </a>
                 <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
                 
@@ -120,7 +120,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/"
+                            href="/"
                             
                             rel="noopener"
                             title="首页"
@@ -134,7 +134,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-categories"
+                            href="/all-categories"
                             
                             rel="noopener"
                             title="分类"
@@ -148,7 +148,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-tags"
+                            href="/all-tags"
                             
                             rel="noopener"
                             title="标签"
@@ -162,7 +162,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-archives"
+                            href="/all-archives"
                             
                             rel="noopener"
                             title="归档"
@@ -214,7 +214,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/atom.xml"
+                            href="/atom.xml"
                             
                             rel="noopener"
                             title="RSS"
@@ -254,7 +254,7 @@
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/PersonalPage/categories/vue3/">vue3</a>
+    <a class="category-link" href="/categories/vue3/">vue3</a>
 
 
     
@@ -306,7 +306,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/Router/" rel="tag">Router</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/vue3/" rel="tag">vue3</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Router/" rel="tag">Router</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a>
 
             </div>
         
@@ -319,7 +319,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
+                    href="/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
                     data-tooltip="RN-连接初始化"
                     aria-label="上一篇: RN-连接初始化"
                 >
@@ -333,7 +333,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/13/slot/"
+                    href="/2024/06/13/slot/"
                     data-tooltip="slot"
                     aria-label="下一篇: slot"
                 >
@@ -349,7 +349,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -360,7 +360,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/&amp;title=Router"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/23/Router/&amp;title=Router"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -373,7 +373,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -408,7 +408,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
+                    href="/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"
                     data-tooltip="RN-连接初始化"
                     aria-label="上一篇: RN-连接初始化"
                 >
@@ -422,7 +422,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/13/slot/"
+                    href="/2024/06/13/slot/"
                     data-tooltip="slot"
                     aria-label="下一篇: slot"
                 >
@@ -438,7 +438,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -449,7 +449,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/&amp;title=Router"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/23/Router/&amp;title=Router"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -462,7 +462,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -483,7 +483,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/&amp;title=Router"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/23/Router/&amp;title=Router"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -509,7 +509,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
         
             <h4 id="about-card-name">Jiaxing Huang</h4>
         
@@ -535,10 +535,10 @@
 
         
         
-<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
         <!--SCRIPTS-->
 
-<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
 
 <!--SCRIPTS END-->
 

@@ -3,11 +3,11 @@
   <title>Jiaxing的个人主页</title>
   
   
-  <link href="https://wilsssssssson.github.io/PersonalPage/atom.xml" rel="self"/>
+  <link href="https://wilsssssssson.github.io/atom.xml" rel="self"/>
   
-  <link href="https://wilsssssssson.github.io/PersonalPage/"/>
+  <link href="https://wilsssssssson.github.io/"/>
   <updated>2025-02-23T08:15:47.917Z</updated>
-  <id>https://wilsssssssson.github.io/PersonalPage/</id>
+  <id>https://wilsssssssson.github.io/</id>
   
   <author>
     <name>Jiaxing Huang</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>跨域解决方法</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
+    <link href="https://wilsssssssson.github.io/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://wilsssssssson.github.io/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
     <published>2025-02-23T07:27:27.000Z</published>
     <updated>2025-02-23T08:15:47.917Z</updated>
     
@@ -30,19 +30,19 @@
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="跨域" scheme="https://wilsssssssson.github.io/PersonalPage/tags/%E8%B7%A8%E5%9F%9F/"/>
+    <category term="跨域" scheme="https://wilsssssssson.github.io/tags/%E8%B7%A8%E5%9F%9F/"/>
     
   </entry>
   
   <entry>
     <title>RN-类的使用</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://wilsssssssson.github.io/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://wilsssssssson.github.io/2025/02/19/RN-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2025-02-19T08:47:29.000Z</published>
     <updated>2025-02-19T13:07:22.971Z</updated>
     
@@ -53,17 +53,17 @@
     
     
     
-    <category term="RN" scheme="https://wilsssssssson.github.io/PersonalPage/categories/RN/"/>
+    <category term="RN" scheme="https://wilsssssssson.github.io/categories/RN/"/>
     
     
-    <category term="RN" scheme="https://wilsssssssson.github.io/PersonalPage/tags/RN/"/>
+    <category term="RN" scheme="https://wilsssssssson.github.io/tags/RN/"/>
     
   </entry>
   
   <entry>
     <title>React-render</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/07/12/React-render/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/07/12/React-render/</id>
+    <link href="https://wilsssssssson.github.io/2024/07/12/React-render/"/>
+    <id>https://wilsssssssson.github.io/2024/07/12/React-render/</id>
     <published>2024-07-12T01:12:36.000Z</published>
     <updated>2025-02-19T12:52:19.843Z</updated>
     
@@ -74,17 +74,17 @@
     
     
     
-    <category term="react" scheme="https://wilsssssssson.github.io/PersonalPage/categories/react/"/>
+    <category term="react" scheme="https://wilsssssssson.github.io/categories/react/"/>
     
     
-    <category term="react" scheme="https://wilsssssssson.github.io/PersonalPage/tags/react/"/>
+    <category term="react" scheme="https://wilsssssssson.github.io/tags/react/"/>
     
   </entry>
   
   <entry>
     <title>RN-连接初始化</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
+    <link href="https://wilsssssssson.github.io/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+    <id>https://wilsssssssson.github.io/2024/07/01/RN-%E8%BF%9E%E6%8E%A5%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
     <published>2024-07-01T05:20:02.000Z</published>
     <updated>2025-02-19T12:53:08.797Z</updated>
     
@@ -95,17 +95,17 @@
     
     
     
-    <category term="RN" scheme="https://wilsssssssson.github.io/PersonalPage/categories/RN/"/>
+    <category term="RN" scheme="https://wilsssssssson.github.io/categories/RN/"/>
     
     
-    <category term="RN" scheme="https://wilsssssssson.github.io/PersonalPage/tags/RN/"/>
+    <category term="RN" scheme="https://wilsssssssson.github.io/tags/RN/"/>
     
   </entry>
   
   <entry>
     <title>Router</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/06/23/Router/</id>
+    <link href="https://wilsssssssson.github.io/2024/06/23/Router/"/>
+    <id>https://wilsssssssson.github.io/2024/06/23/Router/</id>
     <published>2024-06-23T06:30:13.000Z</published>
     <updated>2025-02-19T12:53:42.009Z</updated>
     
@@ -116,19 +116,19 @@
     
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/categories/vue3/"/>
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/tags/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/tags/vue3/"/>
     
-    <category term="Router" scheme="https://wilsssssssson.github.io/PersonalPage/tags/Router/"/>
+    <category term="Router" scheme="https://wilsssssssson.github.io/tags/Router/"/>
     
   </entry>
   
   <entry>
     <title>slot</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/</id>
+    <link href="https://wilsssssssson.github.io/2024/06/13/slot/"/>
+    <id>https://wilsssssssson.github.io/2024/06/13/slot/</id>
     <published>2024-06-13T06:51:02.000Z</published>
     <updated>2025-02-19T12:54:04.435Z</updated>
     
@@ -139,19 +139,19 @@
     
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/categories/vue3/"/>
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/tags/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/tags/vue3/"/>
     
-    <category term="slot" scheme="https://wilsssssssson.github.io/PersonalPage/tags/slot/"/>
+    <category term="slot" scheme="https://wilsssssssson.github.io/tags/slot/"/>
     
   </entry>
   
   <entry>
     <title>lazyLoading</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/</id>
+    <link href="https://wilsssssssson.github.io/2024/06/13/lazyLoading/"/>
+    <id>https://wilsssssssson.github.io/2024/06/13/lazyLoading/</id>
     <published>2024-06-13T05:30:51.000Z</published>
     <updated>2025-02-19T12:52:45.505Z</updated>
     
@@ -162,21 +162,21 @@
     
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/categories/vue3/"/>
     
-    <category term="Hook" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/Hook/"/>
+    <category term="Hook" scheme="https://wilsssssssson.github.io/categories/vue3/Hook/"/>
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/tags/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/tags/vue3/"/>
     
-    <category term="Hook" scheme="https://wilsssssssson.github.io/PersonalPage/tags/Hook/"/>
+    <category term="Hook" scheme="https://wilsssssssson.github.io/tags/Hook/"/>
     
   </entry>
   
   <entry>
     <title>watch监视</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/</id>
+    <link href="https://wilsssssssson.github.io/2024/05/22/watch%E7%9B%91%E8%A7%86/"/>
+    <id>https://wilsssssssson.github.io/2024/05/22/watch%E7%9B%91%E8%A7%86/</id>
     <published>2024-05-22T11:30:39.000Z</published>
     <updated>2025-02-19T12:54:22.214Z</updated>
     
@@ -187,44 +187,44 @@
     
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/categories/vue3/"/>
     
-    <category term="watch" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/watch/"/>
+    <category term="watch" scheme="https://wilsssssssson.github.io/categories/vue3/watch/"/>
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/tags/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/tags/vue3/"/>
     
-    <category term="watch" scheme="https://wilsssssssson.github.io/PersonalPage/tags/watch/"/>
+    <category term="watch" scheme="https://wilsssssssson.github.io/tags/watch/"/>
     
   </entry>
   
   <entry>
     <title>asynchronous</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/05/17/asynchronous/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/05/17/asynchronous/</id>
+    <link href="https://wilsssssssson.github.io/2024/05/17/asynchronous/"/>
+    <id>https://wilsssssssson.github.io/2024/05/17/asynchronous/</id>
     <published>2024-05-17T07:44:42.000Z</published>
     <updated>2025-02-19T12:54:35.225Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="浏览器多线程与-JavaScript-异步操作"><a href="#浏览器多线程与-JavaScript-异步操作" class="headerlink" title="浏览器多线程与 JavaScript 异步操作"></a>浏览器多线程与 JavaScript 异步操作</h1><h2 id="浏览器多线程"><a href="#浏览器多线程" class="headerlink" title="浏览器多线程"></a>浏览器多线程</h2><p>浏览器通过多个线程来处理不同的任务，以下是主要的线程及其功能：</p><h3 id="主要线程"><a href="#主要线程" class="headerlink" title="主要线程"></a>主要线程</h3><ul><li><strong>GUI 渲染线程</strong>：负责渲染和解析页面内容。</li><li><strong>JS 引擎线程</strong>：负责解析和执行 JavaScript 代码。浏览器只为每个标签页分配一个 JS 引擎线程，因此它是单线程的。</li><li><strong>定时器监听线程</strong>：负责管理 <code>setTimeout</code> 和 <code>setInterval</code> 等定时器操作。</li><li><strong>事件监听线程</strong>：负责监听用户交互事件（如点击、键盘输入等）并触发相应的回调函数。</li><li><strong>HTTP 网络请求线程</strong>：用于处理网络请求。在同一源下，浏览器通常最多分配 5-7 个网络请求线程。</li></ul><h3 id="其他线程"><a href="#其他线程" class="headerlink" title="其他线程"></a>其他线程</h3><p>浏览器还可能有其他线程，例如：</p><ul><li>WebSocket 线程</li><li>文件读取线程</li></ul><h2 id="JavaScript-异步操作"><a href="#JavaScript-异步操作" class="headerlink" title="JavaScript 异步操作"></a>JavaScript 异步操作</h2><p>JavaScript 是单线程语言，但它可以通过异步编程模型实现非阻塞操作。这主要依赖于事件循环机制（Event Loop）以及微任务（Microtasks）和宏任务（Macrotasks）的概念。</p><h3 id="异步微任务"><a href="#异步微任务" class="headerlink" title="异步微任务"></a>异步微任务</h3><p>微任务在当前任务完成后立即执行，优先级较高。常见的微任务包括：</p><ul><li><code>requestAnimationFrame</code></li><li><code>Promise</code></li><li><code>async/await</code></li><li><code>queueMicrotask</code></li><li><code>MutationObserver</code></li><li><code>IntersectionObserver</code></li></ul><h3 id="异步宏任务"><a href="#异步宏任务" class="headerlink" title="异步宏任务"></a>异步宏任务</h3><p>宏任务在每次事件循环的末尾执行，优先级较低。常见的宏任务包括：</p><ul><li><code>setTimeout</code></li><li><code>setInterval</code></li><li>事件绑定（如点击事件）</li></ul><h3 id="事件循环机制"><a href="#事件循环机制" class="headerlink" title="事件循环机制"></a>事件循环机制</h3><p>JavaScript 中的异步操作是通过浏览器的多线程机制和基于事件循环（Event Loop）的机制来实现的。以下是事件循环的基本流程：</p><ol><li><strong>执行全局脚本</strong>：首先执行全局脚本中的同步代码。</li><li><strong>执行微任务队列</strong>：当全局脚本执行完毕后，会依次执行所有微任务队列中的任务。</li><li><strong>执行宏任务队列</strong>：微任务队列执行完毕后，会从宏任务队列中取出一个任务执行。</li><li><strong>重复步骤 2 和 3</strong>：不断重复执行微任务和宏任务队列中的任务，直到所有任务都完成。</li></ol><img src="/PersonalPage/2024/05/17/asynchronous/image.png" class="" title="This is an example image">]]></content>
+    <content type="html"><![CDATA[<h1 id="浏览器多线程与-JavaScript-异步操作"><a href="#浏览器多线程与-JavaScript-异步操作" class="headerlink" title="浏览器多线程与 JavaScript 异步操作"></a>浏览器多线程与 JavaScript 异步操作</h1><h2 id="浏览器多线程"><a href="#浏览器多线程" class="headerlink" title="浏览器多线程"></a>浏览器多线程</h2><p>浏览器通过多个线程来处理不同的任务，以下是主要的线程及其功能：</p><h3 id="主要线程"><a href="#主要线程" class="headerlink" title="主要线程"></a>主要线程</h3><ul><li><strong>GUI 渲染线程</strong>：负责渲染和解析页面内容。</li><li><strong>JS 引擎线程</strong>：负责解析和执行 JavaScript 代码。浏览器只为每个标签页分配一个 JS 引擎线程，因此它是单线程的。</li><li><strong>定时器监听线程</strong>：负责管理 <code>setTimeout</code> 和 <code>setInterval</code> 等定时器操作。</li><li><strong>事件监听线程</strong>：负责监听用户交互事件（如点击、键盘输入等）并触发相应的回调函数。</li><li><strong>HTTP 网络请求线程</strong>：用于处理网络请求。在同一源下，浏览器通常最多分配 5-7 个网络请求线程。</li></ul><h3 id="其他线程"><a href="#其他线程" class="headerlink" title="其他线程"></a>其他线程</h3><p>浏览器还可能有其他线程，例如：</p><ul><li>WebSocket 线程</li><li>文件读取线程</li></ul><h2 id="JavaScript-异步操作"><a href="#JavaScript-异步操作" class="headerlink" title="JavaScript 异步操作"></a>JavaScript 异步操作</h2><p>JavaScript 是单线程语言，但它可以通过异步编程模型实现非阻塞操作。这主要依赖于事件循环机制（Event Loop）以及微任务（Microtasks）和宏任务（Macrotasks）的概念。</p><h3 id="异步微任务"><a href="#异步微任务" class="headerlink" title="异步微任务"></a>异步微任务</h3><p>微任务在当前任务完成后立即执行，优先级较高。常见的微任务包括：</p><ul><li><code>requestAnimationFrame</code></li><li><code>Promise</code></li><li><code>async/await</code></li><li><code>queueMicrotask</code></li><li><code>MutationObserver</code></li><li><code>IntersectionObserver</code></li></ul><h3 id="异步宏任务"><a href="#异步宏任务" class="headerlink" title="异步宏任务"></a>异步宏任务</h3><p>宏任务在每次事件循环的末尾执行，优先级较低。常见的宏任务包括：</p><ul><li><code>setTimeout</code></li><li><code>setInterval</code></li><li>事件绑定（如点击事件）</li></ul><h3 id="事件循环机制"><a href="#事件循环机制" class="headerlink" title="事件循环机制"></a>事件循环机制</h3><p>JavaScript 中的异步操作是通过浏览器的多线程机制和基于事件循环（Event Loop）的机制来实现的。以下是事件循环的基本流程：</p><ol><li><strong>执行全局脚本</strong>：首先执行全局脚本中的同步代码。</li><li><strong>执行微任务队列</strong>：当全局脚本执行完毕后，会依次执行所有微任务队列中的任务。</li><li><strong>执行宏任务队列</strong>：微任务队列执行完毕后，会从宏任务队列中取出一个任务执行。</li><li><strong>重复步骤 2 和 3</strong>：不断重复执行微任务和宏任务队列中的任务，直到所有任务都完成。</li></ol><img src="/2024/05/17/asynchronous/image.png" class="" title="This is an example image">]]></content>
     
     
     <summary type="html">js利用浏览器的多线程模拟异步操作</summary>
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="multi-process" scheme="https://wilsssssssson.github.io/PersonalPage/tags/multi-process/"/>
+    <category term="multi-process" scheme="https://wilsssssssson.github.io/tags/multi-process/"/>
     
   </entry>
   
   <entry>
     <title>Component Communication</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/05/14/Component-Communication/</id>
+    <link href="https://wilsssssssson.github.io/2024/05/14/Component-Communication/"/>
+    <id>https://wilsssssssson.github.io/2024/05/14/Component-Communication/</id>
     <published>2024-05-14T03:24:11.000Z</published>
     <updated>2025-02-19T12:51:17.505Z</updated>
     
@@ -235,46 +235,46 @@
     
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/categories/vue3/"/>
     
     
-    <category term="Component Communication" scheme="https://wilsssssssson.github.io/PersonalPage/tags/Component-Communication/"/>
+    <category term="Component Communication" scheme="https://wilsssssssson.github.io/tags/Component-Communication/"/>
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/tags/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/tags/vue3/"/>
     
   </entry>
   
   <entry>
     <title>lifeCycle</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/05/12/lifeCycle/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/05/12/lifeCycle/</id>
+    <link href="https://wilsssssssson.github.io/2024/05/12/lifeCycle/"/>
+    <id>https://wilsssssssson.github.io/2024/05/12/lifeCycle/</id>
     <published>2024-05-12T05:22:01.000Z</published>
     <updated>2025-02-19T12:52:03.583Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Vue-生命周期钩子函数使用笔记"><a href="#Vue-生命周期钩子函数使用笔记" class="headerlink" title="Vue 生命周期钩子函数使用笔记"></a>Vue 生命周期钩子函数使用笔记</h1><p>当我们将这些生命周期钩子函数写在自定义Hooks里面时，意味着只要组件引用了这个Hooks，相应的生命周期事件就会自动绑定到该组件上。</p><h2 id="生命周期钩子示例代码"><a href="#生命周期钩子示例代码" class="headerlink" title="生命周期钩子示例代码"></a>生命周期钩子示例代码</h2><h3 id="挂载阶段"><a href="#挂载阶段" class="headerlink" title="挂载阶段"></a>挂载阶段</h3><ul><li><p><strong>挂载前</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onBeforeMount</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;挂载前&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p><strong>挂载完毕</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;子---挂载完毕&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><h3 id="更新阶段"><a href="#更新阶段" class="headerlink" title="更新阶段"></a>更新阶段</h3><ul><li><p><strong>更新前</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onBeforeUpdate</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;更新前&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p><strong>更新完毕</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onUpdated</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;更新完毕&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><h3 id="卸载阶段"><a href="#卸载阶段" class="headerlink" title="卸载阶段"></a>卸载阶段</h3><ul><li><p><strong>卸载前</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onBeforeUnmount</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;卸载前&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p><strong>卸载完毕</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onUnmounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;卸载完毕&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><img src="/PersonalPage/2024/05/12/lifeCycle/image.png" class="" title="This is an example image">]]></content>
+    <content type="html"><![CDATA[<h1 id="Vue-生命周期钩子函数使用笔记"><a href="#Vue-生命周期钩子函数使用笔记" class="headerlink" title="Vue 生命周期钩子函数使用笔记"></a>Vue 生命周期钩子函数使用笔记</h1><p>当我们将这些生命周期钩子函数写在自定义Hooks里面时，意味着只要组件引用了这个Hooks，相应的生命周期事件就会自动绑定到该组件上。</p><h2 id="生命周期钩子示例代码"><a href="#生命周期钩子示例代码" class="headerlink" title="生命周期钩子示例代码"></a>生命周期钩子示例代码</h2><h3 id="挂载阶段"><a href="#挂载阶段" class="headerlink" title="挂载阶段"></a>挂载阶段</h3><ul><li><p><strong>挂载前</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onBeforeMount</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;挂载前&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p><strong>挂载完毕</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;子---挂载完毕&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><h3 id="更新阶段"><a href="#更新阶段" class="headerlink" title="更新阶段"></a>更新阶段</h3><ul><li><p><strong>更新前</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onBeforeUpdate</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;更新前&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p><strong>更新完毕</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onUpdated</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;更新完毕&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><h3 id="卸载阶段"><a href="#卸载阶段" class="headerlink" title="卸载阶段"></a>卸载阶段</h3><ul><li><p><strong>卸载前</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onBeforeUnmount</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;卸载前&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p><strong>卸载完毕</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onUnmounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;卸载完毕&#x27;)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><img src="/2024/05/12/lifeCycle/image.png" class="" title="This is an example image">]]></content>
     
     
     <summary type="html">生命周期钩子函数使用笔记,主要介绍一些生命周期，以及之间的时间顺序</summary>
     
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/categories/vue3/"/>
     
-    <category term="Hook" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/Hook/"/>
+    <category term="Hook" scheme="https://wilsssssssson.github.io/categories/vue3/Hook/"/>
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/tags/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/tags/vue3/"/>
     
-    <category term="lifeCycle" scheme="https://wilsssssssson.github.io/PersonalPage/tags/lifeCycle/"/>
+    <category term="Hook" scheme="https://wilsssssssson.github.io/tags/Hook/"/>
     
-    <category term="Hook" scheme="https://wilsssssssson.github.io/PersonalPage/tags/Hook/"/>
+    <category term="lifeCycle" scheme="https://wilsssssssson.github.io/tags/lifeCycle/"/>
     
   </entry>
   
   <entry>
     <title>javascript-防抖节流</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/05/09/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/05/09/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</id>
+    <link href="https://wilsssssssson.github.io/2024/05/09/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/"/>
+    <id>https://wilsssssssson.github.io/2024/05/09/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</id>
     <published>2024-05-09T03:22:16.000Z</published>
     <updated>2025-02-19T12:50:28.704Z</updated>
     
@@ -285,44 +285,44 @@
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="防抖" scheme="https://wilsssssssson.github.io/PersonalPage/tags/%E9%98%B2%E6%8A%96/"/>
+    <category term="防抖" scheme="https://wilsssssssson.github.io/tags/%E9%98%B2%E6%8A%96/"/>
     
-    <category term="节流" scheme="https://wilsssssssson.github.io/PersonalPage/tags/%E8%8A%82%E6%B5%81/"/>
+    <category term="节流" scheme="https://wilsssssssson.github.io/tags/%E8%8A%82%E6%B5%81/"/>
     
   </entry>
   
   <entry>
     <title>javascript-promise</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/05/05/javascript-promise/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/05/05/javascript-promise/</id>
+    <link href="https://wilsssssssson.github.io/2024/05/05/javascript-promise/"/>
+    <id>https://wilsssssssson.github.io/2024/05/05/javascript-promise/</id>
     <published>2024-05-05T10:00:38.000Z</published>
     <updated>2025-02-19T12:49:54.007Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="JavaScript-Promise-状态与方法详解"><a href="#JavaScript-Promise-状态与方法详解" class="headerlink" title="JavaScript Promise 状态与方法详解"></a>JavaScript Promise 状态与方法详解</h1><h2 id="Promise-的三种状态"><a href="#Promise-的三种状态" class="headerlink" title="Promise 的三种状态"></a>Promise 的三种状态</h2><p>Promise 对象有以下三种状态：</p><ul><li><strong>待定（pending）</strong>：初始状态，既没有被兑现，也没有被拒绝。</li><li><strong>已兑现（fulfilled）</strong>：意味着操作成功完成。</li><li><strong>已拒绝（rejected）</strong>：意味着操作失败。</li></ul><img src="/PersonalPage/2024/05/05/javascript-promise/promises.png" class="" title="promise流程"><h2 id="then-方法"><a href="#then-方法" class="headerlink" title=".then() 方法"></a><code>.then()</code> 方法</h2><p><code>.then()</code> 方法用于处理 Promise 的结果。它最多接受两个参数：</p><ol><li>第一个参数是 Promise 兑现时的回调函数。</li><li>第二个参数是 Promise 拒绝时的回调函数。</li></ol><p>每个 <code>.then()</code> 返回一个新的 Promise 对象，可以用于链式调用。</p><h2 id="Promise-并发控制"><a href="#Promise-并发控制" class="headerlink" title="Promise 并发控制"></a>Promise 并发控制</h2><p>Promise 类提供了四个静态方法来促进异步任务的并发：</p><h3 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a><code>Promise.all()</code></h3><p>在所有传入的 Promise 都被兑现时兑现；在任意一个 Promise 被拒绝时拒绝。</p><h3 id="Promise-allSettled"><a href="#Promise-allSettled" class="headerlink" title="Promise.allSettled()"></a><code>Promise.allSettled()</code></h3><p>在所有的 Promise 都被敲定时兑现，无论它们是被兑现还是被拒绝。</p><h3 id="Promise-any"><a href="#Promise-any" class="headerlink" title="Promise.any()"></a><code>Promise.any()</code></h3><p>在任意一个 Promise 被兑现时兑现；仅在所有的 Promise 都被拒绝时才会拒绝。</p><h3 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a><code>Promise.race()</code></h3><p>在任意一个 Promise 被敲定时敲定。换句话说，在任意一个 Promise 被兑现或被拒绝时立即返回。</p><h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>下面是一个完整的示例，展示了如何使用 Promise 处理异步操作及其错误处理。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为了尝试错误处理，使用“阈值”值会随机地引发错误。</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">THRESHOLD_A</span> = <span class="number">8</span>; <span class="comment">// 可以使用 0 使错误必现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">tetheredGetNumber</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了tetheredGetNumber&#x27;</span>, resolve, reject);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> randomInt = <span class="title class_">Date</span>.<span class="title function_">now</span>(); <span class="comment">// 当前时间戳</span></span><br><span class="line">        <span class="keyword">const</span> value = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">if</span> (value &lt; <span class="variable constant_">THRESHOLD_A</span>) &#123; <span class="comment">// 小于8的时间</span></span><br><span class="line">            <span class="title function_">resolve</span>(value);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(<span class="string">`太大了：<span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">determineParity</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了determineParity&#x27;</span>, value);</span><br><span class="line">    <span class="keyword">const</span> isOdd = value % <span class="number">2</span> === <span class="number">1</span>; <span class="comment">// 判断是否为奇数</span></span><br><span class="line">    <span class="keyword">return</span> &#123; value, isOdd &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">troubleWithGetNumber</span>(<span class="params">reason</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了troubleWithGetNumber&#x27;</span>, reason);</span><br><span class="line">    <span class="keyword">const</span> err = <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;获取数据时遇到问题&quot;</span>, &#123; <span class="attr">cause</span>: reason &#125;);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">promiseGetWord</span>(<span class="params">parityInfo</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了promiseGetWord&#x27;</span>, parityInfo);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; value, isOdd &#125; = parityInfo;</span><br><span class="line">        <span class="keyword">if</span> (value &gt;= <span class="variable constant_">THRESHOLD_A</span> - <span class="number">1</span>) &#123; <span class="comment">// 7</span></span><br><span class="line">            <span class="title function_">reject</span>(<span class="string">`还是太大了：<span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parityInfo.<span class="property">wordEvenOdd</span> = isOdd ? <span class="string">&quot;奇数&quot;</span> : <span class="string">&quot;偶数&quot;</span>;</span><br><span class="line">            <span class="title function_">resolve</span>(parityInfo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(tetheredGetNumber)</span><br><span class="line">    .<span class="title function_">then</span>(determineParity, troubleWithGetNumber) <span class="comment">// then 接受两个参数，（成功之后执行，失败之后执行）</span></span><br><span class="line">    .<span class="title function_">then</span>(promiseGetWord)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`得到了：<span class="subst">$&#123;info.value&#125;</span>, <span class="subst">$&#123;info.wordEvenOdd&#125;</span>`</span>);</span><br><span class="line">        <span class="keyword">return</span> info;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (reason.<span class="property">cause</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;已经在前面处理过错误了&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">`运行 promiseGetWord() 时遇到问题：<span class="subst">$&#123;reason&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;所有回调都完成了&quot;</span>));</span><br></pre></td></tr></table></figure><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ol><li><strong><code>tetheredGetNumber</code></strong>：模拟异步操作，使用 <code>setTimeout</code> 模拟延迟，并根据阈值决定是兑现还是拒绝 Promise。</li><li><strong><code>determineParity</code></strong>：检查数字是奇数还是偶数，并返回包含该信息的对象。</li><li><strong><code>troubleWithGetNumber</code></strong>：处理 Promise 被拒绝的情况，抛出一个新的错误。</li><li><strong><code>promiseGetWord</code></strong>：根据阈值决定是否继续兑现 Promise 或拒绝它，并添加额外的信息到对象中。</li><li><strong>链式调用</strong>：通过 <code>.then()</code> 方法处理成功和失败的结果，并最终使用 <code>.catch()</code> 和 <code>.finally()</code> 进行错误处理和清理工作。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="JavaScript-Promise-状态与方法详解"><a href="#JavaScript-Promise-状态与方法详解" class="headerlink" title="JavaScript Promise 状态与方法详解"></a>JavaScript Promise 状态与方法详解</h1><h2 id="Promise-的三种状态"><a href="#Promise-的三种状态" class="headerlink" title="Promise 的三种状态"></a>Promise 的三种状态</h2><p>Promise 对象有以下三种状态：</p><ul><li><strong>待定（pending）</strong>：初始状态，既没有被兑现，也没有被拒绝。</li><li><strong>已兑现（fulfilled）</strong>：意味着操作成功完成。</li><li><strong>已拒绝（rejected）</strong>：意味着操作失败。</li></ul><img src="/2024/05/05/javascript-promise/promises.png" class="" title="promise流程"><h2 id="then-方法"><a href="#then-方法" class="headerlink" title=".then() 方法"></a><code>.then()</code> 方法</h2><p><code>.then()</code> 方法用于处理 Promise 的结果。它最多接受两个参数：</p><ol><li>第一个参数是 Promise 兑现时的回调函数。</li><li>第二个参数是 Promise 拒绝时的回调函数。</li></ol><p>每个 <code>.then()</code> 返回一个新的 Promise 对象，可以用于链式调用。</p><h2 id="Promise-并发控制"><a href="#Promise-并发控制" class="headerlink" title="Promise 并发控制"></a>Promise 并发控制</h2><p>Promise 类提供了四个静态方法来促进异步任务的并发：</p><h3 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a><code>Promise.all()</code></h3><p>在所有传入的 Promise 都被兑现时兑现；在任意一个 Promise 被拒绝时拒绝。</p><h3 id="Promise-allSettled"><a href="#Promise-allSettled" class="headerlink" title="Promise.allSettled()"></a><code>Promise.allSettled()</code></h3><p>在所有的 Promise 都被敲定时兑现，无论它们是被兑现还是被拒绝。</p><h3 id="Promise-any"><a href="#Promise-any" class="headerlink" title="Promise.any()"></a><code>Promise.any()</code></h3><p>在任意一个 Promise 被兑现时兑现；仅在所有的 Promise 都被拒绝时才会拒绝。</p><h3 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a><code>Promise.race()</code></h3><p>在任意一个 Promise 被敲定时敲定。换句话说，在任意一个 Promise 被兑现或被拒绝时立即返回。</p><h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>下面是一个完整的示例，展示了如何使用 Promise 处理异步操作及其错误处理。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为了尝试错误处理，使用“阈值”值会随机地引发错误。</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">THRESHOLD_A</span> = <span class="number">8</span>; <span class="comment">// 可以使用 0 使错误必现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">tetheredGetNumber</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了tetheredGetNumber&#x27;</span>, resolve, reject);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> randomInt = <span class="title class_">Date</span>.<span class="title function_">now</span>(); <span class="comment">// 当前时间戳</span></span><br><span class="line">        <span class="keyword">const</span> value = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">if</span> (value &lt; <span class="variable constant_">THRESHOLD_A</span>) &#123; <span class="comment">// 小于8的时间</span></span><br><span class="line">            <span class="title function_">resolve</span>(value);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(<span class="string">`太大了：<span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">determineParity</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了determineParity&#x27;</span>, value);</span><br><span class="line">    <span class="keyword">const</span> isOdd = value % <span class="number">2</span> === <span class="number">1</span>; <span class="comment">// 判断是否为奇数</span></span><br><span class="line">    <span class="keyword">return</span> &#123; value, isOdd &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">troubleWithGetNumber</span>(<span class="params">reason</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了troubleWithGetNumber&#x27;</span>, reason);</span><br><span class="line">    <span class="keyword">const</span> err = <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;获取数据时遇到问题&quot;</span>, &#123; <span class="attr">cause</span>: reason &#125;);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">promiseGetWord</span>(<span class="params">parityInfo</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行了promiseGetWord&#x27;</span>, parityInfo);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; value, isOdd &#125; = parityInfo;</span><br><span class="line">        <span class="keyword">if</span> (value &gt;= <span class="variable constant_">THRESHOLD_A</span> - <span class="number">1</span>) &#123; <span class="comment">// 7</span></span><br><span class="line">            <span class="title function_">reject</span>(<span class="string">`还是太大了：<span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parityInfo.<span class="property">wordEvenOdd</span> = isOdd ? <span class="string">&quot;奇数&quot;</span> : <span class="string">&quot;偶数&quot;</span>;</span><br><span class="line">            <span class="title function_">resolve</span>(parityInfo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(tetheredGetNumber)</span><br><span class="line">    .<span class="title function_">then</span>(determineParity, troubleWithGetNumber) <span class="comment">// then 接受两个参数，（成功之后执行，失败之后执行）</span></span><br><span class="line">    .<span class="title function_">then</span>(promiseGetWord)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`得到了：<span class="subst">$&#123;info.value&#125;</span>, <span class="subst">$&#123;info.wordEvenOdd&#125;</span>`</span>);</span><br><span class="line">        <span class="keyword">return</span> info;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (reason.<span class="property">cause</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;已经在前面处理过错误了&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">`运行 promiseGetWord() 时遇到问题：<span class="subst">$&#123;reason&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;所有回调都完成了&quot;</span>));</span><br></pre></td></tr></table></figure><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ol><li><strong><code>tetheredGetNumber</code></strong>：模拟异步操作，使用 <code>setTimeout</code> 模拟延迟，并根据阈值决定是兑现还是拒绝 Promise。</li><li><strong><code>determineParity</code></strong>：检查数字是奇数还是偶数，并返回包含该信息的对象。</li><li><strong><code>troubleWithGetNumber</code></strong>：处理 Promise 被拒绝的情况，抛出一个新的错误。</li><li><strong><code>promiseGetWord</code></strong>：根据阈值决定是否继续兑现 Promise 或拒绝它，并添加额外的信息到对象中。</li><li><strong>链式调用</strong>：通过 <code>.then()</code> 方法处理成功和失败的结果，并最终使用 <code>.catch()</code> 和 <code>.finally()</code> 进行错误处理和清理工作。</li></ol>]]></content>
     
     
     <summary type="html">详解js的promise机制</summary>
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="promise" scheme="https://wilsssssssson.github.io/PersonalPage/tags/promise/"/>
+    <category term="promise" scheme="https://wilsssssssson.github.io/tags/promise/"/>
     
   </entry>
   
   <entry>
     <title>javascript-json</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/04/01/javascript-json/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/04/01/javascript-json/</id>
+    <link href="https://wilsssssssson.github.io/2024/04/01/javascript-json/"/>
+    <id>https://wilsssssssson.github.io/2024/04/01/javascript-json/</id>
     <published>2024-04-01T14:52:19.000Z</published>
     <updated>2025-02-19T12:49:32.007Z</updated>
     
@@ -333,19 +333,19 @@
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="JSON" scheme="https://wilsssssssson.github.io/PersonalPage/tags/JSON/"/>
+    <category term="JSON" scheme="https://wilsssssssson.github.io/tags/JSON/"/>
     
   </entry>
   
   <entry>
     <title>javascript-函数剩余与展开运算符</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/</id>
+    <link href="https://wilsssssssson.github.io/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    <id>https://wilsssssssson.github.io/2024/03/28/javascript-%E5%87%BD%E6%95%B0%E5%89%A9%E4%BD%99%E4%B8%8E%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/</id>
     <published>2024-03-28T01:05:23.000Z</published>
     <updated>2025-02-19T12:49:04.630Z</updated>
     
@@ -356,42 +356,42 @@
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="传参" scheme="https://wilsssssssson.github.io/PersonalPage/tags/%E4%BC%A0%E5%8F%82/"/>
+    <category term="传参" scheme="https://wilsssssssson.github.io/tags/%E4%BC%A0%E5%8F%82/"/>
     
   </entry>
   
   <entry>
     <title>javascript-常用静态方法</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/</id>
+    <link href="https://wilsssssssson.github.io/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"/>
+    <id>https://wilsssssssson.github.io/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/</id>
     <published>2024-03-24T08:10:35.000Z</published>
     <updated>2025-02-19T12:48:42.624Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="JavaScript常用静态方法"><a href="#JavaScript常用静态方法" class="headerlink" title="JavaScript常用静态方法"></a>JavaScript常用静态方法</h1><p>JavaScript提供了多种方法来操作对象和数组，下面是一些常用的方法及其使用示例。</p><h2 id="对象操作"><a href="#对象操作" class="headerlink" title="对象操作"></a>对象操作</h2><h3 id="1-Object-keys-获取所有属性名"><a href="#1-Object-keys-获取所有属性名" class="headerlink" title="1. Object.keys - 获取所有属性名"></a>1. <code>Object.keys</code> - 获取所有属性名</h3><p><code>Object.keys</code> 方法返回一个给定对象自身可枚举属性的数组。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(person)); <span class="comment">// 输出: [&#x27;name&#x27;, &#x27;age&#x27;]</span></span><br></pre></td></tr></table></figure><h3 id="2-Object-values-获取所有属性值"><a href="#2-Object-values-获取所有属性值" class="headerlink" title="2. Object.values - 获取所有属性值"></a>2. <code>Object.values</code> - 获取所有属性值</h3><p><code>Object.values</code> 方法返回一个给定对象自身可枚举属性值的数组。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">values</span>(person)); <span class="comment">// 输出: [&#x27;Alice&#x27;, 25]</span></span><br></pre></td></tr></table></figure><h3 id="3-拷贝对象并添加属性"><a href="#3-拷贝对象并添加属性" class="headerlink" title="3. 拷贝对象并添加属性"></a>3. 拷贝对象并添加属性</h3><p><code>Object.assign</code> 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> source = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">assign</span>(target, source);</span><br><span class="line">target.<span class="property">address</span> = <span class="string">&#x27;Wonderland&#x27;</span>; <span class="comment">// 添加新属性</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(target); <span class="comment">// 输出: &#123; name: &#x27;Alice&#x27;, age: 25, address: &#x27;Wonderland&#x27; &#125;</span></span><br></pre></td></tr></table></figure><h2 id="数组操作"><a href="#数组操作" class="headerlink" title="数组操作"></a>数组操作</h2><h3 id="1-forEach-遍历数组"><a href="#1-forEach-遍历数组" class="headerlink" title="1. forEach - 遍历数组"></a>1. <code>forEach</code> - 遍历数组</h3><p><code>forEach</code> 方法允许你遍历数组中的每个元素，并对它们执行一个函数。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">numbers.<span class="title function_">forEach</span>(<span class="function"><span class="params">number</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(number);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>偷偷卷！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>此代码会依次输出数组中的每个数字。</p><h3 id="2-filter-过滤数组"><a href="#2-filter-过滤数组" class="headerlink" title="2. filter - 过滤数组"></a>2. <code>filter</code> - 过滤数组</h3><p><code>filter</code> 方法用于创建一个新数组，包含通过所提供函数实现的测试的所有元素。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> evenNumbers = numbers.<span class="title function_">filter</span>(<span class="function"><span class="params">number</span> =&gt;</span> number % <span class="number">2</span> === <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(evenNumbers); <span class="comment">// 输出: [2, 4]</span></span><br></pre></td></tr></table></figure><p>这段代码筛选出所有偶数并存储在<code>evenNumbers</code>中。</p><h3 id="3-map-迭代数组"><a href="#3-map-迭代数组" class="headerlink" title="3. map - 迭代数组"></a>3. <code>map</code> - 迭代数组</h3><p><code>map</code> 方法创建一个新数组，其结果是对调用数组中的每一个元素调用一个提供的函数后的返回值。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> squaredNumbers = numbers.<span class="title function_">map</span>(<span class="function"><span class="params">number</span> =&gt;</span> number * number);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(squaredNumbers); <span class="comment">// 输出: [1, 4, 9, 16, 25]</span></span><br></pre></td></tr></table></figure><p>这会生成一个新的数组，其中每个元素都是原数组对应位置元素的平方。</p><h3 id="4-reduce-累计器"><a href="#4-reduce-累计器" class="headerlink" title="4. reduce - 累计器"></a>4. <code>reduce</code> - 累计器</h3><p><code>reduce</code> 方法对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> sum = numbers.<span class="title function_">reduce</span>(<span class="function">(<span class="params">accumulator, currentValue</span>) =&gt;</span> accumulator + currentValue, <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sum); <span class="comment">// 输出: 15</span></span><br></pre></td></tr></table></figure><p>在这个例子中，<code>reduce</code> 将数组中的所有数值相加，从起始值<code>0</code>开始累加。</p><img src="/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png" class="" title="有趣的例子"><img src="/PersonalPage/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image2.png" class="" title="有趣的例子">]]></content>
+    <content type="html"><![CDATA[<h1 id="JavaScript常用静态方法"><a href="#JavaScript常用静态方法" class="headerlink" title="JavaScript常用静态方法"></a>JavaScript常用静态方法</h1><p>JavaScript提供了多种方法来操作对象和数组，下面是一些常用的方法及其使用示例。</p><h2 id="对象操作"><a href="#对象操作" class="headerlink" title="对象操作"></a>对象操作</h2><h3 id="1-Object-keys-获取所有属性名"><a href="#1-Object-keys-获取所有属性名" class="headerlink" title="1. Object.keys - 获取所有属性名"></a>1. <code>Object.keys</code> - 获取所有属性名</h3><p><code>Object.keys</code> 方法返回一个给定对象自身可枚举属性的数组。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(person)); <span class="comment">// 输出: [&#x27;name&#x27;, &#x27;age&#x27;]</span></span><br></pre></td></tr></table></figure><h3 id="2-Object-values-获取所有属性值"><a href="#2-Object-values-获取所有属性值" class="headerlink" title="2. Object.values - 获取所有属性值"></a>2. <code>Object.values</code> - 获取所有属性值</h3><p><code>Object.values</code> 方法返回一个给定对象自身可枚举属性值的数组。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">values</span>(person)); <span class="comment">// 输出: [&#x27;Alice&#x27;, 25]</span></span><br></pre></td></tr></table></figure><h3 id="3-拷贝对象并添加属性"><a href="#3-拷贝对象并添加属性" class="headerlink" title="3. 拷贝对象并添加属性"></a>3. 拷贝对象并添加属性</h3><p><code>Object.assign</code> 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> source = &#123;<span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">assign</span>(target, source);</span><br><span class="line">target.<span class="property">address</span> = <span class="string">&#x27;Wonderland&#x27;</span>; <span class="comment">// 添加新属性</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(target); <span class="comment">// 输出: &#123; name: &#x27;Alice&#x27;, age: 25, address: &#x27;Wonderland&#x27; &#125;</span></span><br></pre></td></tr></table></figure><h2 id="数组操作"><a href="#数组操作" class="headerlink" title="数组操作"></a>数组操作</h2><h3 id="1-forEach-遍历数组"><a href="#1-forEach-遍历数组" class="headerlink" title="1. forEach - 遍历数组"></a>1. <code>forEach</code> - 遍历数组</h3><p><code>forEach</code> 方法允许你遍历数组中的每个元素，并对它们执行一个函数。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">numbers.<span class="title function_">forEach</span>(<span class="function"><span class="params">number</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(number);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>偷偷卷！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>此代码会依次输出数组中的每个数字。</p><h3 id="2-filter-过滤数组"><a href="#2-filter-过滤数组" class="headerlink" title="2. filter - 过滤数组"></a>2. <code>filter</code> - 过滤数组</h3><p><code>filter</code> 方法用于创建一个新数组，包含通过所提供函数实现的测试的所有元素。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> evenNumbers = numbers.<span class="title function_">filter</span>(<span class="function"><span class="params">number</span> =&gt;</span> number % <span class="number">2</span> === <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(evenNumbers); <span class="comment">// 输出: [2, 4]</span></span><br></pre></td></tr></table></figure><p>这段代码筛选出所有偶数并存储在<code>evenNumbers</code>中。</p><h3 id="3-map-迭代数组"><a href="#3-map-迭代数组" class="headerlink" title="3. map - 迭代数组"></a>3. <code>map</code> - 迭代数组</h3><p><code>map</code> 方法创建一个新数组，其结果是对调用数组中的每一个元素调用一个提供的函数后的返回值。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> squaredNumbers = numbers.<span class="title function_">map</span>(<span class="function"><span class="params">number</span> =&gt;</span> number * number);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(squaredNumbers); <span class="comment">// 输出: [1, 4, 9, 16, 25]</span></span><br></pre></td></tr></table></figure><p>这会生成一个新的数组，其中每个元素都是原数组对应位置元素的平方。</p><h3 id="4-reduce-累计器"><a href="#4-reduce-累计器" class="headerlink" title="4. reduce - 累计器"></a>4. <code>reduce</code> - 累计器</h3><p><code>reduce</code> 方法对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> sum = numbers.<span class="title function_">reduce</span>(<span class="function">(<span class="params">accumulator, currentValue</span>) =&gt;</span> accumulator + currentValue, <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sum); <span class="comment">// 输出: 15</span></span><br></pre></td></tr></table></figure><p>在这个例子中，<code>reduce</code> 将数组中的所有数值相加，从起始值<code>0</code>开始累加。</p><img src="/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image1.png" class="" title="有趣的例子"><img src="/2024/03/24/javascript-%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/image2.png" class="" title="有趣的例子">]]></content>
     
     
     <summary type="html">javascript常用的一些静态方法，一般用于来处理数组，迭代遍历等操作</summary>
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="静态方法" scheme="https://wilsssssssson.github.io/PersonalPage/tags/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"/>
+    <category term="静态方法" scheme="https://wilsssssssson.github.io/tags/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>javascript-变量提升</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/</id>
+    <link href="https://wilsssssssson.github.io/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"/>
+    <id>https://wilsssssssson.github.io/2024/03/16/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/</id>
     <published>2024-03-16T09:13:23.000Z</published>
     <updated>2025-02-19T12:48:22.117Z</updated>
     
@@ -402,19 +402,19 @@
     
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/categories/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/categories/js/"/>
     
     
-    <category term="js" scheme="https://wilsssssssson.github.io/PersonalPage/tags/js/"/>
+    <category term="js" scheme="https://wilsssssssson.github.io/tags/js/"/>
     
-    <category term="javascript-变量提升" scheme="https://wilsssssssson.github.io/PersonalPage/tags/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"/>
+    <category term="javascript-变量提升" scheme="https://wilsssssssson.github.io/tags/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"/>
     
   </entry>
   
   <entry>
     <title>computed</title>
-    <link href="https://wilsssssssson.github.io/PersonalPage/2024/03/12/computed/"/>
-    <id>https://wilsssssssson.github.io/PersonalPage/2024/03/12/computed/</id>
+    <link href="https://wilsssssssson.github.io/2024/03/12/computed/"/>
+    <id>https://wilsssssssson.github.io/2024/03/12/computed/</id>
     <published>2024-03-12T08:45:54.000Z</published>
     <updated>2025-02-19T12:51:35.766Z</updated>
     
@@ -425,12 +425,12 @@
     
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/categories/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/categories/vue3/"/>
     
     
-    <category term="vue3" scheme="https://wilsssssssson.github.io/PersonalPage/tags/vue3/"/>
+    <category term="vue3" scheme="https://wilsssssssson.github.io/tags/vue3/"/>
     
-    <category term="computed" scheme="https://wilsssssssson.github.io/PersonalPage/tags/computed/"/>
+    <category term="computed" scheme="https://wilsssssssson.github.io/tags/computed/"/>
     
   </entry>
   

@@ -12,14 +12,14 @@
     
     
         
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue 插槽（Slots）详解默认插槽定义1&lt;slot&gt;默认内容&lt;/slot&gt;\n\n使用123&lt;Category title=&quot;今日影视推荐&quot;&gt;    &lt;video :src=&quot;videoUrl&quot; controls&gt;&lt;/video&gt;&lt;/Category&gt;\n\n具名插槽定义1234&lt;div class=&quot;category&quot;&gt;    &lt;slot name=&quot;s1&quot;&gt;默认内容1&lt;/slot&gt;    &lt;slot name=&quot;s2&quot;&gt;默认内容2&lt;/slot&gt;&lt;/div&gt;\n\n使用12345678&lt;Category&gt;    &lt;template v-slot:s2&gt;        &lt;img :src=&quot;imgUrl&quot; alt=&quot;&quot;&gt;    &lt;/template&gt;    &lt;template v-slot:s1&gt;        &lt;h2&gt;今日美食城市&lt;/h2&gt;    &lt;/template&gt;&lt;/Category&gt;\n\n作用域插槽 (父亲决定孩子的样式，但是数据还是儿子自己的)子组件1&lt;slot :youxi=&quot;games&quot; x=&quot;哈哈&quot; y=&quot;你好&quot;&gt;&lt;/slot&gt;\n\n父组件12345678910&lt;Game&gt;    &lt;template v-slot=&quot;params&quot;&gt;        &lt;!-- params 可以自定义 --&gt;        &lt;ul&gt;            &lt;li v-for=&quot;y in params.youxi&quot; :key=&quot;y.id&quot;&gt;                &#123;&#123; y.name &#125;&#125;            &lt;/li&gt;        &lt;/ul&gt;    &lt;/template&gt;&lt;/Game&gt;\n\n综合使用12&lt;template v-slot:name=&quot;params&quot;&gt;&lt;!-- 其中 name 是具名插槽的名字，params 是子组件传过来的数据 --&gt;\n","dateCreated":"2024-06-13T14:51:02+08:00","dateModified":"2025-02-19T20:54:04+08:00","datePublished":"2024-06-13T14:51:02+08:00","description":"Vue 插槽（Slots）详解，介绍一些不同的插槽以及基本代码","headline":"slot","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/","keywords":"vue3, slot"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue 插槽（Slots）详解默认插槽定义1&lt;slot&gt;默认内容&lt;/slot&gt;\n\n使用123&lt;Category title=&quot;今日影视推荐&quot;&gt;    &lt;video :src=&quot;videoUrl&quot; controls&gt;&lt;/video&gt;&lt;/Category&gt;\n\n具名插槽定义1234&lt;div class=&quot;category&quot;&gt;    &lt;slot name=&quot;s1&quot;&gt;默认内容1&lt;/slot&gt;    &lt;slot name=&quot;s2&quot;&gt;默认内容2&lt;/slot&gt;&lt;/div&gt;\n\n使用12345678&lt;Category&gt;    &lt;template v-slot:s2&gt;        &lt;img :src=&quot;imgUrl&quot; alt=&quot;&quot;&gt;    &lt;/template&gt;    &lt;template v-slot:s1&gt;        &lt;h2&gt;今日美食城市&lt;/h2&gt;    &lt;/template&gt;&lt;/Category&gt;\n\n作用域插槽 (父亲决定孩子的样式，但是数据还是儿子自己的)子组件1&lt;slot :youxi=&quot;games&quot; x=&quot;哈哈&quot; y=&quot;你好&quot;&gt;&lt;/slot&gt;\n\n父组件12345678910&lt;Game&gt;    &lt;template v-slot=&quot;params&quot;&gt;        &lt;!-- params 可以自定义 --&gt;        &lt;ul&gt;            &lt;li v-for=&quot;y in params.youxi&quot; :key=&quot;y.id&quot;&gt;                &#123;&#123; y.name &#125;&#125;            &lt;/li&gt;        &lt;/ul&gt;    &lt;/template&gt;&lt;/Game&gt;\n\n综合使用12&lt;template v-slot:name=&quot;params&quot;&gt;&lt;!-- 其中 name 是具名插槽的名字，params 是子组件传过来的数据 --&gt;\n","dateCreated":"2024-06-13T14:51:02+08:00","dateModified":"2025-02-19T20:54:04+08:00","datePublished":"2024-06-13T14:51:02+08:00","description":"Vue 插槽（Slots）详解，介绍一些不同的插槽以及基本代码","headline":"slot","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/2024/06/13/slot/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/2024/06/13/slot/","keywords":"vue3, slot"}</script>
     <meta name="description" content="Vue 插槽（Slots）详解，介绍一些不同的插槽以及基本代码">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="slot">
-<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/index.html">
+<meta property="og:url" content="https://wilsssssssson.github.io/2024/06/13/slot/index.html">
 <meta property="og:site_name" content="Jiaxing的个人主页">
 <meta property="og:description" content="Vue 插槽（Slots）详解，介绍一些不同的插槽以及基本代码">
 <meta property="og:locale" content="zh_CN">
@@ -34,14 +34,14 @@
         
     
     
-        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
+        <meta property="og:image" content="https://wilsssssssson.github.io/assets/images/qingque.png"/>
     
     
     
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
 
     <!--STYLES END-->
     
@@ -69,7 +69,7 @@
     <div class="header-title">
         <a
             class="header-title-link"
-            href="/PersonalPage/"
+            href="/"
             aria-label=""
         >
             Jiaxing的个人主页
@@ -80,11 +80,11 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="打开链接: /PersonalPage/#about"
+                aria-label="打开链接: /#about"
             >
         
         
-            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
         
         </a>
     
@@ -102,10 +102,10 @@
         
             <div class="sidebar-profile">
                 <a
-                    href="/PersonalPage/#about"
+                    href="/#about"
                     aria-label="阅读有关作者的更多信息"
                 >
-                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
                 </a>
                 <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
                 
@@ -120,7 +120,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/"
+                            href="/"
                             
                             rel="noopener"
                             title="首页"
@@ -134,7 +134,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-categories"
+                            href="/all-categories"
                             
                             rel="noopener"
                             title="分类"
@@ -148,7 +148,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-tags"
+                            href="/all-tags"
                             
                             rel="noopener"
                             title="标签"
@@ -162,7 +162,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-archives"
+                            href="/all-archives"
                             
                             rel="noopener"
                             title="归档"
@@ -214,7 +214,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/atom.xml"
+                            href="/atom.xml"
                             
                             rel="noopener"
                             title="RSS"
@@ -254,7 +254,7 @@
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/PersonalPage/categories/vue3/">vue3</a>
+    <a class="category-link" href="/categories/vue3/">vue3</a>
 
 
     
@@ -290,7 +290,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/slot/" rel="tag">slot</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/vue3/" rel="tag">vue3</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/slot/" rel="tag">slot</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a>
 
             </div>
         
@@ -303,7 +303,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/23/Router/"
+                    href="/2024/06/23/Router/"
                     data-tooltip="Router"
                     aria-label="上一篇: Router"
                 >
@@ -317,7 +317,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/13/lazyLoading/"
+                    href="/2024/06/13/lazyLoading/"
                     data-tooltip="lazyLoading"
                     aria-label="下一篇: lazyLoading"
                 >
@@ -333,7 +333,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -344,7 +344,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/&amp;title=slot"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/13/slot/&amp;title=slot"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -357,7 +357,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -392,7 +392,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/23/Router/"
+                    href="/2024/06/23/Router/"
                     data-tooltip="Router"
                     aria-label="上一篇: Router"
                 >
@@ -406,7 +406,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/13/lazyLoading/"
+                    href="/2024/06/13/lazyLoading/"
                     data-tooltip="lazyLoading"
                     aria-label="下一篇: lazyLoading"
                 >
@@ -422,7 +422,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -433,7 +433,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/&amp;title=slot"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/13/slot/&amp;title=slot"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -446,7 +446,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -467,7 +467,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/13/slot/&amp;title=slot"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/13/slot/&amp;title=slot"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -493,7 +493,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
         
             <h4 id="about-card-name">Jiaxing Huang</h4>
         
@@ -519,10 +519,10 @@
 
         
         
-<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
         <!--SCRIPTS-->
 
-<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
 
 <!--SCRIPTS END-->
 

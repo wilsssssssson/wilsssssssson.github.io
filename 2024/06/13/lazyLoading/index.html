@@ -12,14 +12,14 @@
     
     
         
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"使用Vue生命周期钩子实现懒加载在Vue应用中，可以通过监听scroll事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能。\n代码示例完整代码export default &#123;\n  data() &#123;\n    return &#123;\n      dataList: [], // 初始数据列表\n      isLoading: false, // 加载状态\n      page: 1, // 当前页码\n    &#125;;\n  &#125;,\n  mounted() &#123;\n    this.loadMoreData();\n    window.addEventListener(&#39;scroll&#39;, this.handleScroll);\n  &#125;,\n  methods: &#123;\n    loadMoreData() &#123;\n      this.isLoading = true;\n      // 模拟数据加载\n      setTimeout(() =&gt; &#123;\n        // 假设每次加载5条数据\n        const newData = Array.from(&#123; length: 5 &#125;, (_, index) =&gt; (&#123;\n          id: this.dataList.length + index + 1,\n          content: `数据 $&#123;this.page + index&#125;`,\n        &#125;));\n        this.dataList.push(...newData);\n        this.isLoading = false;\n        this.page++;\n      &#125;, 1000); // 利用setTimeout模拟加载数据，实际应替换为HTTP请求\n    &#125;,\n    handleScroll() &#123;\n      // 判断是否滚动到底部\n      const scrollElement = this.$refs.scrollContainer;\n      if (\n        scrollElement.scrollHeight - scrollElement.scrollTop ===\n        scrollElement.clientHeight\n      ) &#123;\n        if (!this.isLoading) &#123;\n          this.loadMoreData();\n        &#125;\n      &#125;\n    &#125;,\n  &#125;,\n  beforeDestroy() &#123;\n    window.removeEventListener(&#39;scroll&#39;, this.handleScroll);\n  &#125;,\n&#125;;\n\n","dateCreated":"2024-06-13T13:30:51+08:00","dateModified":"2025-02-19T20:52:45+08:00","datePublished":"2024-06-13T13:30:51+08:00","description":"在Vue应用中，可以通过监听`scroll`事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能","headline":"lazyLoading","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/","keywords":"vue3, Hook"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"使用Vue生命周期钩子实现懒加载在Vue应用中，可以通过监听scroll事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能。\n代码示例完整代码export default &#123;\n  data() &#123;\n    return &#123;\n      dataList: [], // 初始数据列表\n      isLoading: false, // 加载状态\n      page: 1, // 当前页码\n    &#125;;\n  &#125;,\n  mounted() &#123;\n    this.loadMoreData();\n    window.addEventListener(&#39;scroll&#39;, this.handleScroll);\n  &#125;,\n  methods: &#123;\n    loadMoreData() &#123;\n      this.isLoading = true;\n      // 模拟数据加载\n      setTimeout(() =&gt; &#123;\n        // 假设每次加载5条数据\n        const newData = Array.from(&#123; length: 5 &#125;, (_, index) =&gt; (&#123;\n          id: this.dataList.length + index + 1,\n          content: `数据 $&#123;this.page + index&#125;`,\n        &#125;));\n        this.dataList.push(...newData);\n        this.isLoading = false;\n        this.page++;\n      &#125;, 1000); // 利用setTimeout模拟加载数据，实际应替换为HTTP请求\n    &#125;,\n    handleScroll() &#123;\n      // 判断是否滚动到底部\n      const scrollElement = this.$refs.scrollContainer;\n      if (\n        scrollElement.scrollHeight - scrollElement.scrollTop ===\n        scrollElement.clientHeight\n      ) &#123;\n        if (!this.isLoading) &#123;\n          this.loadMoreData();\n        &#125;\n      &#125;\n    &#125;,\n  &#125;,\n  beforeDestroy() &#123;\n    window.removeEventListener(&#39;scroll&#39;, this.handleScroll);\n  &#125;,\n&#125;;\n\n","dateCreated":"2024-06-13T13:30:51+08:00","dateModified":"2025-02-19T20:52:45+08:00","datePublished":"2024-06-13T13:30:51+08:00","description":"在Vue应用中，可以通过监听`scroll`事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能","headline":"lazyLoading","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/2024/06/13/lazyLoading/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/2024/06/13/lazyLoading/","keywords":"vue3, Hook"}</script>
     <meta name="description" content="在Vue应用中，可以通过监听&#96;scroll&#96;事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="lazyLoading">
-<meta property="og:url" content="https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/index.html">
+<meta property="og:url" content="https://wilsssssssson.github.io/2024/06/13/lazyLoading/index.html">
 <meta property="og:site_name" content="Jiaxing的个人主页">
 <meta property="og:description" content="在Vue应用中，可以通过监听&#96;scroll&#96;事件和利用组件的生命周期钩子来实现数据的懒加载。下面是一个简单的示例，展示了如何实现这一功能">
 <meta property="og:locale" content="zh_CN">
@@ -34,14 +34,14 @@
         
     
     
-        <meta property="og:image" content="https://wilsssssssson.github.io/PersonalPage/assets/images/qingque.png"/>
+        <meta property="og:image" content="https://wilsssssssson.github.io/assets/images/qingque.png"/>
     
     
     
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/PersonalPage/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
 
     <!--STYLES END-->
     
@@ -69,7 +69,7 @@
     <div class="header-title">
         <a
             class="header-title-link"
-            href="/PersonalPage/"
+            href="/"
             aria-label=""
         >
             Jiaxing的个人主页
@@ -80,11 +80,11 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="打开链接: /PersonalPage/#about"
+                aria-label="打开链接: /#about"
             >
         
         
-            <img class="header-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
         
         </a>
     
@@ -102,10 +102,10 @@
         
             <div class="sidebar-profile">
                 <a
-                    href="/PersonalPage/#about"
+                    href="/#about"
                     aria-label="阅读有关作者的更多信息"
                 >
-                    <img class="sidebar-profile-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
                 </a>
                 <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
                 
@@ -120,7 +120,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/"
+                            href="/"
                             
                             rel="noopener"
                             title="首页"
@@ -134,7 +134,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-categories"
+                            href="/all-categories"
                             
                             rel="noopener"
                             title="分类"
@@ -148,7 +148,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-tags"
+                            href="/all-tags"
                             
                             rel="noopener"
                             title="标签"
@@ -162,7 +162,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/all-archives"
+                            href="/all-archives"
                             
                             rel="noopener"
                             title="归档"
@@ -214,7 +214,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="/PersonalPage/atom.xml"
+                            href="/atom.xml"
                             
                             rel="noopener"
                             title="RSS"
@@ -254,7 +254,7 @@
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/PersonalPage/categories/vue3/">vue3</a>, <a class="category-link" href="/PersonalPage/categories/vue3/Hook/">Hook</a>
+    <a class="category-link" href="/categories/vue3/">vue3</a>, <a class="category-link" href="/categories/vue3/Hook/">Hook</a>
 
 
     
@@ -323,7 +323,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/Hook/" rel="tag">Hook</a> <a class="tag tag--primary tag--small t-none-link" href="/PersonalPage/tags/vue3/" rel="tag">vue3</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Hook/" rel="tag">Hook</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/vue3/" rel="tag">vue3</a>
 
             </div>
         
@@ -336,7 +336,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/13/slot/"
+                    href="/2024/06/13/slot/"
                     data-tooltip="slot"
                     aria-label="上一篇: slot"
                 >
@@ -350,7 +350,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/"
+                    href="/2024/05/22/watch%E7%9B%91%E8%A7%86/"
                     data-tooltip="watch监视"
                     aria-label="下一篇: watch监视"
                 >
@@ -366,7 +366,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -377,7 +377,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/&amp;title=lazyLoading"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/13/lazyLoading/&amp;title=lazyLoading"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -390,7 +390,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -425,7 +425,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/06/13/slot/"
+                    href="/2024/06/13/slot/"
                     data-tooltip="slot"
                     aria-label="上一篇: slot"
                 >
@@ -439,7 +439,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/PersonalPage/2024/05/22/watch%E7%9B%91%E8%A7%86/"
+                    href="/2024/05/22/watch%E7%9B%91%E8%A7%86/"
                     data-tooltip="watch监视"
                     aria-label="下一篇: watch监视"
                 >
@@ -455,7 +455,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="Diesen Beitrag teilen"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -466,7 +466,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/&amp;title=lazyLoading"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/13/lazyLoading/&amp;title=lazyLoading"
                     title="分享到 QQ"
                     aria-label="分享到 QQ"
                 >
@@ -479,7 +479,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -500,7 +500,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/PersonalPage/2024/06/13/lazyLoading/&amp;title=lazyLoading"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2024/06/13/lazyLoading/&amp;title=lazyLoading"
                         aria-label="分享到 QQ"
                     >
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
@@ -526,7 +526,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/PersonalPage/assets/images/qingque.png" alt="头像"/>
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
         
             <h4 id="about-card-name">Jiaxing Huang</h4>
         
@@ -552,10 +552,10 @@
 
         
         
-<div id="cover" style="background-image:url('/PersonalPage/assets/images/taohua.png');"></div>
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
         <!--SCRIPTS-->
 
-<script src="/PersonalPage/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
 
 <!--SCRIPTS END-->
 
