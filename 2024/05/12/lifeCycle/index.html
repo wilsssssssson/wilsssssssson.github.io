@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/PersonalPage/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue 生命周期钩子函数使用笔记当我们将这些生命周期钩子函数写在自定义Hooks里面时，意味着只要组件引用了这个Hooks，相应的生命周期事件就会自动绑定到该组件上。\n生命周期钩子示例代码挂载阶段\n挂载前\n123onBeforeMount(() =&gt; &#123;  // console.log(&#x27;挂载前&#x27;)&#125;);\n\n挂载完毕\n123onMounted(() =&gt; &#123;  console.log(&#x27;子---挂载完毕&#x27;);&#125;);\n\n更新阶段\n更新前\n123onBeforeUpdate(() =&gt; &#123;  // console.log(&#x27;更新前&#x27;)&#125;);\n\n更新完毕\n123onUpdated(() =&gt; &#123;  // console.log(&#x27;更新完毕&#x27;)&#125;);\n\n卸载阶段\n卸载前\n123onBeforeUnmount(() =&gt; &#123;  // console.log(&#x27;卸载前&#x27;)&#125;);\n\n卸载完毕\n123onUnmounted(() =&gt; &#123;  // console.log(&#x27;卸载完毕&#x27;)&#125;);\n\n","dateCreated":"2024-05-12T13:22:01+08:00","dateModified":"2025-02-19T20:52:03+08:00","datePublished":"2024-05-12T13:22:01+08:00","description":"生命周期钩子函数使用笔记,主要介绍一些生命周期，以及之间的时间顺序","headline":"lifeCycle","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/05/12/lifeCycle/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/05/12/lifeCycle/","keywords":"vue3, Hook, lifeCycle"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"Vue 生命周期钩子函数使用笔记当我们将这些生命周期钩子函数写在自定义Hooks里面时，意味着只要组件引用了这个Hooks，相应的生命周期事件就会自动绑定到该组件上。\n生命周期钩子示例代码挂载阶段\n挂载前\n123onBeforeMount(() =&gt; &#123;  // console.log(&#x27;挂载前&#x27;)&#125;);\n\n挂载完毕\n123onMounted(() =&gt; &#123;  console.log(&#x27;子---挂载完毕&#x27;);&#125;);\n\n更新阶段\n更新前\n123onBeforeUpdate(() =&gt; &#123;  // console.log(&#x27;更新前&#x27;)&#125;);\n\n更新完毕\n123onUpdated(() =&gt; &#123;  // console.log(&#x27;更新完毕&#x27;)&#125;);\n\n卸载阶段\n卸载前\n123onBeforeUnmount(() =&gt; &#123;  // console.log(&#x27;卸载前&#x27;)&#125;);\n\n卸载完毕\n123onUnmounted(() =&gt; &#123;  // console.log(&#x27;卸载完毕&#x27;)&#125;);\n\n","dateCreated":"2024-05-12T13:22:01+08:00","dateModified":"2025-02-19T20:52:03+08:00","datePublished":"2024-05-12T13:22:01+08:00","description":"生命周期钩子函数使用笔记,主要介绍一些生命周期，以及之间的时间顺序","headline":"lifeCycle","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/PersonalPage/2024/05/12/lifeCycle/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/PersonalPage/2024/05/12/lifeCycle/","keywords":"vue3, lifeCycle, Hook"}</script>
     <meta name="description" content="生命周期钩子函数使用笔记,主要介绍一些生命周期，以及之间的时间顺序">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="lifeCycle">
@@ -28,8 +28,8 @@
 <meta property="article:modified_time" content="2025-02-19T12:52:03.583Z">
 <meta property="article:author" content="Jiaxing Huang">
 <meta property="article:tag" content="vue3">
-<meta property="article:tag" content="Hook">
 <meta property="article:tag" content="lifeCycle">
+<meta property="article:tag" content="Hook">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wilsssssssson.github.io/PersonalPage/2024/05/12/lifeCycle/image.png">
     
@@ -345,7 +345,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Diesen Beitrag teilen"
+                aria-label="Share this post"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -369,7 +369,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -434,7 +434,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Diesen Beitrag teilen"
+                aria-label="Share this post"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -458,7 +458,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
