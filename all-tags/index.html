@@ -45,8 +45,21 @@
     
 
     
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>
     <body>
         <div id="blog">
             <!-- Define author's picture -->
@@ -263,6 +276,22 @@
                 computed
             </a>
         
+            <a class="tag tag--primary tag--small" href="#deeplearning-list" data-tag="deeplearning">
+                deeplearning
+            </a>
+        
+            <a class="tag tag--primary tag--small" href="#enum-list" data-tag="enum">
+                enum
+            </a>
+        
+            <a class="tag tag--primary tag--small" href="#httpRequest-list" data-tag="httprequest">
+                httpRequest
+            </a>
+        
+            <a class="tag tag--primary tag--small" href="#javascript-list" data-tag="javascript">
+                javascript
+            </a>
+        
             <a class="tag tag--primary tag--small" href="#javascript-变量提升-list" data-tag="javascript-变量提升">
                 javascript-变量提升
             </a>
@@ -279,6 +308,14 @@
                 multi-process
             </a>
         
+            <a class="tag tag--primary tag--small" href="#multimodal-list" data-tag="multimodal">
+                multimodal
+            </a>
+        
+            <a class="tag tag--primary tag--small" href="#physics-list" data-tag="physics">
+                physics
+            </a>
+        
             <a class="tag tag--primary tag--small" href="#promise-list" data-tag="promise">
                 promise
             </a>
@@ -289,6 +326,14 @@
         
             <a class="tag tag--primary tag--small" href="#slot-list" data-tag="slot">
                 slot
+            </a>
+        
+            <a class="tag tag--primary tag--small" href="#slow-reasoning-list" data-tag="slow-reasoning">
+                slow-reasoning
+            </a>
+        
+            <a class="tag tag--primary tag--small" href="#ts-list" data-tag="ts">
+                ts
             </a>
         
             <a class="tag tag--primary tag--small" href="#vue3-list" data-tag="vue3">
@@ -460,6 +505,104 @@
                 </ul>
             </div>
         
+            <div id="deeplearning-list" class="archive box" data-tag="deeplearning">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/deeplearning">
+                        deeplearning (3)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/">
+                                Visual-RFT论文阅读-视觉慢推理
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 5 月 7 日
+                            </span>
+                        </li>
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/">
+                                PHYBench论文阅读-新的物理题求解评估指标
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 4 月 26 日
+                            </span>
+                        </li>
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/03/17/LLaVA%E2%80%94cot/">
+                                LLaVA—cot
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 3 月 17 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
+            <div id="enum-list" class="archive box" data-tag="enum">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/enum">
+                        enum (1)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/">
+                                TypeScript-枚举类型
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 3 月 4 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
+            <div id="httpRequest-list" class="archive box" data-tag="httprequest">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/httpRequest">
+                        httpRequest (1)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/05/06/%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82%E5%92%8C%E7%9B%B8%E5%BA%94%E8%AF%B7%E6%B1%82%E5%AF%BC%E8%87%B4%E7%9A%84bug-%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/">
+                                发起请求和相应请求导致的bug-取消请求方法
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 5 月 6 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
+            <div id="javascript-list" class="archive box" data-tag="javascript">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/javascript">
+                        javascript (1)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/05/06/%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82%E5%92%8C%E7%9B%B8%E5%BA%94%E8%AF%B7%E6%B1%82%E5%AF%BC%E8%87%B4%E7%9A%84bug-%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/">
+                                发起请求和相应请求导致的bug-取消请求方法
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 5 月 6 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
             <div id="javascript-变量提升-list" class="archive box" data-tag="javascript-变量提升">
                 <h4 class="archive-title">
                     <a class="link-unstyled" href="/tags/javascript-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87">
@@ -603,6 +746,55 @@
                 </ul>
             </div>
         
+            <div id="multimodal-list" class="archive box" data-tag="multimodal">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/multimodal">
+                        multimodal (2)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/03/17/LLaVA%E2%80%94cot/">
+                                LLaVA—cot
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 3 月 17 日
+                            </span>
+                        </li>
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/">
+                                多模态对齐
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 3 月 7 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
+            <div id="physics-list" class="archive box" data-tag="physics">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/physics">
+                        physics (1)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/">
+                                PHYBench论文阅读-新的物理题求解评估指标
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 4 月 26 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
             <div id="promise-list" class="archive box" data-tag="promise">
                 <h4 class="archive-title">
                     <a class="link-unstyled" href="/tags/promise">
@@ -657,6 +849,46 @@
                             </a>
                             <span class="archive-post-date">
                                  - 2024 年 6 月 13 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
+            <div id="slow-reasoning-list" class="archive box" data-tag="slow-reasoning">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/slow-reasoning">
+                        slow-reasoning (1)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/">
+                                Visual-RFT论文阅读-视觉慢推理
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 5 月 7 日
+                            </span>
+                        </li>
+                    
+                </ul>
+            </div>
+        
+            <div id="ts-list" class="archive box" data-tag="ts">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/ts">
+                        ts (1)
+                    </a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                        <li class="archive-post">
+                            <a class="archive-post-title" href="/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/">
+                                TypeScript-枚举类型
+                            </a>
+                            <span class="archive-post-date">
+                                 - 2025 年 3 月 4 日
                             </span>
                         </li>
                     

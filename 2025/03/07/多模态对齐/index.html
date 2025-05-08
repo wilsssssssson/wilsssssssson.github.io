@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>多模态对齐 - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"分类当前的多模态发展还未到达文本邻域一样成熟，将其分为以下几类\n\n编码器解码器架构\n原始数据集融合\n层次特征融合\n决策级融合\n\n\n注意力机制\n模态内自注意力\n模态间交叉注意力\n非局部注意力\n\n\n基于图神经网络的融合\n基于生成神经网络的融合\n其他\n\n目录\n编码器解码器架构\n注意力机制架构\n基于图神经网络的融合\n基于生成神经网络的融合\n其他\n\n编码器解码器架构原始数据融合在这种融合中，每个模态的原始数据或从每个模态的独立预处理中获得的数据将在输入级别进行整合。然后，形成的多模态输入向量将被发送到一个编码器，用于提取高级特征。来自各个模态的数据在低级别（例如输入级别）进行融合，并且只应用一个编码器来提取多模态数据的高级特征\n层次特征融合由于DNN具有强大的层次表示学习能力，与原始数据级融合不同，许多工作使用设计良好的网络架构，迫使模型在不同级别融合多模态层次特征。这种融合方法的动机是，融合和聚合来自不同抽象级别的数据可以更好地利用从分层深度网络中提取的多级特征，从而共同提高模型的性能\n决策层融合融合与上述分层特征融合策略不同，决策级融合相对简单，灵活性较低，但易于实现。该方法中的融合操作固定在单个子网络的解码器或分类器的末尾，这意味着在解码器的最后一层或倒数第二层交换交叉模态信息。它对多模态交互的可解释性有限。对于分类任务，最终的融合可以通过使用经典的多数投票或从多层感知器中学习的权重来实现。对于回归任务，通常会训练一个线性回归器来融合单个模态的预测。\n基于注意力机制的融合注意力机制最早在自然语言处理领域被提出，用于改进基于编码器 - 解码器的神经机器翻译系统。其核心思想是通过对输入数据的不同部分分配差异化权重，使模型聚焦于与当前任务最相关的关键信息，在不显著增加计算成本的前提下提升预测精度。注意力机制衍生出多种变体，例如计算机视觉中的通道注意力、空间注意力，以及自然语言处理中的自注意力、多头注意力等。\n模态内自注意力该机制迫使模型挖掘单一模态内部的依赖关系，注意力计算中的 Query、Key、Value 均来自同一模态。操作方式包括点积注意力、加法门注意力等，确保分析聚焦于单模态数据的内在关联。在视觉问答（VQA）任务中，有方法通过模态内注意力增强各模态子网络的特征学习能力，提升对单模态关键信息的捕捉。仅关注单模态内部关系，可能忽略不同模态间的互补信息，限制模型对跨模态协同效应的利用。\n模态间交叉注意力原理与结构：与模态内自注意力互补，该机制通过跨模态的 Query-Key 匹配计算注意力权重，聚焦不同模态间的交互关系。Query 通常来自目标模态，Key 和 Value 来自辅助模态，生成以辅助模态为条件的目标模态注意力特征。\n协同注意力机制（Co-attention）在融合前通过跨模态交互增强各模态特征，多层堆叠促使模型学习模态间的依赖关系（如多模态假新闻检测）。交叉计算：音频与文本模态通过交叉点积计算注意力，动态更新跨模态特征；或结合通道注意力与特征交叉机制，实现模态间的动态信息交互。不过随着模态数量增加，计算复杂度和结构设计难度上升；模态质量不一致或对齐偏差可能显著影响注意力机制的效果。\n非局部注意力传统注意力机制受限于局部感受野，难以捕捉长距离依赖。非局部注意力通过全局建模输入空间的关系，有效处理跨区域或跨模态的长距离依赖。非局部注意力超越局部约束，提供输入空间的整体视角，提升模型对全局关联信息的利用能力。\n基于图神经网络的融合传统编码器 - 解码器和注意力机制适用于欧几里得空间数据，但难以处理非欧几里得域的图结构数据（如包含复杂对象关系的数据）。GNN 逐渐成为处理图结构多模态数据的有力工具，广泛应用于视觉问答、图像描述、跨模态检索、推荐系统等任务。其核心优势是直接处理图数据，无需投影到欧几里得空间，并能显式建模模态内与模态间的关系。\n基于生成神经网络的融合生成式神经网络（GenNN）是深度学习领域的基石，尤其适用于围绕数据生成、重建和建模的任务。这些网络旨在捕捉并复制数据的潜在分布，这使得它们在从图像合成到时间序列预测等众多应用中都具有极高的价值。基于生成式神经网络的网络通常包含一系列架构，包括但不限于生成对抗网络（GANs）、变分自编码器（VAEs）、基于流的模型以及基于扩散的模型。生成式神经网络的主要目标是生成与现实世界数据分布紧密相似的数据，其实现方式要么是直接对这些分布进行建模，要么是学习将更简单的分布转换为更复杂的分布。它们在生成高质量数据方面的多功能性和能力，使其在单模态和多模态任务中都得到了广泛应用，解决了诸如数据插补、增强和融合等挑战。由于其强大的生成能力，生成式模型在真实数据稀缺、有噪声或不完整的情况下发挥了重要作用，为补充和增强现有数据集提供了可靠的机制。\n对于多模态数据融合任务而言，与单模态任务相比，数据收集过程相对更为复杂。缺失数据是多模态数据集常见的问题之一。在此，我们将缺失数据问题定义为由多模态样本导致的问题，即样本中至少有一种模态的数据缺失。在大多数与多模态相关的研究中，研究人员只是简单地假设数据集不存在任何缺失数据，或者通过数据清理来去除所有包含缺失数据的样本。结果是，这些研究中的大多数仅在理论上效果良好，无法适应实际场景。为了解决多模态数据融合中的缺失数据问题，生成式神经网络已成为强大的工具，尤其适用于涉及数据生成、重建和融合的任务。在多模态数据融合的背景下，基于生成式神经网络的网络提供了一个强大的框架，以应对诸如缺失数据和新数据模态合成等挑战。\n总之，基于生成式神经网络的模型可用于解决多模态任务中的缺失数据问题，也可被视为一种正则化器，以利用多模态之间的语义相关性。然而，在挖掘多种模态之间的模态内和模态间关系以提高模型性能方面，基于生成式神经网络的网络架构灵活性相对较低，并且需要大量的训练技巧。在这方面，注意力机制在科学界引起了更多关注。因为注意力机制具有很强的揭示不同模态之间内部和相互关系的能力，所以它已被广泛应用于多模态数据融合中。\n其他我们上面回顾的大多数融合策略都基于联合表示，这意味着输入的多模态数据将被映射到一个共同的潜在空间中。模型将学习输入数据的联合表示。然而，还有另一类方法，称为基于协调表示的框架，该框架在特定约束下学习每个模态的分离但协调的表示。\n协调表示架构分别处理各个模态，但对它们施加一定的相似性约束，以便将它们带入一个协调的空间。每个模态学习到的表示可以通过使用典型相关分析（CCA）约束、余弦距离约束、L2 距离约束或其他约束相互比较。这些相似性约束将作为损失函数中的正则化项。\n这些基于协调表示的融合方法的主要缺点之一是，它们适用于有两到三个输入模态的场景。当模态数量大于三个时，网络架构可能会过于复杂，并且性能无法得到保证。\n","dateCreated":"2025-03-07T17:51:43+08:00","dateModified":"2025-04-29T11:19:31+08:00","datePublished":"2025-03-07T17:51:43+08:00","description":"当前的多模态对齐任务分类","headline":"多模态对齐","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/","keywords":"multimodal"}</script>
+    <meta name="description" content="当前的多模态对齐任务分类">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="多模态对齐">
+<meta property="og:url" content="https://wilsssssssson.github.io/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="当前的多模态对齐任务分类">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-07T09:51:43.000Z">
+<meta property="article:modified_time" content="2025-04-29T03:19:31.061Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="multimodal">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://wilsssssssson.github.io/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            多模态对齐
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2025-03-07T17:51:43+08:00">
+	
+		    2025 年 3 月 7 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/deeplearning/">deeplearning</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>当前的多模态发展还未到达文本邻域一样成熟，将其分为以下几类</p>
+<ul>
+<li>编码器解码器架构<ul>
+<li>原始数据集融合</li>
+<li>层次特征融合</li>
+<li>决策级融合</li>
+</ul>
+</li>
+<li>注意力机制<ul>
+<li>模态内自注意力</li>
+<li>模态间交叉注意力</li>
+<li>非局部注意力</li>
+</ul>
+</li>
+<li>基于图神经网络的融合</li>
+<li>基于生成神经网络的融合</li>
+<li>其他</li>
+</ul>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol>
+<li><a href="#1">编码器解码器架构</a></li>
+<li><a href="#2">注意力机制架构</a></li>
+<li><a href="#3">基于图神经网络的融合</a></li>
+<li><a href="#4">基于生成神经网络的融合</a></li>
+<li><a href="#5">其他</a></li>
+</ol>
+<h1 id="编码器解码器架构"><a href="#编码器解码器架构" class="headerlink" title="编码器解码器架构"></a><h id='1'>编码器解码器架构<h></h1><h2 id="原始数据融合"><a href="#原始数据融合" class="headerlink" title="原始数据融合"></a><h id='1.1'>原始数据融合<h></h2><p>在这种融合中，每个模态的原始数据或从每个模态的独立预处理中获得的数据将在输入级别进行整合。然后，形成的多模态输入向量将被发送到一个编码器，用于提取高级特征。来自各个模态的数据在低级别（例如输入级别）进行融合，并且只应用一个编码器来提取多模态数据的高级特征</p>
+<h2 id="层次特征融合"><a href="#层次特征融合" class="headerlink" title="层次特征融合"></a><h id='1.2'>层次特征融合<h></h2><p>由于DNN具有强大的层次表示学习能力，与原始数据级融合不同，许多工作使用设计良好的网络架构，迫使模型在不同级别融合多模态层次特征。这种融合方法的动机是，融合和聚合来自不同抽象级别的数据可以更好地利用从分层深度网络中提取的多级特征，从而共同提高模型的性能</p>
+<h2 id="决策层融合融合"><a href="#决策层融合融合" class="headerlink" title="决策层融合融合"></a><h id='1.3'>决策层融合融合<h></h2><p>与上述分层特征融合策略不同，决策级融合相对简单，灵活性较低，但易于实现。该方法中的融合操作固定在单个子网络的解码器或分类器的末尾，这意味着在解码器的最后一层或倒数第二层交换交叉模态信息。它对多模态交互的可解释性有限。对于分类任务，最终的融合可以通过使用经典的多数投票或从多层感知器中学习的权重来实现。对于回归任务，通常会训练一个线性回归器来融合单个模态的预测。</p>
+<h1 id="基于注意力机制的融合"><a href="#基于注意力机制的融合" class="headerlink" title="基于注意力机制的融合"></a><h id='2'>基于注意力机制的融合<h></h1><p>注意力机制最早在自然语言处理领域被提出，用于改进基于编码器 - 解码器的神经机器翻译系统。其核心思想是通过对输入数据的不同部分分配差异化权重，使模型聚焦于与当前任务最相关的关键信息，在不显著增加计算成本的前提下提升预测精度。<br>注意力机制衍生出多种变体，例如计算机视觉中的通道注意力、空间注意力，以及自然语言处理中的自注意力、多头注意力等。</p>
+<h2 id="模态内自注意力"><a href="#模态内自注意力" class="headerlink" title="模态内自注意力"></a><h id='2.1'>模态内自注意力<h></h2><p>该机制迫使模型挖掘单一模态内部的依赖关系，注意力计算中的 Query、Key、Value 均来自同一模态。操作方式包括点积注意力、加法门注意力等，确保分析聚焦于单模态数据的内在关联。<br>在视觉问答（VQA）任务中，有方法通过模态内注意力增强各模态子网络的特征学习能力，提升对单模态关键信息的捕捉。<br>仅关注单模态内部关系，可能忽略不同模态间的互补信息，限制模型对跨模态协同效应的利用。</p>
+<h2 id="模态间交叉注意力"><a href="#模态间交叉注意力" class="headerlink" title="模态间交叉注意力"></a><h id='2.2'>模态间交叉注意力<h></h2><p>原理与结构：与模态内自注意力互补，该机制通过跨模态的 Query-Key 匹配计算注意力权重，聚焦不同模态间的交互关系。Query 通常来自目标模态，Key 和 Value 来自辅助模态，生成以辅助模态为条件的目标模态注意力特征。</p>
+<p>协同注意力机制（Co-attention）在融合前通过跨模态交互增强各模态特征，多层堆叠促使模型学习模态间的依赖关系（如多模态假新闻检测）。<br>交叉计算：音频与文本模态通过交叉点积计算注意力，动态更新跨模态特征；或结合通道注意力与特征交叉机制，实现模态间的动态信息交互。<br>不过随着模态数量增加，计算复杂度和结构设计难度上升；模态质量不一致或对齐偏差可能显著影响注意力机制的效果。</p>
+<h2 id="非局部注意力"><a href="#非局部注意力" class="headerlink" title="非局部注意力"></a><h id='2.3'>非局部注意力<h></h2><p>传统注意力机制受限于局部感受野，难以捕捉长距离依赖。非局部注意力通过全局建模输入空间的关系，有效处理跨区域或跨模态的长距离依赖。非局部注意力超越局部约束，提供输入空间的整体视角，提升模型对全局关联信息的利用能力。</p>
+<h1 id="基于图神经网络的融合"><a href="#基于图神经网络的融合" class="headerlink" title="基于图神经网络的融合"></a><h id='3'>基于图神经网络的融合<h></h1><p>传统编码器 - 解码器和注意力机制适用于欧几里得空间数据，但难以处理非欧几里得域的图结构数据（如包含复杂对象关系的数据）。GNN 逐渐成为处理图结构多模态数据的有力工具，广泛应用于视觉问答、图像描述、跨模态检索、推荐系统等任务。其核心优势是直接处理图数据，无需投影到欧几里得空间，并能显式建模模态内与模态间的关系。</p>
+<h1 id="基于生成神经网络的融合"><a href="#基于生成神经网络的融合" class="headerlink" title="基于生成神经网络的融合"></a><h id='4'>基于生成神经网络的融合<h></h1><p>生成式神经网络（GenNN）是深度学习领域的基石，尤其适用于围绕数据生成、重建和建模的任务。这些网络旨在捕捉并复制数据的潜在分布，这使得它们在从图像合成到时间序列预测等众多应用中都具有极高的价值。基于生成式神经网络的网络通常包含一系列架构，包括但不限于生成对抗网络（GANs）、变分自编码器（VAEs）、基于流的模型以及基于扩散的模型。生成式神经网络的主要目标是生成与现实世界数据分布紧密相似的数据，其实现方式要么是直接对这些分布进行建模，要么是学习将更简单的分布转换为更复杂的分布。它们在生成高质量数据方面的多功能性和能力，使其在单模态和多模态任务中都得到了广泛应用，解决了诸如数据插补、增强和融合等挑战。由于其强大的生成能力，生成式模型在真实数据稀缺、有噪声或不完整的情况下发挥了重要作用，为补充和增强现有数据集提供了可靠的机制。</p>
+<p>对于多模态数据融合任务而言，与单模态任务相比，数据收集过程相对更为复杂。缺失数据是多模态数据集常见的问题之一。在此，我们将缺失数据问题定义为由多模态样本导致的问题，即样本中至少有一种模态的数据缺失。在大多数与多模态相关的研究中，研究人员只是简单地假设数据集不存在任何缺失数据，或者通过数据清理来去除所有包含缺失数据的样本。结果是，这些研究中的大多数仅在理论上效果良好，无法适应实际场景。为了解决多模态数据融合中的缺失数据问题，生成式神经网络已成为强大的工具，尤其适用于涉及数据生成、重建和融合的任务。在多模态数据融合的背景下，基于生成式神经网络的网络提供了一个强大的框架，以应对诸如缺失数据和新数据模态合成等挑战。</p>
+<p>总之，基于生成式神经网络的模型可用于解决多模态任务中的缺失数据问题，也可被视为一种正则化器，以利用多模态之间的语义相关性。然而，在挖掘多种模态之间的模态内和模态间关系以提高模型性能方面，基于生成式神经网络的网络架构灵活性相对较低，并且需要大量的训练技巧。在这方面，注意力机制在科学界引起了更多关注。因为注意力机制具有很强的揭示不同模态之间内部和相互关系的能力，所以它已被广泛应用于多模态数据融合中。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a><h id='5'>其他<h></h1><p>我们上面回顾的大多数融合策略都基于联合表示，这意味着输入的多模态数据将被映射到一个共同的潜在空间中。模型将学习输入数据的联合表示。然而，还有另一类方法，称为基于协调表示的框架，该框架在特定约束下学习每个模态的分离但协调的表示。</p>
+<p>协调表示架构分别处理各个模态，但对它们施加一定的相似性约束，以便将它们带入一个协调的空间。每个模态学习到的表示可以通过使用典型相关分析（CCA）约束、余弦距离约束、L2 距离约束或其他约束相互比较。这些相似性约束将作为损失函数中的正则化项。</p>
+<p>这些基于协调表示的融合方法的主要缺点之一是，它们适用于有两到三个输入模态的场景。当模态数量大于三个时，网络架构可能会过于复杂，并且性能无法得到保证。</p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/multimodal/" rel="tag">multimodal</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/17/LLaVA%E2%80%94cot/"
+                    data-tooltip="LLaVA—cot"
+                    aria-label="上一篇: LLaVA—cot"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/"
+                    data-tooltip="TypeScript-枚举类型"
+                    aria-label="下一篇: TypeScript-枚举类型"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/&amp;title=多模态对齐"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/17/LLaVA%E2%80%94cot/"
+                    data-tooltip="LLaVA—cot"
+                    aria-label="上一篇: LLaVA—cot"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/"
+                    data-tooltip="TypeScript-枚举类型"
+                    aria-label="下一篇: TypeScript-枚举类型"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/&amp;title=多模态对齐"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/&amp;title=多模态对齐"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

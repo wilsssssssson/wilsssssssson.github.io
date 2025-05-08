@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>TypeScript-枚举类型 - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"TypeScript (TS) 是一种静态类型的编程语言，它是 JavaScript 的超集，意味着所有有效的 JavaScript 代码也是有效的 TypeScript 代码。TypeScript 添加了可选的类型注解和其他特性到 JavaScript 中，以帮助开发者编写更健壮和易于维护的代码。以下是您提到的一些特性和实现细节：\n枚举枚举（Enums）是 TypeScript 提供的一种数据类型，它允许开发者定义一组命名的常量。这些常常量可以是数值型、字符串或者其他类型的。\n数值枚举最基本的枚举形式是数值枚举，它默认从0开始为成员编号，但您可以手动指定值。\n123456enum Direction &#123;    Up, // 默认为0    Down, // 默认为1    Left, // 默认为2    Right // 默认为3&#125;\n\n字符串枚举除了数值枚举，TypeScript 还支持字符串枚举，这需要显式地为每个成员赋一个字符串值。\n123456enum Direction &#123;    Up = &quot;UP&quot;,    Down = &quot;DOWN&quot;,    Left = &quot;LEFT&quot;,    Right = &quot;RIGHT&quot;&#125;\n\n枚举的源码与键值转换在 TypeScript 编译后，枚举会被转化为对象字面量形式，包含用于双向映射的方法。例如，给定一个简单的数值枚举：\n123enum Enum &#123;    A&#125;\n编译成 JavaScript 后会类似于这样：\n1234var Enum;(function (Enum) &#123;    Enum[Enum[&quot;A&quot;] = 0] = &quot;A&quot;;&#125;)(Enum || (Enum = &#123;&#125;));\n这里 Enum[&quot;A&quot;] = 0 和 Enum[0] = &quot;A&quot; 实现了键名和键值之间的相互查找。\n键值相互转换\n从键到值：直接通过枚举变量访问即可，如 Direction.Up 返回 0。\n从值到键：由于 TypeScript 在编译时生成了反向映射，所以可以通过索引枚举对象来获取键名，比如 Direction[0] 返回 &quot;Up&quot;。\n\n这种机制允许你在处理枚举时灵活地在名称和数值之间进行转换。不过需要注意的是，只有当枚举成员的值是唯一的时，这样的反向映射才是有意义的。如果两个成员具有相同的值，则它们将共享同一个键。\n","dateCreated":"2025-03-04T16:35:53+08:00","dateModified":"2025-05-06T09:56:21+08:00","datePublished":"2025-03-04T16:35:53+08:00","description":"ts相对js新增类型枚举，可实现k,v之间互相转换","headline":"TypeScript-枚举类型","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/","keywords":"ts, enum"}</script>
+    <meta name="description" content="ts相对js新增类型枚举，可实现k,v之间互相转换">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="TypeScript-枚举类型">
+<meta property="og:url" content="https://wilsssssssson.github.io/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="ts相对js新增类型枚举，可实现k,v之间互相转换">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-04T08:35:53.000Z">
+<meta property="article:modified_time" content="2025-05-06T01:56:21.584Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="ts">
+<meta property="article:tag" content="enum">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://wilsssssssson.github.io/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            TypeScript-枚举类型
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2025-03-04T16:35:53+08:00">
+	
+		    2025 年 3 月 4 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/ts/">ts</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>TypeScript (TS) 是一种静态类型的编程语言，它是 JavaScript 的超集，意味着所有有效的 JavaScript 代码也是有效的 TypeScript 代码。TypeScript 添加了可选的类型注解和其他特性到 JavaScript 中，以帮助开发者编写更健壮和易于维护的代码。以下是您提到的一些特性和实现细节：</p>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>枚举（Enums）是 TypeScript 提供的一种数据类型，它允许开发者定义一组命名的常量。这些常常量可以是数值型、字符串或者其他类型的。</p>
+<h4 id="数值枚举"><a href="#数值枚举" class="headerlink" title="数值枚举"></a>数值枚举</h4><p>最基本的枚举形式是数值枚举，它默认从0开始为成员编号，但您可以手动指定值。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Direction</span> &#123;</span><br><span class="line">    <span class="title class_">Up</span>, <span class="comment">// 默认为0</span></span><br><span class="line">    <span class="title class_">Down</span>, <span class="comment">// 默认为1</span></span><br><span class="line">    <span class="title class_">Left</span>, <span class="comment">// 默认为2</span></span><br><span class="line">    <span class="title class_">Right</span> <span class="comment">// 默认为3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h4><p>除了数值枚举，TypeScript 还支持字符串枚举，这需要显式地为每个成员赋一个字符串值。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Direction</span> &#123;</span><br><span class="line">    <span class="title class_">Up</span> = <span class="string">&quot;UP&quot;</span>,</span><br><span class="line">    <span class="title class_">Down</span> = <span class="string">&quot;DOWN&quot;</span>,</span><br><span class="line">    <span class="title class_">Left</span> = <span class="string">&quot;LEFT&quot;</span>,</span><br><span class="line">    <span class="title class_">Right</span> = <span class="string">&quot;RIGHT&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="枚举的源码与键值转换"><a href="#枚举的源码与键值转换" class="headerlink" title="枚举的源码与键值转换"></a>枚举的源码与键值转换</h3><p>在 TypeScript 编译后，枚举会被转化为对象字面量形式，包含用于双向映射的方法。例如，给定一个简单的数值枚举：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Enum</span> &#123;</span><br><span class="line">    A</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译成 JavaScript 后会类似于这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Enum</span>;</span><br><span class="line">(<span class="keyword">function</span> (<span class="params">Enum</span>) &#123;</span><br><span class="line">    <span class="title class_">Enum</span>[<span class="title class_">Enum</span>[<span class="string">&quot;A&quot;</span>] = <span class="number">0</span>] = <span class="string">&quot;A&quot;</span>;</span><br><span class="line">&#125;)(<span class="title class_">Enum</span> || (<span class="title class_">Enum</span> = &#123;&#125;));</span><br></pre></td></tr></table></figure>
+<p>这里 <code>Enum[&quot;A&quot;] = 0</code> 和 <code>Enum[0] = &quot;A&quot;</code> 实现了键名和键值之间的相互查找。</p>
+<h3 id="键值相互转换"><a href="#键值相互转换" class="headerlink" title="键值相互转换"></a>键值相互转换</h3><ul>
+<li><strong>从键到值</strong>：直接通过枚举变量访问即可，如 <code>Direction.Up</code> 返回 0。</li>
+<li><strong>从值到键</strong>：由于 TypeScript 在编译时生成了反向映射，所以可以通过索引枚举对象来获取键名，比如 <code>Direction[0]</code> 返回 <code>&quot;Up&quot;</code>。</li>
+</ul>
+<p>这种机制允许你在处理枚举时灵活地在名称和数值之间进行转换。不过需要注意的是，只有当枚举成员的值是唯一的时，这样的反向映射才是有意义的。如果两个成员具有相同的值，则它们将共享同一个键。</p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/enum/" rel="tag">enum</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/ts/" rel="tag">ts</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/"
+                    data-tooltip="多模态对齐"
+                    aria-label="上一篇: 多模态对齐"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+                    data-tooltip="跨域解决方法"
+                    aria-label="下一篇: 跨域解决方法"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/&amp;title=TypeScript-枚举类型"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/07/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AF%B9%E9%BD%90/"
+                    data-tooltip="多模态对齐"
+                    aria-label="上一篇: 多模态对齐"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/02/23/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+                    data-tooltip="跨域解决方法"
+                    aria-label="下一篇: 跨域解决方法"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/&amp;title=TypeScript-枚举类型"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/03/04/TypeScript-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/&amp;title=TypeScript-枚举类型"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>Visual-RFT论文阅读-视觉慢推理 - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"概述Visual Reinforcement Fine-Tuning（Visual-RFT） 是一种将强化学习应用于视觉任务的方法，旨在提升大视觉语言模型（LVLMs）的视觉感知和推理能力。它通过让 LVLMs 生成包含推理和答案的多响应，利用任务特定的可验证奖励函数（如检测任务的 IoU 奖励、分类任务的准确率奖励），借助策略优化算法更新模型。\n文章的“Methodology”部分主要介绍了Visual - RFT所涉及的基础概念、方法框架以及关键组成部分，具体内容如下：\n\n预备知识\n可验证奖励的强化学习（RLVR）：是一种用于提升语言模型在具有客观可验证结果任务（如数学和编程）中表现的训练方法。与传统的基于人类反馈的强化学习（RLHF）不同，RLVR不依赖训练的奖励模型，而是使用直接验证函数来评估正确性。给定输入问题$q$，策略模型$\\pi_{\\theta}$生成响应$o$并获得可验证奖励。其优化目标为：[max {\\pi{\\theta}} \\mathbb{E}{o \\sim \\pi{\\theta}(q)}\\left[R_{RLVR}(q, o)\\right]&#x3D;\\left[R(q, o)-\\beta KL\\left[\\pi_{\\theta}(o | q) | \\pi_{ref }(o | q)\\right]\\right]]其中，$\\pi_{ref}$是优化前的参考模型，$R$是可验证奖励函数，$\\beta$是控制KL散度的超参数。可验证奖励函数$R$根据问题和输出对$(q, o)$判断预测与真实答案是否一致，若一致则$R(q, o)&#x3D;1$，否则为$0$。\nDeepSeek R1 - Zero和GRPO：DeepSeek R1 - Zero算法通过Group Relative Policy Optimization（GRPO）框架，仅利用强化学习进行训练，消除了对监督微调（SFT）的依赖。对于给定问题$q$，GRPO从当前策略$\\pi_{\\theta_{old}}$生成$G$个不同的响应${o_{1}, o_{2},…, o_{G}}$，然后根据这些响应采取行动并获得奖励${r_{1}, r_{2},…, r_{G}}$。通过计算奖励的均值和标准差进行归一化，以确定这些响应的相对质量：$A_{i}&#x3D;\\frac{r_{i}-mean\\left(\\left{r_{1},…, r_{G}\\right}\\right)}{std\\left(\\left{r_{1},…, r_{G}\\right}\\right)}$其中，$A_{i}$代表第$i$个答案的相对质量。GRPO鼓励模型在组内选择奖励值高的更好答案。\n\n\nVisual - RFT\n整体框架：Visual - RFT的框架中，多模态输入数据由图像和问题组成。策略模型$\\pi_{6}$根据输入输出推理过程并生成一组响应。每个响应通过可验证奖励函数计算奖励，在对每个输出的奖励进行分组计算后，评估每个响应的质量并用于更新策略模型。为保证策略模型训练的稳定性，Visual - RFT使用KL散度限制策略模型与参考模型之间的差异。\n视觉感知中的可验证奖励\n检测任务中的IoU奖励：在检测任务中，模型输出包含边界框（bbox）和相应置信度。奖励函数需考虑用于评估平均精度均值（mAP）的交并比（IoU）指标。首先对模型输出的边界框按置信度排序为${b_{1}, b_{2},…, b_{n}}$，并与真实边界框${b_{1}^{g}, b_{2}^{g},…, b_{m}^{g}}$匹配计算IoU，设置IoU阈值$\\tau$，低于阈值的边界框视为无效，未匹配的边界框IoU为0。匹配后得到每个框的IoU和置信度${iou_{1}:c_{1}, iou_{2}:c_{2},…, iou_{n}:c_{n}}$ ，由此构建奖励$R_{d}$，它由三部分组成：\n\n\n\n\n\n[R_{d}&#x3D;R_{IoU }+R_{conf }+R_{format }]其中，$R_{IoU}$是模型输出所有边界框的平均IoU：[R_{IoU}&#x3D;\\frac{iou_{1}+iou_{2}+…+iou_{n}}{n}]置信度奖励$R_{conf}$与IoU相关，对于每个边界框，若$iou$非零（表示匹配成功），则该单个框的置信度奖励$r_{ci}$为预测置信度；若$iou$为零（表示匹配失败），则$r_{ci}$为$1 - c_{i}$。模型输出的整体置信度奖励$R_{conf}$是所有边界框置信度奖励的平均值：[R_{conf }&#x3D;\\frac{\\sum_{i&#x3D;1}^{n} r_{c i}}{n}]格式奖励$R_{format}$用于强制模型预测符合和所需的HTML标签格式。        - 分类任务中的CLS奖励：在分类任务中，奖励函数由准确率奖励$R_{acc}$和格式奖励$R_{format}$组成。准确率奖励通过比较模型输出类别与真实类别来确定，分类正确为1，错误为0：[R_{cls }&#x3D;R_{acc }+R_{format }]    - 数据准备：为在各种视觉感知任务上训练Visual - RFT，需构建多模态训练数据集。与DeepSeek R1类似，Visual - RFT设计了提示格式，引导模型在给出最终答案前输出推理过程。检测和分类任务使用的提示格式分别规定了输出的具体要求，如检测任务需按特定格式输出检测对象的边界框、置信度及推理过程；分类任务需按格式输出植物物种识别的推理过程和结果。在训练过程中，利用格式奖励引导模型以结构化格式输出推理过程和最终答案，推理过程是模型在强化微调中自我学习和改进的关键，而答案确定的奖励则指导模型的优化方向。 \n\n\n\n","dateCreated":"2025-05-07T17:29:50+08:00","dateModified":"2025-05-08T11:25:34+08:00","datePublished":"2025-05-07T17:29:50+08:00","description":"类似deepseek的推理模型并不能很好地处理多模态的任务类型，本文提出一种视觉增强的强化学习，增强模型在视觉推理方面的能力","headline":"Visual-RFT论文阅读-视觉慢推理","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/","keywords":"deeplearning, slow-reasoning"}</script>
+    <meta name="description" content="类似deepseek的推理模型并不能很好地处理多模态的任务类型，本文提出一种视觉增强的强化学习，增强模型在视觉推理方面的能力">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Visual-RFT论文阅读-视觉慢推理">
+<meta property="og:url" content="https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="类似deepseek的推理模型并不能很好地处理多模态的任务类型，本文提出一种视觉增强的强化学习，增强模型在视觉推理方面的能力">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/framework.png">
+<meta property="article:published_time" content="2025-05-07T09:29:50.000Z">
+<meta property="article:modified_time" content="2025-05-08T03:25:34.992Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="deeplearning">
+<meta property="article:tag" content="slow-reasoning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/framework.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://wilsssssssson.github.io/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Visual-RFT论文阅读-视觉慢推理
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2025-05-07T17:29:50+08:00">
+	
+		    2025 年 5 月 7 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/deeplearning/">deeplearning</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Visual Reinforcement Fine-Tuning（Visual-RFT） 是一种将强化学习应用于视觉任务的方法，旨在提升大视觉语言模型（LVLMs）的视觉感知和推理能力。它通过让 LVLMs 生成包含推理和答案的多响应，利用任务特定的可验证奖励函数（如检测任务的 IoU 奖励、分类任务的准确率奖励），借助策略优化算法更新模型。</p>
+<p>文章的“Methodology”部分主要介绍了Visual - RFT所涉及的基础概念、方法框架以及关键组成部分，具体内容如下：</p>
+<ol>
+<li><strong>预备知识</strong><ul>
+<li><strong>可验证奖励的强化学习（RLVR）</strong>：是一种用于提升语言模型在具有客观可验证结果任务（如数学和编程）中表现的训练方法。与传统的基于人类反馈的强化学习（RLHF）不同，RLVR不依赖训练的奖励模型，而是使用直接验证函数来评估正确性。给定输入问题$q$，策略模型$\pi_{\theta}$生成响应$o$并获得可验证奖励。其优化目标为：<br>[max <em>{\pi</em>{\theta}} \mathbb{E}<em>{o \sim \pi</em>{\theta}(q)}\left[R_{RLVR}(q, o)\right]&#x3D;\left[R(q, o)-\beta KL\left[\pi_{\theta}(o | q) | \pi_{ref }(o | q)\right]\right]]<br>其中，$\pi_{ref}$是优化前的参考模型，$R$是可验证奖励函数，$\beta$是控制KL散度的超参数。可验证奖励函数$R$根据问题和输出对$(q, o)$判断预测与真实答案是否一致，若一致则$R(q, o)&#x3D;1$，否则为$0$。</li>
+<li><strong>DeepSeek R1 - Zero和GRPO</strong>：DeepSeek R1 - Zero算法通过Group Relative Policy Optimization（GRPO）框架，仅利用强化学习进行训练，消除了对监督微调（SFT）的依赖。对于给定问题$q$，GRPO从当前策略$\pi_{\theta_{old}}$生成$G$个不同的响应${o_{1}, o_{2},…, o_{G}}$，然后根据这些响应采取行动并获得奖励${r_{1}, r_{2},…, r_{G}}$。通过计算奖励的均值和标准差进行归一化，以确定这些响应的相对质量：<br>$A_{i}&#x3D;\frac{r_{i}-mean\left(\left{r_{1},…, r_{G}\right}\right)}{std\left(\left{r_{1},…, r_{G}\right}\right)}$<br>其中，$A_{i}$代表第$i$个答案的相对质量。GRPO鼓励模型在组内选择奖励值高的更好答案。</li>
+</ul>
+</li>
+<li><strong>Visual - RFT</strong><ul>
+<li><strong>整体框架</strong>：Visual - RFT的框架中，多模态输入数据由图像和问题组成。策略模型$\pi_{6}$根据输入输出推理过程并生成一组响应。每个响应通过可验证奖励函数计算奖励，在对每个输出的奖励进行分组计算后，评估每个响应的质量并用于更新策略模型。为保证策略模型训练的稳定性，Visual - RFT使用KL散度限制策略模型与参考模型之间的差异。</li>
+<li><strong>视觉感知中的可验证奖励</strong><ul>
+<li><strong>检测任务中的IoU奖励</strong>：在检测任务中，模型输出包含边界框（bbox）和相应置信度。奖励函数需考虑用于评估平均精度均值（mAP）的交并比（IoU）指标。首先对模型输出的边界框按置信度排序为${b_{1}, b_{2},…, b_{n}}$，并与真实边界框${b_{1}^{g}, b_{2}^{g},…, b_{m}^{g}}$匹配计算IoU，设置IoU阈值$\tau$，低于阈值的边界框视为无效，未匹配的边界框IoU为0。匹配后得到每个框的IoU和置信度${iou_{1}:c_{1}, iou_{2}:c_{2},…, iou_{n}:c_{n}}$ ，由此构建奖励$R_{d}$，它由三部分组成：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>[R_{d}&#x3D;R_{IoU }+R_{conf }+R_{format }]<br>其中，$R_{IoU}$是模型输出所有边界框的平均IoU：<br>[R_{IoU}&#x3D;\frac{iou_{1}+iou_{2}+…+iou_{n}}{n}]<br>置信度奖励$R_{conf}$与IoU相关，对于每个边界框，若$iou$非零（表示匹配成功），则该单个框的置信度奖励$r_{ci}$为预测置信度；若$iou$为零（表示匹配失败），则$r_{ci}$为$1 - c_{i}$。模型输出的整体置信度奖励$R_{conf}$是所有边界框置信度奖励的平均值：<br>[R_{conf }&#x3D;\frac{\sum_{i&#x3D;1}^{n} r_{c i}}{n}]<br>格式奖励$R_{format}$用于强制模型预测符合<think>和<answer>所需的HTML标签格式。<br>        - <strong>分类任务中的CLS奖励</strong>：在分类任务中，奖励函数由准确率奖励$R_{acc}$和格式奖励$R_{format}$组成。准确率奖励通过比较模型输出类别与真实类别来确定，分类正确为1，错误为0：<br>[R_{cls }&#x3D;R_{acc }+R_{format }]<br>    - <strong>数据准备</strong>：为在各种视觉感知任务上训练Visual - RFT，需构建多模态训练数据集。与DeepSeek R1类似，Visual - RFT设计了提示格式，引导模型在给出最终答案前输出推理过程。检测和分类任务使用的提示格式分别规定了输出的具体要求，如检测任务需按特定格式输出检测对象的边界框、置信度及推理过程；分类任务需按格式输出植物物种识别的推理过程和结果。在训练过程中，利用格式奖励引导模型以结构化格式输出推理过程和最终答案，推理过程是模型在强化微调中自我学习和改进的关键，而答案确定的奖励则指导模型的优化方向。 </p>
+<img src="/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/framework.png" class="" title="框架图">
+
+
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/deeplearning/" rel="tag">deeplearning</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/slow-reasoning/" rel="tag">slow-reasoning</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/05/06/%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82%E5%92%8C%E7%9B%B8%E5%BA%94%E8%AF%B7%E6%B1%82%E5%AF%BC%E8%87%B4%E7%9A%84bug-%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/"
+                    data-tooltip="发起请求和相应请求导致的bug-取消请求方法"
+                    aria-label="下一篇: 发起请求和相应请求导致的bug-取消请求方法"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/&amp;title=Visual-RFT论文阅读-视觉慢推理"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/05/06/%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82%E5%92%8C%E7%9B%B8%E5%BA%94%E8%AF%B7%E6%B1%82%E5%AF%BC%E8%87%B4%E7%9A%84bug-%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/"
+                    data-tooltip="发起请求和相应请求导致的bug-取消请求方法"
+                    aria-label="下一篇: 发起请求和相应请求导致的bug-取消请求方法"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/&amp;title=Visual-RFT论文阅读-视觉慢推理"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/05/07/Visual-RFT%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%A7%86%E8%A7%89%E6%85%A2%E6%8E%A8%E7%90%86/&amp;title=Visual-RFT论文阅读-视觉慢推理"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

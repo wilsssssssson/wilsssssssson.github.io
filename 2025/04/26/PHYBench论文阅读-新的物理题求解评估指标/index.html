@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiaxing的个人主页">
+    <title>PHYBench论文阅读-新的物理题求解评估指标 - Jiaxing的个人主页</title>
+    <meta name="author" content="Jiaxing Huang">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png"},"articleBody":"\n论文提出PHYBench这一用于评估大语言模型物理推理能力的高质量基准测试，包含500道基于现实物理场景的问题，涵盖多个物理领域和难度级别。同时提出表达式编辑距离（EED）分数这一评估指标，通过与人类专家对比实验发现，即使是最先进的推理模型在物理推理任务上也与人类存在显著差距，凸显模型在物理感知和稳健推理方面的局限。123456789101112## **PHYBench基准测试介绍**- 包含500道物理问题，涵盖多领域和多难度- 问题基于现实场景，需推导符号表达式## **评估指标**- 准确性指标：判断模型答案与正确答案是否完全一致- EED分数指标：计算表达式树编辑距离衡量相似性## **实验设置与结果**- 测试多种模型，包括前沿和常用模型- 人类专家准确率61.9%，EED分数70.4，远超模型## **错误分析**- 物理感知错误：对物理过程理解不足，如误解运动关系- 稳健推理错误：推理过程不一致，解方程困难\n\n研究背景\n大语言模型（LLMs）推理能力提升，但现有基准测试在评估其物理感知和推理能力方面存在不足。\n问题包括推理任务过于简化、问题过度抽象、缺乏精确评估指标。\n\nPHYBench基准测试\n构成与难度：包含500道精心策划的物理问题，涵盖力学、电磁学、热力学等多个领域，难度从高中到本科及物理竞赛水平。\n数据集整理：问题改编自物理练习，由北大物理学院学生参与贡献和完善，经过多轮审查、测试和优化，确保问题质量和规范性。\n评估指标\n准确性（Accuracy）：传统的判断模型答案是否正确的指标，以二进制（正确&#x2F;错误）计分。\n表达式编辑距离（EED）分数：基于表达式树编辑距离，计算模型生成答案与正确答案的相似度，能更细致地反映模型推理的正确性，分数范围为0 - 100分。\n\n\n\n\n\n\n指标\n计算方式\n特点\n\n\n\n准确性\n模型答案与正确答案完全一致计100分，否则计0分\n简单直观，但无法区分部分正确情况\n\n\nEED分数\n通过计算表达式树编辑距离，根据相对编辑距离确定分数\n能反映模型答案与正确答案的相似程度，对部分正确答案也能计分\n\n\n实验\n实验设置：测试多种具有代表性的LLMs，包括前沿模型和广泛应用的模型，使用准确性和EED分数两个指标评估，本地运行模型设置特定推理参数。\n人类基线：招募81名北大物理学院学生参与答题，平均准确率为61.9% ± 2.1%，EED分数为70.4 ± 1.8，在两个指标上均显著优于所有评估的LLMs。\n主要结果\n即使是最先进的推理模型在物理推理任务上表现也有限，如Gemini 2.5 pro准确率为36.9%，EED分数为49.5，远低于人类基线。\nEED分数在评估模型性能时，数值分布更广泛，统计不确定性更小，平均样本效率比准确性指标提高304%。\n\n\n模型在不同领域的表现\n定义绝对优势和相对优势两个指标，分析模型在不同物理领域的表现。\n不同模型在不同领域各有优劣，如传统模型在力学领域表现较差，推理专用模型在力学领域表现相对较好，热力学问题能体现推理和非推理模型的差距。\n\n\n\n错误分析\n物理感知错误：模型对物理过程理解不足和建模能力欠缺，导致对物理场景的错误判断，影响最终答案，32B模型在这方面表现尤其差。\n稳健推理错误：模型在长而复杂的推理过程中难以保持一致性，解方程存在困难，物理问题的长程符号推理对当前模型是重大挑战。\nEED指标的作用：EED分数能有效捕捉物理感知和稳健推理阶段的错误，通过量化中间过程的差异，评估模型的推理能力。\n\n研究结论\nPHYBench为评估LLMs的物理推理能力提供了全面的基准测试，EED分数能更细致地评估模型推理过程。\n实验结果表明当前LLMs在物理感知和稳健推理方面存在基本限制，与人类专家有较大差距，未来发展面临挑战和机遇。\n\n\n问题1：PHYBench与其他推理基准测试相比有哪些独特之处？答案：PHYBench包含500道高质量问题，涵盖多种物理领域和难度级别，基于现实物理场景。其评估指标除了准确性还有EED分数，能更细致评估模型推理能力。其他基准测试存在任务简化、问题抽象、评估指标单一等问题，如GSM8K数据规模为8.5K，难度为小学级别，采用准确率和二进制评分；OlympiadBench有8K道题，为竞赛级别，答案类型为受限的LATEX表达式，采用准确率和二进制评分。\n问题2：EED分数相较于传统二进制评分的优势体现在哪些方面？答案：EED分数基于表达式树编辑距离，能有效捕捉模型答案与正确答案的相似度，对于部分正确的答案也能给出非零分数，更好地反映模型的能力。而传统二进制评分在任务过难或过易时，分数易集中在极高或极低水平，无法有效区分模型能力。例如在低分段，EED评分的鉴别力和线性度更高，信息容量更大，平均样本效率比准确性指标提高304%。\n问题3：从实验结果来看，不同类型模型在物理推理任务上的表现有何差异？答案：推理专用模型通常优于通用语言模型，如Gemini 2.5 pro作为表现较好的模型，准确率为36.9%，EED分数为49.5；而一些通用模型如DeepSeek-V3、GPT-4.1和Claude 3.7 Sonnet的准确率分别为13.6%、12.9%和13.2%。32B模型如DeepSeek-Distill-32B和QwQ-32B在PHYBench上表现较弱，准确率分别为2.6%和1.2%，EED分数分别为4.5和3.2。 \n出题要求核心：\n\n基于文本的表述：所有问题必须仅通过文本描述就能求解，不依赖多模态输入。\n严格的符号答案：答案必须是单一、明确的符号表达式（例如，$2mg + \\frac{4mv_{0}^{2}}{l}$ ）。我们允许符号表达式有不同的等价形式（例如，因式分解或重新排列后的形式）。但答案中不接受方程（例如，$\\frac{T}{m} - 2g &#x3D; \\frac{v_{0}^{2}}{l}$ ）或浮点近似值。\n表述明确：问题表述必须严谨精确，避免歧义。\n\n在本节中，我们将介绍表达式编辑距离分数（EED分数）的计算流程和详细信息。这是一种自动化、无模型依赖的评估指标，旨在评估人工智能生成的解决方案的正确性。\nEED分数通过计算表达式树编辑距离来评估两个符号表达式之间的相似性。这个距离表示将一个树状结构的表达式转换为另一个所需的最少节点级编辑操作（插入、删除和更新）次数。\n为了表述清晰，在接下来的讨论中，我们用“gt”作为“正确答案（ground truth）”的缩写，用“gen”表示“模型生成的答案”。\nEED分数的计算包含几个步骤。首先，我们将gt和gen表达式从LaTeX格式转换为与SymPy兼容的形式。然后，我们使用simplify()函数来验证它们是否等价，该函数会将每个表达式转换为简化且结构一致的格式。\n因此，在进一步计算EED分数之前，我们可以使用一个简单的等价标准进行基本的二进制计分，定义如下：[score_{Bin}&#x3D;\\begin{cases}100, &amp; \\text{如果 } simplify(gt)\\equiv simplify(gen) \\ 0, &amp; \\text{否则}\\end{cases}]\n随后，我们将简化后的SymPy表达式转换为树结构，并使用扩展的Zhang - Shasha算法[3]计算它们的最小编辑距离。最终的EED分数由一个基于相对编辑距离（编辑距离与正确答案树中节点总数的比值）的分段线性函数确定：[r &#x3D; \\frac{Distance(T_{gt}, T_{gen})}{Size(T_{gt})}, score &#x3D;\\begin{cases}100, &amp; \\text{如果 } r &#x3D; 0 \\text{（完全匹配）}\\ 60 - 100r, &amp; \\text{如果 } 0 &lt; r &lt; 0.6\\ 0, &amp; \\text{如果 } r &gt; 0.6\\end{cases}]\n此外，我们的算法扩展了基本的三种树编辑操作，增加了子树插入和删除操作。对于较大的子树（节点数大于5），这些操作的成本系数降低为60%，明显低于逐节点进行编辑的成本。计分函数“60 - 100r”的设定是为了确保完全错误的输出得分为0分，而对于接近正确的模型生成答案给予60分的基础分。\n采用EED分数而非传统二进制计分的主要动机是为了更好地捕捉模型解决方案的正确程度。即使生成的答案有细微差异，比如小的计算错误或系数错误，这也表明模型对底层物理知识有部分理解，而非完全误解。附录A.1中提供了关于我们评估指标更详细的解释和示例。 \n","dateCreated":"2025-04-26T09:57:14+08:00","dateModified":"2025-05-06T19:45:08+08:00","datePublished":"2025-04-26T09:57:14+08:00","description":"论文阅读-北大发布的物理题求解评价新指标","headline":"PHYBench论文阅读-新的物理题求解评估指标","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://wilsssssssson.github.io/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/"},"publisher":{"@type":"Organization","name":"Jiaxing Huang","sameAs":["https://github.com/wilsssssssson"],"image":"qingque.png","logo":{"@type":"ImageObject","url":"qingque.png"}},"url":"https://wilsssssssson.github.io/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/","keywords":"deeplearning, physics"}</script>
+    <meta name="description" content="论文阅读-北大发布的物理题求解评价新指标">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="PHYBench论文阅读-新的物理题求解评估指标">
+<meta property="og:url" content="https://wilsssssssson.github.io/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/index.html">
+<meta property="og:site_name" content="Jiaxing的个人主页">
+<meta property="og:description" content="论文阅读-北大发布的物理题求解评价新指标">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-26T01:57:14.000Z">
+<meta property="article:modified_time" content="2025-05-06T11:45:08.634Z">
+<meta property="article:author" content="Jiaxing Huang">
+<meta property="article:tag" content="deeplearning">
+<meta property="article:tag" content="physics">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://wilsssssssson.github.io/assets/images/qingque.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-ynbnjtbr9fdzcsncf07y5mdrut0hpy02gjf8gszmswatx133bzibgman8wmm.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Jiaxing的个人主页
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/qingque.png" alt="头像"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jiaxing Huang</h4>
+                
+                    <h5 class="sidebar-profile-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="首页"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="分类"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="标签"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="归档"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="关于"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/wilsssssssson"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            PHYBench论文阅读-新的物理题求解评估指标
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2025-04-26T09:57:14+08:00">
+	
+		    2025 年 4 月 26 日
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/deeplearning/">deeplearning</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <hr>
+<h2 id="论文提出PHYBench这一用于评估大语言模型物理推理能力的高质量基准测试，包含500道基于现实物理场景的问题，涵盖多个物理领域和难度级别。同时提出表达式编辑距离（EED）分数这一评估指标，通过与人类专家对比实验发现，即使是最先进的推理模型在物理推理任务上也与人类存在显著差距，凸显模型在物理感知和稳健推理方面的局限。"><a href="#论文提出PHYBench这一用于评估大语言模型物理推理能力的高质量基准测试，包含500道基于现实物理场景的问题，涵盖多个物理领域和难度级别。同时提出表达式编辑距离（EED）分数这一评估指标，通过与人类专家对比实验发现，即使是最先进的推理模型在物理推理任务上也与人类存在显著差距，凸显模型在物理感知和稳健推理方面的局限。" class="headerlink" title="论文提出PHYBench这一用于评估大语言模型物理推理能力的高质量基准测试，包含500道基于现实物理场景的问题，涵盖多个物理领域和难度级别。同时提出表达式编辑距离（EED）分数这一评估指标，通过与人类专家对比实验发现，即使是最先进的推理模型在物理推理任务上也与人类存在显著差距，凸显模型在物理感知和稳健推理方面的局限。"></a>论文提出<strong>PHYBench</strong>这一用于评估大语言模型物理推理能力的高质量基准测试，包含500道基于现实物理场景的问题，涵盖多个物理领域和难度级别。同时提出<strong>表达式编辑距离（EED）分数</strong>这一评估指标，通过与人类专家对比实验发现，即使是最先进的推理模型在物理推理任务上也与人类存在显著差距，凸显模型在物理感知和稳健推理方面的局限。</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">## **PHYBench基准测试介绍**</span><br><span class="line">- 包含500道物理问题，涵盖多领域和多难度</span><br><span class="line">- 问题基于现实场景，需推导符号表达式</span><br><span class="line">## **评估指标**</span><br><span class="line">- 准确性指标：判断模型答案与正确答案是否完全一致</span><br><span class="line">- EED分数指标：计算表达式树编辑距离衡量相似性</span><br><span class="line">## **实验设置与结果**</span><br><span class="line">- 测试多种模型，包括前沿和常用模型</span><br><span class="line">- 人类专家准确率61.9%，EED分数70.4，远超模型</span><br><span class="line">## **错误分析**</span><br><span class="line">- 物理感知错误：对物理过程理解不足，如误解运动关系</span><br><span class="line">- 稳健推理错误：推理过程不一致，解方程困难</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h3><ol>
+<li>大语言模型（LLMs）推理能力提升，但现有基准测试在评估其物理感知和推理能力方面存在不足。</li>
+<li>问题包括推理任务过于简化、问题过度抽象、缺乏精确评估指标。</li>
+</ol>
+<h3 id="PHYBench基准测试"><a href="#PHYBench基准测试" class="headerlink" title="PHYBench基准测试"></a>PHYBench基准测试</h3><ol>
+<li><strong>构成与难度</strong>：包含500道精心策划的物理问题，涵盖力学、电磁学、热力学等多个领域，难度从高中到本科及物理竞赛水平。</li>
+<li><strong>数据集整理</strong>：问题改编自物理练习，由北大物理学院学生参与贡献和完善，经过多轮审查、测试和优化，确保问题质量和规范性。</li>
+<li><strong>评估指标</strong><ul>
+<li><strong>准确性（Accuracy）</strong>：传统的判断模型答案是否正确的指标，以二进制（正确&#x2F;错误）计分。</li>
+<li><strong>表达式编辑距离（EED）分数</strong>：基于表达式树编辑距离，计算模型生成答案与正确答案的相似度，能更细致地反映模型推理的正确性，分数范围为0 - 100分。</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算方式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>准确性</td>
+<td>模型答案与正确答案完全一致计100分，否则计0分</td>
+<td>简单直观，但无法区分部分正确情况</td>
+</tr>
+<tr>
+<td>EED分数</td>
+<td>通过计算表达式树编辑距离，根据相对编辑距离确定分数</td>
+<td>能反映模型答案与正确答案的相似程度，对部分正确答案也能计分</td>
+</tr>
+</tbody></table>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><strong>实验设置</strong>：测试多种具有代表性的LLMs，包括前沿模型和广泛应用的模型，使用准确性和EED分数两个指标评估，本地运行模型设置特定推理参数。</li>
+<li><strong>人类基线</strong>：招募81名北大物理学院学生参与答题，平均准确率为61.9% ± 2.1%，EED分数为70.4 ± 1.8，在两个指标上均显著优于所有评估的LLMs。</li>
+<li><strong>主要结果</strong><ul>
+<li>即使是最先进的推理模型在物理推理任务上表现也有限，如Gemini 2.5 pro准确率为36.9%，EED分数为49.5，远低于人类基线。</li>
+<li>EED分数在评估模型性能时，数值分布更广泛，统计不确定性更小，平均样本效率比准确性指标提高304%。</li>
+</ul>
+</li>
+<li><strong>模型在不同领域的表现</strong><ul>
+<li>定义绝对优势和相对优势两个指标，分析模型在不同物理领域的表现。</li>
+<li>不同模型在不同领域各有优劣，如传统模型在力学领域表现较差，推理专用模型在力学领域表现相对较好，热力学问题能体现推理和非推理模型的差距。</li>
+</ul>
+</li>
+</ol>
+<h3 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h3><ol>
+<li><strong>物理感知错误</strong>：模型对物理过程理解不足和建模能力欠缺，导致对物理场景的错误判断，影响最终答案，32B模型在这方面表现尤其差。</li>
+<li><strong>稳健推理错误</strong>：模型在长而复杂的推理过程中难以保持一致性，解方程存在困难，物理问题的长程符号推理对当前模型是重大挑战。</li>
+<li><strong>EED指标的作用</strong>：EED分数能有效捕捉物理感知和稳健推理阶段的错误，通过量化中间过程的差异，评估模型的推理能力。</li>
+</ol>
+<h3 id="研究结论"><a href="#研究结论" class="headerlink" title="研究结论"></a>研究结论</h3><ol>
+<li>PHYBench为评估LLMs的物理推理能力提供了全面的基准测试，EED分数能更细致地评估模型推理过程。</li>
+<li>实验结果表明当前LLMs在物理感知和稳健推理方面存在基本限制，与人类专家有较大差距，未来发展面临挑战和机遇。</li>
+</ol>
+<hr>
+<p><strong>问题1：PHYBench与其他推理基准测试相比有哪些独特之处？</strong><br>答案：PHYBench包含500道高质量问题，涵盖多种物理领域和难度级别，基于现实物理场景。其评估指标除了准确性还有EED分数，能更细致评估模型推理能力。其他基准测试存在任务简化、问题抽象、评估指标单一等问题，如GSM8K数据规模为8.5K，难度为小学级别，采用准确率和二进制评分；OlympiadBench有8K道题，为竞赛级别，答案类型为受限的LATEX表达式，采用准确率和二进制评分。</p>
+<p><strong>问题2：EED分数相较于传统二进制评分的优势体现在哪些方面？</strong><br>答案：EED分数基于表达式树编辑距离，能有效捕捉模型答案与正确答案的相似度，对于部分正确的答案也能给出非零分数，更好地反映模型的能力。而传统二进制评分在任务过难或过易时，分数易集中在极高或极低水平，无法有效区分模型能力。例如在低分段，EED评分的鉴别力和线性度更高，信息容量更大，平均样本效率比准确性指标提高304%。</p>
+<p><strong>问题3：从实验结果来看，不同类型模型在物理推理任务上的表现有何差异？</strong><br>答案：推理专用模型通常优于通用语言模型，如Gemini 2.5 pro作为表现较好的模型，准确率为36.9%，EED分数为49.5；而一些通用模型如DeepSeek-V3、GPT-4.1和Claude 3.7 Sonnet的准确率分别为13.6%、12.9%和13.2%。32B模型如DeepSeek-Distill-32B和QwQ-32B在PHYBench上表现较弱，准确率分别为2.6%和1.2%，EED分数分别为4.5和3.2。 </p>
+<p><em><strong>出题要求核心：</strong></em></p>
+<ul>
+<li><strong>基于文本的表述</strong>：所有问题必须仅通过文本描述就能求解，不依赖多模态输入。</li>
+<li><strong>严格的符号答案</strong>：答案必须是单一、明确的符号表达式（例如，$2mg + \frac{4mv_{0}^{2}}{l}$ ）。我们允许符号表达式有不同的等价形式（例如，因式分解或重新排列后的形式）。但答案中不接受方程（例如，$\frac{T}{m} - 2g &#x3D; \frac{v_{0}^{2}}{l}$ ）或浮点近似值。</li>
+<li><strong>表述明确</strong>：问题表述必须严谨精确，避免歧义。</li>
+</ul>
+<p>在本节中，我们将介绍表达式编辑距离分数（EED分数）的计算流程和详细信息。这是一种自动化、无模型依赖的评估指标，旨在评估人工智能生成的解决方案的正确性。</p>
+<p>EED分数通过计算表达式树编辑距离来评估两个符号表达式之间的相似性。这个距离表示将一个树状结构的表达式转换为另一个所需的最少节点级编辑操作（插入、删除和更新）次数。</p>
+<p>为了表述清晰，在接下来的讨论中，我们用“gt”作为“正确答案（ground truth）”的缩写，用“gen”表示“模型生成的答案”。</p>
+<p>EED分数的计算包含几个步骤。首先，我们将gt和gen表达式从LaTeX格式转换为与SymPy兼容的形式。然后，我们使用<code>simplify()</code>函数来验证它们是否等价，该函数会将每个表达式转换为简化且结构一致的格式。</p>
+<p>因此，在进一步计算EED分数之前，我们可以使用一个简单的等价标准进行基本的二进制计分，定义如下：<br>[score_{Bin}&#x3D;\begin{cases}100, &amp; \text{如果 } simplify(gt)\equiv simplify(gen) \ 0, &amp; \text{否则}\end{cases}]</p>
+<p>随后，我们将简化后的SymPy表达式转换为树结构，并使用扩展的Zhang - Shasha算法[3]计算它们的最小编辑距离。最终的EED分数由一个基于相对编辑距离（编辑距离与正确答案树中节点总数的比值）的分段线性函数确定：<br>[r &#x3D; \frac{Distance(T_{gt}, T_{gen})}{Size(T_{gt})}, score &#x3D;\begin{cases}100, &amp; \text{如果 } r &#x3D; 0 \text{（完全匹配）}\ 60 - 100r, &amp; \text{如果 } 0 &lt; r &lt; 0.6\ 0, &amp; \text{如果 } r &gt; 0.6\end{cases}]</p>
+<p>此外，我们的算法扩展了基本的三种树编辑操作，增加了子树插入和删除操作。对于较大的子树（节点数大于5），这些操作的成本系数降低为60%，明显低于逐节点进行编辑的成本。计分函数“60 - 100r”的设定是为了确保完全错误的输出得分为0分，而对于接近正确的模型生成答案给予60分的基础分。</p>
+<p>采用EED分数而非传统二进制计分的主要动机是为了更好地捕捉模型解决方案的正确程度。即使生成的答案有细微差异，比如小的计算错误或系数错误，这也表明模型对底层物理知识有部分理解，而非完全误解。附录A.1中提供了关于我们评估指标更详细的解释和示例。 </p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/deeplearning/" rel="tag">deeplearning</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/physics/" rel="tag">physics</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/05/06/%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82%E5%92%8C%E7%9B%B8%E5%BA%94%E8%AF%B7%E6%B1%82%E5%AF%BC%E8%87%B4%E7%9A%84bug-%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/"
+                    data-tooltip="发起请求和相应请求导致的bug-取消请求方法"
+                    aria-label="上一篇: 发起请求和相应请求导致的bug-取消请求方法"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/17/LLaVA%E2%80%94cot/"
+                    data-tooltip="LLaVA—cot"
+                    aria-label="下一篇: LLaVA—cot"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/&amp;title=PHYBench论文阅读-新的物理题求解评估指标"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 Jiaxing Huang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/05/06/%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82%E5%92%8C%E7%9B%B8%E5%BA%94%E8%AF%B7%E6%B1%82%E5%AF%BC%E8%87%B4%E7%9A%84bug-%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/"
+                    data-tooltip="发起请求和相应请求导致的bug-取消请求方法"
+                    aria-label="上一篇: 发起请求和相应请求导致的bug-取消请求方法"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2025/03/17/LLaVA%E2%80%94cot/"
+                    data-tooltip="LLaVA—cot"
+                    aria-label="下一篇: LLaVA—cot"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/&amp;title=PHYBench论文阅读-新的物理题求解评估指标"
+                    title="分享到 QQ"
+                    aria-label="分享到 QQ"
+                >
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="http://connect.qq.com/widget/shareqq/index.html?url=https://wilsssssssson.github.io/2025/04/26/PHYBench%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%96%B0%E7%9A%84%E7%89%A9%E7%90%86%E9%A2%98%E6%B1%82%E8%A7%A3%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/&amp;title=PHYBench论文阅读-新的物理题求解评估指标"
+                        aria-label="分享到 QQ"
+                    >
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/qingque.png" alt="头像"/>
+        
+            <h4 id="about-card-name">Jiaxing Huang</h4>
+        
+            <div id="about-card-bio">  <p><strong>姓名:</strong> Jiaxing Huang</p> <p><strong>教育背景:</strong> 西安交大计算机研究生在读</p> <p><strong>爱好:</strong> 乒乓球，健身，游戏</p> <div> <p><strong>QQ:</strong>1327003704</p> <p><strong>微信:</strong>h18479616963</p> <p><strong>邮箱:</strong>1327003704@qq.com</p> </div></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>目前正在找实习中</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                fdsfdsfsdfdsfdsf
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/taohua.png');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ea8bpcwkmexwbtnpwrprzbvvhmck8txwvmjcflwvce6kaxmha0ukkpeee301.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
